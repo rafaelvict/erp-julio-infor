@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.erp.adm.domain.Funcionario;
 import com.erp.adm.repositories.FuncionarioRepository;
+import com.erp.adm.services.exceptions.ObjectNotFoundException;
 
 
 @Service
@@ -19,7 +20,9 @@ public class FuncionarioService implements Serializable{
 
 	public Funcionario buscar(Long id) {
 		Optional<Funcionario> obj = repo.findById(id);
-		return obj.orElse(null);
+
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Funcionario.class.getName()));
 	}
 
 }

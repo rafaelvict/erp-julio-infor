@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import com.erp.adm.enums.TipoPreco;
 import com.erp.adm.enums.TipoVencto;
 import com.erp.adm.enums.TipoVenda;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Empresa extends GenericDomain implements Serializable{
@@ -183,12 +184,15 @@ public class Empresa extends GenericDomain implements Serializable{
 	private Integer pontos_PorReal;
 	
 	@OneToMany(mappedBy = "empresa")
+	@JsonIgnore
 	private List<Endereco> enderecos = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "empresa")
+	@JsonIgnore
 	private List<Funcionario> funcionarios = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "empresa")
+	@JsonIgnore
 	private List<Telefone> telefones = new ArrayList<>();
 	
 	

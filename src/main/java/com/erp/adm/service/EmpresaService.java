@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.erp.adm.domain.Empresa;
 import com.erp.adm.repositories.EmpresaRepository;
+import com.erp.adm.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class EmpresaService implements Serializable{
@@ -18,7 +19,9 @@ public class EmpresaService implements Serializable{
 	
 	public Empresa buscar(Long id) {
 		Optional<Empresa> obj = repo.findById(id);
-		return obj.orElse(null);
+		
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Empresa.class.getName()));
 	}
 
 }

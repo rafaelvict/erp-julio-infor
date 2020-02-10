@@ -11,7 +11,7 @@ public class GerenciadorDeTransacao  implements Serializable{
 
 	private EntityManager manager;
 
-//	http://stackoverflow.com/questions/20760867/hibernate-postgresql-connection-with-state-idle-in-transaction
+	//http://stackoverflow.com/questions/20760867/hibernate-postgresql-connection-with-state-idle-in-transaction
 //	public Object executaTX(InvocationContext contexto) throws Exception  {
 //		Object resultado = null;
 //		try {
@@ -23,9 +23,8 @@ public class GerenciadorDeTransacao  implements Serializable{
 //			manager.getTransaction().rollback();
 //			throw new Exception(ex.getMessage());
 //		} finally {
-//			
 //			if (manager.getTransaction().isActive()) {
-//				manager.getTransaction().rollback();
+//			manager.getTransaction().rollback();
 //			}
 //		}
 //		return resultado;
