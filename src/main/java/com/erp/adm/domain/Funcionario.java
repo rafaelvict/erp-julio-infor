@@ -12,8 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.erp.adm.enums.TipoSexo;
 import com.erp.adm.enums.TipoEstadoCivil;
+import com.erp.adm.enums.TipoSexo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Funcionario extends GenericDomain implements Serializable{
@@ -64,10 +65,12 @@ public class Funcionario extends GenericDomain implements Serializable{
 	@Column(nullable = false)
 	private Double salarioHora;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Empresa empresa;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(nullable = true)
 	private Usuario usuario;

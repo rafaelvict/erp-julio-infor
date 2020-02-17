@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 import com.erp.adm.domain.Cidade;
 
 import com.erp.adm.enums.TipoEndereco;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Endereco extends GenericDomain implements Serializable{
@@ -38,10 +39,12 @@ public class Endereco extends GenericDomain implements Serializable{
 	@JoinColumn(nullable = false)
 	private Cidade cidade;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Empresa empresa;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(nullable = true)
 	private Funcionario funcionario;

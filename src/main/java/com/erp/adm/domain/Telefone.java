@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.erp.adm.enums.TipoTelefone;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Telefone extends GenericDomain implements Serializable{
@@ -29,10 +30,12 @@ public class Telefone extends GenericDomain implements Serializable{
 	@Column(length = 12, nullable = false)
 	private Date data_altera;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(nullable = true)
 	private Empresa empresa;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(nullable = true)
 	private Funcionario funcionario;

@@ -7,9 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.erp.adm.domain.GenericDomain;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 
 @Entity
 public class Cidade extends GenericDomain implements Serializable{
@@ -21,7 +18,6 @@ public class Cidade extends GenericDomain implements Serializable{
 	@Column(length = 20, nullable = false)
 	private Integer codigoIbge;
 	
-	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Estado estado;

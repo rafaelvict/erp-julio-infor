@@ -9,8 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-import com.erp.adm.domain.GenericDomain;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Estado extends GenericDomain implements Serializable {
@@ -22,7 +21,7 @@ public class Estado extends GenericDomain implements Serializable {
 	@Column(length = 50, nullable = false)
 	private String nome;
 	
-	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "estado")
 	private List<Cidade> cidades = new ArrayList<>();
 	
