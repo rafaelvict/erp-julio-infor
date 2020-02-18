@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.erp.adm.domain.Endereco;
 import com.erp.adm.repositories.EnderecoRepository;
+import com.erp.adm.services.exceptions.DataIntegrityException;
 import com.erp.adm.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -32,6 +34,17 @@ public class EnderecoService implements Serializable {
 	public Endereco update(Endereco obj) {
 		find(obj.getCodigo());
 		return repo.save(obj);
+	}
+
+	public void delete(Long id) {
+		find(id);
+		try {
+			repo.deleteById(id);
+		}
+		catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir esse Objeto pois ele está associado a outro Objeto.");
+		}
+		
 	}
 
 }

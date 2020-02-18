@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.erp.adm.domain.Funcionario;
 import com.erp.adm.repositories.FuncionarioRepository;
+import com.erp.adm.services.exceptions.DataIntegrityException;
 import com.erp.adm.services.exceptions.ObjectNotFoundException;
 
 
@@ -35,5 +37,17 @@ public class FuncionarioService implements Serializable{
 	public Funcionario update(Funcionario obj) {
 		find(obj.getCodigo());
 		return repo.save(obj);
+	}
+
+
+	public void delete(Long id) {
+		find(id);
+		try {
+			repo.deleteById(id);
+		}
+		catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir esse Objeto pois ele está associado a outro Objeto.");
+		}
+		
 	}
 }
