@@ -23,5 +23,10 @@ public class EmpresaService implements Serializable{
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Empresa.class.getName()));
 	}
+	
+	public Empresa insert(Empresa obj) {
+		obj.setCodigo(null);
+		return repo.save(obj);
+	}
 
 }

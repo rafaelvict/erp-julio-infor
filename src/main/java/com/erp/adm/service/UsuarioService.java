@@ -24,4 +24,9 @@ public class UsuarioService implements Serializable{
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Usuario.class.getName()));
 	}
+	
+	public Usuario insert(Usuario obj) {
+		obj.setCodigo(null);
+		return repo.save(obj);
+	}
 }

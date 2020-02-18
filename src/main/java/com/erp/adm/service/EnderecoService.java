@@ -23,5 +23,10 @@ public class EnderecoService implements Serializable {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Endereco.class.getName()));
 	}
+	
+	public Endereco insert(Endereco obj) {
+		obj.setCodigo(null);
+		return repo.save(obj);
+	}
 
 }

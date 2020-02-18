@@ -15,7 +15,7 @@ public class Cidade extends GenericDomain implements Serializable{
 	@Column(length = 50, nullable = false)
 	private String nome;
 	
-	@Column(length = 20, nullable = false)
+	@Column(length = 20, nullable = true)
 	private Integer codigoIbge;
 	
 	@ManyToOne

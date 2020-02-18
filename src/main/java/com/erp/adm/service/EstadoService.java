@@ -23,4 +23,9 @@ public class EstadoService implements Serializable {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Estado.class.getName()));
 	}
+	
+	public Estado insert(Estado obj) {
+		obj.setCodigo(null);
+		return repo.save(obj);
+	}
 }

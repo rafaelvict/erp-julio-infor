@@ -24,5 +24,10 @@ public class TelefoneService implements Serializable {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Telefone.class.getName()));
 	}
+	
+	public Telefone insert(Telefone obj) {
+		obj.setCodigo(null);
+		return repo.save(obj);
+	}
 
 }

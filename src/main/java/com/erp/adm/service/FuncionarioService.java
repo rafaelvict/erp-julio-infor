@@ -25,4 +25,9 @@ public class FuncionarioService implements Serializable{
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Funcionario.class.getName()));
 	}
 
+	
+	public Funcionario insert(Funcionario obj) {
+		obj.setCodigo(null);
+		return repo.save(obj);
+	}
 }
