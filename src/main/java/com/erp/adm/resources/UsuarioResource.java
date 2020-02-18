@@ -22,8 +22,8 @@ public class UsuarioResource {
 	private UsuarioService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Long id) {
-		Usuario obj = service.buscar(id);
+	public ResponseEntity<Usuario> find(@PathVariable Long id) {
+		Usuario obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
@@ -33,6 +33,12 @@ public class UsuarioResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("{/id}").buildAndExpand(obj.getCodigo()).toUri();
 		return ResponseEntity.created(uri).build();
-		
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Usuario obj, @PathVariable Long id){
+		obj.setCodigo(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 }

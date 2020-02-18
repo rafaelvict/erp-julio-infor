@@ -18,7 +18,7 @@ public class TelefoneService implements Serializable {
 	@Autowired
 	private TelefoneRepository repo;
 
-	public Telefone buscar(Long id) {
+	public Telefone find(Long id) {
 		Optional<Telefone> obj = repo.findById(id);
 
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -27,6 +27,11 @@ public class TelefoneService implements Serializable {
 	
 	public Telefone insert(Telefone obj) {
 		obj.setCodigo(null);
+		return repo.save(obj);
+	}
+
+	public Telefone update(Telefone obj) {
+		find(obj.getCodigo());
 		return repo.save(obj);
 	}
 

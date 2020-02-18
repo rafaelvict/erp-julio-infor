@@ -18,7 +18,7 @@ public class UsuarioService implements Serializable{
 	@Autowired
 	private UsuarioRepository repo;
 
-	public Usuario buscar(Long id) {
+	public Usuario find(Long id) {
 		Optional<Usuario> obj = repo.findById(id);
 
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -27,6 +27,11 @@ public class UsuarioService implements Serializable{
 	
 	public Usuario insert(Usuario obj) {
 		obj.setCodigo(null);
+		return repo.save(obj);
+	}
+
+	public Usuario update(Usuario obj) {
+		find(obj.getCodigo());
 		return repo.save(obj);
 	}
 }

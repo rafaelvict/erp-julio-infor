@@ -17,7 +17,7 @@ public class EstadoService implements Serializable {
 	@Autowired
 	private EstadoRepository repo;
 
-	public Estado buscar(Long id) {
+	public Estado find(Long id) {
 		Optional<Estado> obj = repo.findById(id);
 
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -26,6 +26,11 @@ public class EstadoService implements Serializable {
 	
 	public Estado insert(Estado obj) {
 		obj.setCodigo(null);
+		return repo.save(obj);
+	}
+
+	public Estado update(Estado obj) {
+		find(obj.getCodigo());
 		return repo.save(obj);
 	}
 }

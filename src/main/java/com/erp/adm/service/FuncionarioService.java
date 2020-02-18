@@ -18,7 +18,7 @@ public class FuncionarioService implements Serializable{
 	@Autowired
 	private FuncionarioRepository repo;
 
-	public Funcionario buscar(Long id) {
+	public Funcionario find(Long id) {
 		Optional<Funcionario> obj = repo.findById(id);
 
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -28,6 +28,12 @@ public class FuncionarioService implements Serializable{
 	
 	public Funcionario insert(Funcionario obj) {
 		obj.setCodigo(null);
+		return repo.save(obj);
+	}
+
+
+	public Funcionario update(Funcionario obj) {
+		find(obj.getCodigo());
 		return repo.save(obj);
 	}
 }

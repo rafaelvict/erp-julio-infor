@@ -22,8 +22,8 @@ public class CidadeResource {
 	private CidadeService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Long id){
-		Cidade obj = service.buscar(id);
+	public ResponseEntity<Cidade> find(@PathVariable Long id){
+		Cidade obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
@@ -35,5 +35,12 @@ public class CidadeResource {
 				.path("{/id}").buildAndExpand(obj.getCodigo()).toUri();
 		return ResponseEntity.created(uri).build();
 		
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Cidade obj, @PathVariable Long id){
+		obj.setCodigo(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 }

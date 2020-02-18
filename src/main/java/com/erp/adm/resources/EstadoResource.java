@@ -23,8 +23,8 @@ public class EstadoResource {
 	private EstadoService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Long id) {
-		Estado obj = service.buscar(id);
+	public ResponseEntity<Estado> find(@PathVariable Long id) {
+		Estado obj = service.find(id);
 		return ResponseEntity.ok().body(obj);	
 	}
 	
@@ -35,5 +35,12 @@ public class EstadoResource {
 				.path("{/id}").buildAndExpand(obj.getCodigo()).toUri();
 		return ResponseEntity.created(uri).build();
 		
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Estado obj, @PathVariable Long id){
+		obj.setCodigo(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 }

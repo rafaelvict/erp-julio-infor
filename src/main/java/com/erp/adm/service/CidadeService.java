@@ -18,7 +18,7 @@ public class CidadeService implements Serializable {
 	@Autowired
 	private CidadeRepository repo;
 	
-	public Cidade buscar(Long id) {
+	public Cidade find(Long id) {
 			Optional<Cidade> obj = repo.findById(id);
 		
 			return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -28,6 +28,11 @@ public class CidadeService implements Serializable {
 	
 	public Cidade insert(Cidade obj) {
 		obj.setCodigo(null);
+		return repo.save(obj);
+	}
+
+	public Cidade update(Cidade obj) {
+		find(obj.getCodigo());
 		return repo.save(obj);
 	}
 

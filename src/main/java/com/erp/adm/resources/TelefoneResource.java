@@ -23,8 +23,8 @@ public class TelefoneResource {
 	private TelefoneService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Long id) {
-		Telefone obj = service.buscar(id);
+	public ResponseEntity<Telefone> find(@PathVariable Long id) {
+		Telefone obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 		
 	}
@@ -35,6 +35,12 @@ public class TelefoneResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("{/id}").buildAndExpand(obj.getCodigo()).toUri();
 		return ResponseEntity.created(uri).build();
-		
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Telefone obj, @PathVariable Long id){
+		obj.setCodigo(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 }

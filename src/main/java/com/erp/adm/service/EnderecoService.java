@@ -17,7 +17,7 @@ public class EnderecoService implements Serializable {
 	@Autowired
 	private EnderecoRepository repo;
 	
-	public Endereco buscar(Long id) {
+	public Endereco find(Long id) {
 		Optional<Endereco> obj = repo.findById(id);
 
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -26,6 +26,11 @@ public class EnderecoService implements Serializable {
 	
 	public Endereco insert(Endereco obj) {
 		obj.setCodigo(null);
+		return repo.save(obj);
+	}
+
+	public Endereco update(Endereco obj) {
+		find(obj.getCodigo());
 		return repo.save(obj);
 	}
 

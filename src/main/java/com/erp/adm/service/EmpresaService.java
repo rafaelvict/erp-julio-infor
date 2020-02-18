@@ -17,7 +17,7 @@ public class EmpresaService implements Serializable{
 	@Autowired
 	private EmpresaRepository repo;
 	
-	public Empresa buscar(Long id) {
+	public Empresa find(Long id) {
 		Optional<Empresa> obj = repo.findById(id);
 		
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -26,6 +26,11 @@ public class EmpresaService implements Serializable{
 	
 	public Empresa insert(Empresa obj) {
 		obj.setCodigo(null);
+		return repo.save(obj);
+	}
+
+	public Empresa update(Empresa obj) {
+		find(obj.getCodigo());
 		return repo.save(obj);
 	}
 
