@@ -191,7 +191,6 @@ public class Empresa extends GenericDomain implements Serializable{
 	@OneToMany(mappedBy = "empresa")
 	private List<Telefone> telefones = new ArrayList<>();
 	
-	
 	public Empresa() {
 		
 	}
@@ -200,12 +199,12 @@ public class Empresa extends GenericDomain implements Serializable{
 			Integer insc_Municipal, String email, Integer vias, Integer vias_Boleto, Integer dias_Juros, Float multa,
 			Integer mora, Integer ini_Mes, Integer fim_Mes, boolean bolBancario, Double valor_IsencaoBoleto,
 			Double valor_AdcBoleto, Float desconto_Funcionario, Float desconto_Empresa, Double acrescimo,
-			Integer tipo_Venda, Integer tipo_Preco, boolean delivery, Integer dias_DescFab, Integer codigo_Ibge,
+			TipoVenda tipo_Venda, TipoPreco tipo_Preco, boolean delivery, Integer dias_DescFab, Integer codigo_Ibge,
 			boolean creadiario, boolean pergNota, boolean descMaxGrupo, boolean pergPontoVenda, boolean usarProcPromo,
 			boolean usarDescVista, boolean permDesc, boolean pedirTransp, boolean farmaciaPopular,
 			boolean controleVencto, String msgBoleto1, String msgBoleto2, Integer mesReceb, String mascara,
 			boolean cupomFisc, boolean emitirBoletoBanc, Integer vias_Pagto, boolean log, Date dataAltera,
-			boolean impCv, Integer tipo_Vencto, boolean ignorarSaldo, String msg_Venda, boolean manterDescEmp,
+			boolean impCv, TipoVencto tipo_Vencto, boolean ignorarSaldo, String msg_Venda, boolean manterDescEmp,
 			boolean semComissao, boolean numAutoriz, boolean ignorarPrecoPrazo, Float percent_Vista,
 			Float percent_CartaFrete, Integer pontos_PorReal) {
 		super();
@@ -229,8 +228,8 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.desconto_Funcionario = desconto_Funcionario;
 		this.desconto_Empresa = desconto_Empresa;
 		this.acrescimo = acrescimo;
-		this.tipo_Venda = tipo_Venda;
-		this.tipo_Preco = tipo_Preco;
+		this.tipo_Venda = tipo_Venda.getCodigo();
+		this.tipo_Preco = tipo_Preco.getCodigo();
 		this.delivery = delivery;
 		this.dias_DescFab = dias_DescFab;
 		this.codigo_Ibge = codigo_Ibge;
@@ -254,7 +253,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.log = log;
 		this.dataAltera = dataAltera;
 		this.impCv = impCv;
-		this.tipo_Vencto = tipo_Vencto;
+		this.tipo_Vencto = tipo_Vencto.getCodigo();
 		this.ignorarSaldo = ignorarSaldo;
 		this.msg_Venda = msg_Venda;
 		this.manterDescEmp = manterDescEmp;

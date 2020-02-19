@@ -1,6 +1,7 @@
 package com.erp.adm.service;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,10 @@ public class CidadeService implements Serializable {
 		catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir esse Objeto pois ele está associado a outro Objeto.");
 		}
+	}
+
+	public List<Cidade> findAll() {
+		return repo.findAll();
 	}
 
 }

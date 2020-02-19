@@ -1,6 +1,7 @@
 package com.erp.adm.service;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,10 @@ public class FuncionarioService implements Serializable{
 			throw new DataIntegrityException("Não é possível excluir esse Objeto pois ele está associado a outro Objeto.");
 		}
 		
+	}
+
+
+	public List<Funcionario> findAll() {
+		return repo.findAll();
 	}
 }
