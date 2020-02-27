@@ -9,6 +9,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.erp.adm.domain.Usuario;
+import com.erp.adm.dto.UsuarioDTO;
 import com.erp.adm.repositories.UsuarioRepository;
 import com.erp.adm.services.exceptions.DataIntegrityException;
 import com.erp.adm.services.exceptions.ObjectNotFoundException;
@@ -50,5 +51,9 @@ public class UsuarioService implements Serializable{
 
 	public List<Usuario> findAll() {
 		return repo.findAll();
+	}
+
+	public Usuario fromDTO(UsuarioDTO objDTO) {
+		return new Usuario(objDTO.getCrf(), objDTO.getContaDtInicio(), objDTO.getQtdVendaData(), objDTO.getCodCartao(), objDTO.getLoginFarmaPop(), objDTO.getTipo(), objDTO.getAtivo());
 	}
 }

@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +35,8 @@ public class EmpresaResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Empresa obj){
+	public ResponseEntity<Void> insert(@Valid @RequestBody EmpresaDTO objDTO){
+		Empresa obj = service.fromDTO(objDTO);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("{/id}").buildAndExpand(obj.getCodigo()).toUri();
@@ -42,7 +45,8 @@ public class EmpresaResource {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Empresa obj, @PathVariable Long id){
+	public ResponseEntity<Void> update(@Valid @RequestBody EmpresaDTO objDTO, @PathVariable Long id){
+		Empresa obj = service.fromDTO(objDTO);
 		obj.setCodigo(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
@@ -71,4 +75,5 @@ public class EmpresaResource {
 		Page<EmpresaDTO> listDto = list.map(obj ->  new EmpresaDTO(obj));
 		return ResponseEntity.ok().body(listDto);
 	}
+
 }

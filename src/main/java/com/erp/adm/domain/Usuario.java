@@ -3,7 +3,6 @@ package com.erp.adm.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -13,60 +12,41 @@ import javax.persistence.Transient;
 public class Usuario extends GenericDomain implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@Column(length = 30, nullable = false)
 	private String redComissao;
-	
-	@Column(nullable = false)
 	private Float maxComissao;
-	
-	@Column(nullable = false)
 	private Integer redComissaoDataC1;
-	
-	@Column(nullable = false)
 	private Integer redComissaoDataC2;
-	
-	@Column(nullable = false)
 	private boolean log;
-	
-	@Column(nullable = false)
 	private Date dataAltera;
-	
-	@Column(length = 100, nullable = false)
 	private String senha;
-	
-	@Column(length = 30, nullable = false)
 	private String crf;
-	
-	@Column(nullable = false)
 	private Date contaDtInicio;
-	
-	@Column(nullable = false)
 	private Integer qtdVendaData;
-	
-	@Column(length = 20, nullable = false)
 	private String codCartao;
-	
-	@Column(length = 20, nullable = false)
 	private String loginFarmaPop;
-	
-	@Column(length = 10, nullable = false)
 	private String senhaFarmaPop;
-	
+	private Character tipo;
+	private Boolean ativo;
+
 	@Transient
 	private String senhaSemCriptografia;
 	
-	@Column(nullable = false)
-	private Character tipo;
-	
-	@Column(nullable = false)
-	private Boolean ativo;
-	
 	@OneToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name="funcionario_id")
 	private Funcionario funcionario;
 	
 	public Usuario() {
 		
+	}
+	
+	public Usuario(String crf, Date contaDtInicio, Integer qtdVendaData, String codCartao, String loginFarmaPop, Character tipo, Boolean ativo) {
+		this.crf = crf;
+		this.contaDtInicio = contaDtInicio;
+		this.qtdVendaData = qtdVendaData;
+		this.codCartao = codCartao;
+		this.loginFarmaPop = loginFarmaPop;
+		this.tipo = tipo;
+		this.ativo = ativo;
 	}
 
 	public Usuario(String redComissao, Float maxComissao, Integer redComissaoDataC1, Integer redComissaoDataC2,

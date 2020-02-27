@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.erp.adm.domain.Cidade;
+import com.erp.adm.dto.CidadeDTO;
 import com.erp.adm.repositories.CidadeRepository;
 import com.erp.adm.services.exceptions.DataIntegrityException;
 import com.erp.adm.services.exceptions.ObjectNotFoundException;
@@ -59,6 +60,10 @@ public class CidadeService implements Serializable {
 	public Page<Cidade> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
+	}
+	
+	public Cidade fromDTO(CidadeDTO objDTO) {
+		return new Cidade(objDTO.getNome(), objDTO.getCodigoIbge());
 	}
 }
 

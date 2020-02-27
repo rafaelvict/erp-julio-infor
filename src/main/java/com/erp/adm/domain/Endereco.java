@@ -2,13 +2,10 @@ package com.erp.adm.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-
-import com.erp.adm.domain.Cidade;
 
 import com.erp.adm.enums.TipoEndereco;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,44 +14,42 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Endereco extends GenericDomain implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	@Column(length = 40, nullable = false)
 	private String rua;
-	
-	@Column(length = 10, nullable = false)
-	private int numero;
-	
-	@Column(length = 40, nullable = false)
+	private Integer numero;
 	private String bairro;
-	
-	@Column(length = 30, nullable = false)
 	private String complemento;
-	
-	@Column(length = 30, nullable = false)
 	private String cep;
-	
-	@Column(nullable = false)
 	private Integer tipo;
 	
 	@OneToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name="cidade_id")
 	private Cidade cidade;
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name="empresa_id")
 	private Empresa empresa;
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(nullable = true)
+	@JoinColumn(name="funcionario_id")
 	private Funcionario funcionario;
 	
 	
 	public Endereco() {
 		
 	}
+	
+	public Endereco(String rua, Integer numero, String bairro, String complemento, String cep, TipoEndereco tipo) {
+		this.rua = rua;
+		this.numero = numero;
+		this.bairro = bairro;
+		this.complemento = complemento;
+		this.cep = cep;
+		this.tipo = tipo.getCod();
+	}
 
-	public Endereco(String rua, int numero, String bairro, String complemento, String cep, TipoEndereco tipo, Cidade cidade, Empresa empresa, Funcionario funcionario) {
+	public Endereco(String rua, Integer numero, String bairro, String complemento, String cep, TipoEndereco tipo, Cidade cidade, Empresa empresa, Funcionario funcionario) {
 		super();
 		this.rua = rua;
 		this.numero = numero;
@@ -79,7 +74,7 @@ public class Endereco extends GenericDomain implements Serializable{
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
 

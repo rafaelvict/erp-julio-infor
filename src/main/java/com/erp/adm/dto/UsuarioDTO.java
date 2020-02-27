@@ -3,18 +3,38 @@ package com.erp.adm.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.erp.adm.domain.Usuario;
 
 public class UsuarioDTO  implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	
+	@Length(max=20, message="Tamanho deve ser de 20 caracteres")
 	private String crf;
+	
+	@Length(max=8, message="Tamanho deve ser de 8 caracteres")
 	private Date contaDtInicio;
+	
+	@Length(max=10, message="Tamanho deve ser de 10 caracteres")
 	private Integer qtdVendaData;
+	
+	@Length(max=15, message="Tamanho deve ser de 15 caracteres")
 	private String codCartao;
+	
+	@Length(max=20, message="Tamanho deve ser de 20 caracteres")
 	private String loginFarmaPop;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=1, max=1, message="Tamanho deve ser de 1 caractere")
 	private Character tipo;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=1, max=1, message="Tamanho deve ser de 1 caractere")
 	private Boolean ativo;
 	
 	public UsuarioDTO() {

@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +35,8 @@ public class FuncionarioResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Funcionario obj){
+	public ResponseEntity<Void> insert(@Valid @RequestBody FuncionarioDTO objDTO){
+		Funcionario obj = service.fromDTO(objDTO);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("{/id}").buildAndExpand(obj.getCodigo()).toUri();
@@ -41,7 +44,8 @@ public class FuncionarioResource {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Funcionario obj, @PathVariable Long id){
+	public ResponseEntity<Void> update(@Valid @RequestBody FuncionarioDTO objDTO, @PathVariable Long id){
+		Funcionario obj = service.fromDTO(objDTO);
 		obj.setCodigo(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();

@@ -3,6 +3,10 @@ package com.erp.adm.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.erp.adm.domain.Funcionario;
 import com.erp.adm.enums.TipoEstadoCivil;
 import com.erp.adm.enums.TipoSexo;
@@ -11,14 +15,41 @@ public class FuncionarioDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=5, max=50, message="Tamanho deve ser entre 5 e 50 caracteres")
 	private String nome;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=8, max=8, message="Tamanho deve ser de 8 caracteres")
 	private Date nascimento;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=4, max=30, message="Tamanho deve ser entre 4 e 30 caracteres")
 	private String nascionalidade;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=2, max=30, message="Tamanho deve ser entre 2 e 30 caracteres")
 	private String cpf;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=8, max=50, message="Tamanho deve ser entre 8 e 50 caracteres")
 	private String email;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=5, max=10, message="Tamanho deve ser entre 5 e 10 caracteres")
 	private Integer estadoCivil;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=5, max=9, message="Tamanho deve ser entre 5 e 9 caracteres")
 	private Integer sexo;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=10, max=20, message="Tamanho deve ser entre 10 e 20 caracteres")
 	private String carteiraTrabalho;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=8, max=8, message="Tamanho deve ser de 8 caracteres")
 	private Date dataAdmissao;
 	
 	public FuncionarioDTO() {

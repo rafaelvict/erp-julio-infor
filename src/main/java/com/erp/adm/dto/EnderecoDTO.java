@@ -2,6 +2,10 @@ package com.erp.adm.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.erp.adm.domain.Endereco;
 import com.erp.adm.enums.TipoEndereco;
 
@@ -9,11 +13,29 @@ public class EnderecoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=5, max=40, message="Tamanho deve ser entre 5 e 40 caracteres")
 	private String rua;
-	private int numero;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=1, max=5, message="Tamanho deve ser entre 1 e 5 caracteres")
+	private Integer numero;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=3, max=40, message="Tamanho deve ser entre 3 e 40 caracteres")
 	private String bairro;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=2, max=30, message="Tamanho deve ser entre 2 e 30 caracteres")
 	private String complemento;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=2, max=30, message="Tamanho deve ser entre 2 e 30 caracteres")
 	private String cep;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=5, max=10, message="Tamanho deve ser entre 5 e 10 caracteres")
 	private Integer tipo;
 	
 	public EnderecoDTO() {
@@ -53,7 +75,7 @@ public class EnderecoDTO implements Serializable {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
 

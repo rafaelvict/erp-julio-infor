@@ -2,7 +2,6 @@ package com.erp.adm.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,18 +11,20 @@ import javax.persistence.ManyToOne;
 public class Cidade extends GenericDomain implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	@Column(length = 50, nullable = false)
 	private String nome;
-	
-	@Column(length = 20, nullable = true)
 	private Integer codigoIbge;
 	
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name="estado_id")
 	private Estado estado;
 	
 	public Cidade() {
 		
+	}
+	
+	public Cidade(String nome, Integer codigoIbge) {
+		this.nome = nome;
+		this.codigoIbge = codigoIbge;
 	}
 	
 	public Cidade(String nome, Integer codigoIbge, Estado estado) {

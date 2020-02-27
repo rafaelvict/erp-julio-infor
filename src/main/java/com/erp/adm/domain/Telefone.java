@@ -3,7 +3,6 @@ package com.erp.adm.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,37 +14,34 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Telefone extends GenericDomain implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	@Column(length = 3, nullable = false)
-	private int ddd;
-	
-	@Column(length = 30, nullable = false)
+	private Integer ddd;
 	private String telefone;
-	
-	@Column(length = 50, nullable = false)
 	private Integer tipo;
-	
-	@Column(nullable = false)
 	private Boolean log;
-	
-	@Column(length = 12, nullable = false)
 	private Date data_altera;
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(nullable = true)
+	@JoinColumn(name="empresa_id")
 	private Empresa empresa;
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(nullable = true)
+	@JoinColumn(name="funcionario_id")
 	private Funcionario funcionario;
 
 
 	public Telefone() {
 		
 	}
+	
+	public Telefone(Integer ddd, String telefone, TipoTelefone tipo) {
+		this.ddd = ddd;
+		this.telefone = telefone;
+		this.tipo = tipo.getCod();
+	}
 
-	public Telefone(int ddd, String telefone, TipoTelefone tipo, Boolean log, Date data_altera, Empresa empresa, Funcionario funcionario) {
+	public Telefone(Integer ddd, String telefone, TipoTelefone tipo, Boolean log, Date data_altera, Empresa empresa, Funcionario funcionario) {
 		super();
 		this.ddd = ddd;
 		this.telefone = telefone;
@@ -60,7 +56,7 @@ public class Telefone extends GenericDomain implements Serializable{
 		return ddd;
 	}
 
-	public void setDdd(int ddd) {
+	public void setDdd(Integer ddd) {
 		this.ddd = ddd;
 	}
 

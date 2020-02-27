@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -14,11 +13,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Estado extends GenericDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Column(length = 2, nullable = false)
-	private String sigla;
 	
-	@Column(length = 50, nullable = false)
+	private String sigla;
 	private String nome;
 	
 	@JsonIgnore

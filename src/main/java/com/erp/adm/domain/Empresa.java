@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -17,169 +16,60 @@ import com.erp.adm.enums.TipoVenda;
 public class Empresa extends GenericDomain implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@Column(length = 50, nullable = false)
 	private String nome;
-	
-	@Column(length = 50, nullable = false)
 	private String cnpjRaiz;
-	
-	@Column(length = 50, nullable = false)
 	private String cnpjOrdem;
-	
-	@Column(nullable = false)
 	private char tipo;
-
-	@Column(length = 30, nullable = false)
 	private Integer insc_Estadual;
-	
-	@Column(length = 30, nullable = false)
 	private Integer insc_Municipal;
-	
-	@Column(length = 50, nullable = false)
 	private String email;
-	
-	@Column(nullable = false)
 	private Integer vias;
-	
-	@Column(nullable = false)
 	private Integer vias_Boleto;
-	
-	@Column(nullable = false)
 	private Integer dias_Juros;
-	
-	@Column(nullable = false)
 	private Float multa;
-	
-	@Column(nullable = false)
 	private Integer mora;
-	
-	@Column(nullable = false)
 	private Integer ini_Mes;
-	
-	@Column(nullable = false)
 	private Integer fim_Mes;
-	
-	@Column(nullable = false)
 	private boolean bolBancario;
-	
-	@Column(length = 20, nullable = false)
 	private Double valor_IsencaoBoleto;
-	
-	@Column(length = 20, nullable = false)
 	private Double valor_AdcBoleto;
-	
-	@Column(length = 20, nullable = false)
 	private Float desconto_Funcionario;
-	
-	@Column(length = 20, nullable = false)
 	private Float desconto_Empresa;
-	
-	@Column(length = 30, nullable = false)
 	private Double acrescimo;
-	
-	@Column(nullable = false)
 	private Integer tipo_Venda;
-	
-	@Column(nullable = false)
 	private Integer tipo_Preco;
-	
-	@Column(nullable = false)
 	private boolean delivery;
-	
-	@Column(nullable = false)
 	private Integer dias_DescFab;
-	
-	@Column(length = 50, nullable = false)
 	private Integer codigo_Ibge;
-	
-	@Column(nullable = false)
 	private boolean creadiario;
-	
-	@Column(nullable = false)
 	private boolean pergNota;
-	
-	@Column(nullable = false)
 	private boolean descMaxGrupo;
-	
-	@Column(nullable = false)
 	private boolean pergPontoVenda;
-	
-	@Column(nullable = false)
 	private boolean usarProcPromo;
-	
-	@Column(nullable = false)
 	private boolean usarDescVista;
-	
-	@Column(nullable = false)
 	private boolean permDesc;
-	
-	@Column(nullable = false)
 	private boolean pedirTransp;
-	
-	@Column(nullable = false)
 	private boolean farmaciaPopular;
-	
-	@Column(nullable = false)
 	private boolean controleVencto;
-	
-	@Column(length = 100, nullable = true)
 	private String msgBoleto1;
-	
-	@Column(length = 100, nullable = true)
 	private String msgBoleto2;
-	
-	@Column(nullable = false)
 	private Integer mesReceb;
-	
-	@Column(length = 20, nullable = false)
 	private String mascara;
-	
-	@Column(nullable = false)
 	private boolean cupomFisc;
-	
-	@Column(nullable = false)
 	private boolean emitirBoletoBanc;
-	
-	@Column(nullable = false)
 	private Integer vias_Pagto;
-	
-	@Column(nullable = false)
 	private boolean log;
-	
-	@Column(nullable = false)
 	private Date dataAltera;
-	
-	@Column(nullable = false)
 	private boolean impCv;
-	
-	@Column(nullable = false)
 	private Integer tipo_Vencto;
-	
-	@Column(nullable = false)
 	private boolean ignorarSaldo;
-	
-	@Column(length = 300, nullable = false)
 	private String msg_Venda;
-	
-	@Column(nullable = false)
 	private boolean manterDescEmp;
-	
-	@Column(nullable = false)
 	private boolean semComissao;
-	
-	@Column(nullable = false)
 	private boolean numAutoriz;
-	
-	@Column(nullable = false)
 	private boolean ignorarPrecoPrazo;
-	
-	@Column(nullable = false)
 	private Float percent_Vista;
-	
-	@Column(nullable = false)
 	private Float percent_CartaFrete;
-	
-	@Column(nullable = false)
 	private Integer pontos_PorReal;
 	
 	@OneToMany(mappedBy = "empresa")
@@ -193,6 +83,16 @@ public class Empresa extends GenericDomain implements Serializable{
 	
 	public Empresa() {
 		
+	}
+	
+	public Empresa(String nome, String cnpjRaiz, String cnpjOrdem, Integer insc_Estadual, Integer insc_Municipal, String email, Integer codigo_Ibge) {
+		this.nome = nome;
+		this.cnpjRaiz = cnpjRaiz;
+		this.cnpjOrdem = cnpjOrdem;
+		this.insc_Estadual = insc_Estadual;
+		this.insc_Municipal = insc_Municipal;
+		this.email = email;
+		this.codigo_Ibge = codigo_Ibge;
 	}
 
 	public Empresa(String nome, String cnpjRaiz, String cnpjOrdem, char tipo, Integer insc_Estadual,

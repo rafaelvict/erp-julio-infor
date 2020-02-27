@@ -5,6 +5,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +36,8 @@ public class EstadoResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Estado obj){
+	public ResponseEntity<Void> insert(@Valid @RequestBody EstadoDTO objDTO){
+		Estado obj = service.fromDTO(objDTO);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("{/id}").buildAndExpand(obj.getCodigo()).toUri();
@@ -43,7 +46,8 @@ public class EstadoResource {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Estado obj, @PathVariable Long id){
+	public ResponseEntity<Void> update(@Valid @RequestBody EstadoDTO objDTO, @PathVariable Long id){
+		Estado obj = service.fromDTO(objDTO);
 		obj.setCodigo(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();

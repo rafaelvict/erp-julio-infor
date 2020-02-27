@@ -9,6 +9,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.erp.adm.domain.Funcionario;
+import com.erp.adm.dto.FuncionarioDTO;
 import com.erp.adm.repositories.FuncionarioRepository;
 import com.erp.adm.services.exceptions.DataIntegrityException;
 import com.erp.adm.services.exceptions.ObjectNotFoundException;
@@ -55,5 +56,10 @@ public class FuncionarioService implements Serializable{
 
 	public List<Funcionario> findAll() {
 		return repo.findAll();
+	}
+
+
+	public Funcionario fromDTO(FuncionarioDTO objDTO) {
+		return new Funcionario(objDTO.getNome(), objDTO.getNascimento(), objDTO.getNascionalidade(), objDTO.getCpf(), objDTO.getEmail(), objDTO.getEstadoCivil(), objDTO.getSexo(), objDTO.getCarteiraTrabalho(), objDTO.getDataAdmissao());
 	}
 }

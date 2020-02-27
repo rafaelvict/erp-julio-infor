@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.erp.adm.domain.Telefone;
+import com.erp.adm.dto.TelefoneDTO;
 import com.erp.adm.repositories.TelefoneRepository;
 import com.erp.adm.services.exceptions.DataIntegrityException;
 import com.erp.adm.services.exceptions.ObjectNotFoundException;
@@ -59,6 +60,10 @@ public class TelefoneService implements Serializable {
 	public Page<Telefone> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
+	}
+
+	public Telefone fromDTO(TelefoneDTO objDTO) {
+		return new Telefone(objDTO.getDdd(), objDTO.getTelefone(), objDTO.getTipo());
 	}
 
 }

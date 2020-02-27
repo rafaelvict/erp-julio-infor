@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.erp.adm.domain.Empresa;
+import com.erp.adm.dto.EmpresaDTO;
 import com.erp.adm.repositories.EmpresaRepository;
 import com.erp.adm.services.exceptions.DataIntegrityException;
 import com.erp.adm.services.exceptions.ObjectNotFoundException;
@@ -57,6 +58,10 @@ public class EmpresaService implements Serializable{
 	public Page<Empresa> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
+	}
+
+	public Empresa fromDTO(EmpresaDTO objDTO) {
+		return new Empresa(objDTO.getNome(), objDTO.getCnpjRaiz(), objDTO.getCnpjOrdem(), objDTO.getInsc_Estadual(), objDTO.getInsc_Municipal(), objDTO.getEmail(), objDTO.getCodigo_Ibge());
 	}
 
 }

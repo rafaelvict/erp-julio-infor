@@ -2,6 +2,10 @@ package com.erp.adm.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.erp.adm.domain.Telefone;
 import com.erp.adm.enums.TipoTelefone;
 
@@ -9,8 +13,17 @@ public class TelefoneDTO  implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=3, max=3, message="Tamanho deve ser de 3 caracteres")
 	private Integer ddd;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=8, max=30, message="Tamanho deve ser entre 8 e 30 caracteres")
 	private String telefone;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=5, max=10, message="Tamanho deve ser entre 5 e 10 caracteres")
 	private Integer tipo;
 
 	

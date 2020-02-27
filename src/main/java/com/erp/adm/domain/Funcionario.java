@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,59 +19,30 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Funcionario extends GenericDomain implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@Column(length = 50, nullable = false)
 	private String nome;
-	
-	@Column(nullable = false)
 	private Date nascimento;
-	
-	@Column(length = 30, nullable = false)
 	private String nascionalidade;
-	
-	@Column(length = 20, nullable = false)
 	private String cpf;
-	
-	@Column(length = 40, nullable = false)
 	private String email;
-	
-	@Column(nullable = false)
 	private Integer estadoCivil;
-	
-	@Column(nullable = false)
 	private Integer sexo;
-	
-	@Column(length = 30, nullable = false)
 	private String carteiraTrabalho;
-	
-	@Column(nullable = false)
 	private Date dataAdmissao;
-	
-	@Column(nullable = false)
 	private Float percComissaoAtac1;
-	
-	@Column(nullable = false)
 	private Float percComissaoAtac2;
-	
-	@Column(nullable = false)
 	private Float descontoMax;
-	
-	@Column(nullable = false)
 	private Float maxHoras;
-	
-	@Column(nullable = false)
 	private Float horasSubst;
-	
-	@Column(nullable = false)
 	private Double salarioHora;
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name="empresa_id")
 	private Empresa empresa;
 	
 	@JsonIgnore
 	@OneToOne
-	@JoinColumn(nullable = true)
+	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
 	
 	@OneToMany(mappedBy = "funcionario")
@@ -83,6 +53,17 @@ public class Funcionario extends GenericDomain implements Serializable{
 	
 	public Funcionario() {
 		
+	}
+	
+	public Funcionario(String nome, Date nascimento, String nascionalidade, String cpf, String email, TipoEstadoCivil estadoCivil, TipoSexo sexo, String carteiraTrabalho, Date dataAdmissao) {
+		this.nome = nome;
+		this.nascimento = nascimento;
+		this.cpf = cpf;
+		this.email = email;
+		this.estadoCivil = estadoCivil.getCodigo();
+		this.sexo = sexo.getCod();
+		this.carteiraTrabalho = carteiraTrabalho;
+		this.dataAdmissao = dataAdmissao;
 	}
 
 	public Funcionario(String nome, Date nascimento, String nascionalidade, String cpf, String email,

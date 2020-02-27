@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.erp.adm.domain.Estado;
+import com.erp.adm.dto.EstadoDTO;
 import com.erp.adm.repositories.EstadoRepository;
 import com.erp.adm.services.exceptions.DataIntegrityException;
 import com.erp.adm.services.exceptions.ObjectNotFoundException;
@@ -57,5 +58,9 @@ public class EstadoService implements Serializable {
 	public Page<Estado> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
+	}
+	
+	public Estado fromDTO(EstadoDTO objDTO) {
+		return new Estado(objDTO.getNome(), objDTO.getSigla());
 	}
 }
