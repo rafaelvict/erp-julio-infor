@@ -2,6 +2,7 @@ package com.erp.adm.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
@@ -26,15 +27,15 @@ public class EmpresaDTO implements Serializable{
 	private String cnpjOrdem;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=20, max=20, message="Tamanho deve ser de 20 caracteres")
-	private Integer insc_Estadual;
+	@Length(min=9, max=9, message="Tamanho deve ser de 6 caracteres")
+	private String insc_Estadual;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(min=11, max=11, message="Tamanho deve ser entre 2 e 30 caracteres")
-	private Integer insc_Municipal;
+	private String insc_Municipal;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=5, max=50, message="Tamanho deve ser entre 5 e 50 caracteres")
+	@Email(message="Email inválido!")
 	private String email;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
@@ -88,19 +89,19 @@ public class EmpresaDTO implements Serializable{
 		this.cnpjOrdem = cnpjOrdem;
 	}
 
-	public Integer getInsc_Estadual() {
+	public String getInsc_Estadual() {
 		return insc_Estadual;
 	}
 
-	public void setInsc_Estadual(Integer insc_Estadual) {
+	public void setInsc_Estadual(String insc_Estadual) {
 		this.insc_Estadual = insc_Estadual;
 	}
 
-	public Integer getInsc_Municipal() {
+	public String getInsc_Municipal() {
 		return insc_Municipal;
 	}
 
-	public void setInsc_Municipal(Integer insc_Municipal) {
+	public void setInsc_Municipal(String insc_Municipal) {
 		this.insc_Municipal = insc_Municipal;
 	}
 

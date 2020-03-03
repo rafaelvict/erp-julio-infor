@@ -38,8 +38,9 @@ public class TelefoneService implements Serializable {
 	}
 
 	public Telefone update(Telefone obj) {
-		find(obj.getCodigo());
-		return repo.save(obj);
+		Telefone newObj = find(obj.getCodigo());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 
 	public void delete(Long id) {
@@ -64,6 +65,13 @@ public class TelefoneService implements Serializable {
 
 	public Telefone fromDTO(TelefoneDTO objDTO) {
 		return new Telefone(objDTO.getDdd(), objDTO.getTelefone(), objDTO.getTipo());
+	}
+	
+	private void updateData(Telefone newObj, Telefone obj) {
+		newObj.setData_altera(obj.getData_altera());
+		newObj.setDdd(obj.getDdd());
+		newObj.setLog(obj.getLog());
+		newObj.setTelefone(obj.getTelefone());
 	}
 
 }

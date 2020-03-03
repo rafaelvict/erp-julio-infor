@@ -17,7 +17,7 @@ public class Telefone extends GenericDomain implements Serializable{
 	private Integer ddd;
 	private String telefone;
 	private Integer tipo;
-	private Boolean log;
+	private boolean log;
 	private Date data_altera;
 	
 	@JsonIgnore
@@ -41,7 +41,7 @@ public class Telefone extends GenericDomain implements Serializable{
 		this.tipo = tipo.getCod();
 	}
 
-	public Telefone(Integer ddd, String telefone, TipoTelefone tipo, Boolean log, Date data_altera, Empresa empresa, Funcionario funcionario) {
+	public Telefone(Integer ddd, String telefone, TipoTelefone tipo, boolean log, Date data_altera, Empresa empresa, Funcionario funcionario) {
 		super();
 		this.ddd = ddd;
 		this.telefone = telefone;
@@ -76,11 +76,11 @@ public class Telefone extends GenericDomain implements Serializable{
 		this.tipo = tipo.getCod();
 	}
 
-	public Boolean getLog() {
+	public boolean getLog() {
 		return log;
 	}
 
-	public void setLog(Boolean log) {
+	public void setLog(boolean log) {
 		this.log = log;
 	}
 

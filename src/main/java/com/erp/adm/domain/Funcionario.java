@@ -33,7 +33,7 @@ public class Funcionario extends GenericDomain implements Serializable{
 	private Float descontoMax;
 	private Float maxHoras;
 	private Float horasSubst;
-	private Double salarioHora;
+	private Float salarioHora;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -68,7 +68,7 @@ public class Funcionario extends GenericDomain implements Serializable{
 
 	public Funcionario(String nome, Date nascimento, String nascionalidade, String cpf, String email,
 			TipoEstadoCivil estadoCivil, TipoSexo sexo, String carteiraTrabalho, Date dataAdmissao, Float percComissaoAtac1,
-			Float percComissaoAtac2, Float descontoMax, Float maxHoras, Float horasSubst, Double salarioHora,
+			Float percComissaoAtac2, Float descontoMax, Float maxHoras, Float horasSubst, Float salarioHora,
 			Empresa empresa, Usuario usuario) {
 		super();
 		this.nome = nome;
@@ -202,11 +202,11 @@ public class Funcionario extends GenericDomain implements Serializable{
 		this.horasSubst = horasSubst;
 	}
 
-	public Double getSalarioHora() {
+	public Float getSalarioHora() {
 		return salarioHora;
 	}
 
-	public void setSalarioHora(Double salarioHora) {
+	public void setSalarioHora(Float salarioHora) {
 		this.salarioHora = salarioHora;
 	}
 

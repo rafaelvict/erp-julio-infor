@@ -39,7 +39,8 @@ public class CidadeService implements Serializable {
 	}
 
 	public Cidade update(Cidade obj) {
-		find(obj.getCodigo());
+		Cidade newObj = find(obj.getCodigo());
+		updateData(newObj, obj);
 		return repo.save(obj);
 	}
 
@@ -64,6 +65,11 @@ public class CidadeService implements Serializable {
 	
 	public Cidade fromDTO(CidadeDTO objDTO) {
 		return new Cidade(objDTO.getNome(), objDTO.getCodigoIbge());
+	}
+	
+	private void updateData(Cidade newObj, Cidade obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setCodigoIbge(obj.getCodigoIbge());
 	}
 }
 

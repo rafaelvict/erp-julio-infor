@@ -37,8 +37,9 @@ public class EnderecoService implements Serializable {
 	}
 
 	public Endereco update(Endereco obj) {
-		find(obj.getCodigo());
-		return repo.save(obj);
+		Endereco newObj = find(obj.getCodigo());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 
 	public void delete(Long id) {
@@ -65,5 +66,11 @@ public class EnderecoService implements Serializable {
 		return new Endereco(objDTO.getRua(), objDTO.getNumero(), objDTO.getBairro(), objDTO.getComplemento(), objDTO.getCep(), objDTO.getTipo());
 	}
 
-
+	private void updateData(Endereco newObj, Endereco obj) {
+		newObj.setBairro(obj.getBairro());
+		newObj.setCep(obj.getCep());
+		newObj.setComplemento(obj.getComplemento());
+		newObj.setNumero(obj.getNumero());
+		newObj.setRua(obj.getRua());
+	}
 }

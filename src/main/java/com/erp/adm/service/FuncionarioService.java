@@ -37,8 +37,9 @@ public class FuncionarioService implements Serializable{
 
 
 	public Funcionario update(Funcionario obj) {
-		find(obj.getCodigo());
-		return repo.save(obj);
+		Funcionario newObj = find(obj.getCodigo());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 
 
@@ -61,5 +62,21 @@ public class FuncionarioService implements Serializable{
 
 	public Funcionario fromDTO(FuncionarioDTO objDTO) {
 		return new Funcionario(objDTO.getNome(), objDTO.getNascimento(), objDTO.getNascionalidade(), objDTO.getCpf(), objDTO.getEmail(), objDTO.getEstadoCivil(), objDTO.getSexo(), objDTO.getCarteiraTrabalho(), objDTO.getDataAdmissao());
+	}
+	
+	private void updateData(Funcionario newObj, Funcionario obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setCarteiraTrabalho(obj.getCarteiraTrabalho());
+		newObj.setCpf(obj.getCpf());
+		newObj.setDataAdmissao(obj.getDataAdmissao());
+		newObj.setDescontoMax(obj.getDescontoMax());
+		newObj.setEmail(obj.getEmail());
+		newObj.setHorasSubst(obj.getHorasSubst());
+		newObj.setMaxHoras(obj.getMaxHoras());
+		newObj.setNascimento(obj.getNascimento());
+		newObj.setPercComissaoAtac1(obj.getPercComissaoAtac1());
+		newObj.setPercComissaoAtac2(obj.getPercComissaoAtac2());
+		newObj.setSalarioHora(obj.getSalarioHora());
+		newObj.setSexo(obj.getSexo());
 	}
 }

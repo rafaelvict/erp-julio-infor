@@ -12,7 +12,7 @@ public class Cidade extends GenericDomain implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private String nome;
-	private Integer codigoIbge;
+	private String codigoIbge;
 	
 	@ManyToOne
 	@JoinColumn(name="estado_id")
@@ -22,12 +22,12 @@ public class Cidade extends GenericDomain implements Serializable{
 		
 	}
 	
-	public Cidade(String nome, Integer codigoIbge) {
+	public Cidade(String nome, String codigoIbge) {
 		this.nome = nome;
 		this.codigoIbge = codigoIbge;
 	}
 	
-	public Cidade(String nome, Integer codigoIbge, Estado estado) {
+	public Cidade(String nome, String codigoIbge, Estado estado) {
 		super();
 		this.nome = nome;
 		this.codigoIbge = codigoIbge;
@@ -51,11 +51,11 @@ public class Cidade extends GenericDomain implements Serializable{
 	}
 	
 	
-	public Integer getCodigoIbge() {
+	public String getCodigoIbge() {
 		return codigoIbge;
 	}
 	
-	public void setCodigoIbge(Integer codigoIbge) {
+	public void setCodigoIbge(String codigoIbge) {
 		this.codigoIbge = codigoIbge;
 	}
 	

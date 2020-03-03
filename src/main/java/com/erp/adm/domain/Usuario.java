@@ -12,10 +12,10 @@ import javax.persistence.Transient;
 public class Usuario extends GenericDomain implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private String redComissao;
+	private Float redComissao;
 	private Float maxComissao;
-	private Integer redComissaoDataC1;
-	private Integer redComissaoDataC2;
+	private Float redComissaoDataC1;
+	private Float redComissaoDataC2;
 	private boolean log;
 	private Date dataAltera;
 	private String senha;
@@ -49,7 +49,7 @@ public class Usuario extends GenericDomain implements Serializable{
 		this.ativo = ativo;
 	}
 
-	public Usuario(String redComissao, Float maxComissao, Integer redComissaoDataC1, Integer redComissaoDataC2,
+	public Usuario(Float redComissao, Float maxComissao, Float redComissaoDataC1, Float redComissaoDataC2,
 			boolean log, Date dataAltera, String senha, String crf, Date contaDtInicio, Integer qtdVendaData,
 			String codCartao, String loginFarmaPop, String senhaFarmaPop, String senhaSemCriptografia,
 			Funcionario funcionario, Boolean ativo, Character tipo) {
@@ -73,11 +73,11 @@ public class Usuario extends GenericDomain implements Serializable{
 		this.tipo = tipo;
 	}
 
-	public String getRedComissao() {
+	public Float getRedComissao() {
 		return redComissao;
 	}
 
-	public void setRedComissao(String redComissao) {
+	public void setRedComissao(Float redComissao) {
 		this.redComissao = redComissao;
 	}
 
@@ -89,19 +89,19 @@ public class Usuario extends GenericDomain implements Serializable{
 		this.maxComissao = maxComissao;
 	}
 
-	public Integer getRedComissaoDataC1() {
+	public Float getRedComissaoDataC1() {
 		return redComissaoDataC1;
 	}
 
-	public void setRedComissaoDataC1(Integer redComissaoDataC1) {
+	public void setRedComissaoDataC1(Float redComissaoDataC1) {
 		this.redComissaoDataC1 = redComissaoDataC1;
 	}
 
-	public Integer getRedComissaoDataC2() {
+	public Float getRedComissaoDataC2() {
 		return redComissaoDataC2;
 	}
 
-	public void setRedComissaoDataC2(Integer redComissaoDataC2) {
+	public void setRedComissaoDataC2(Float redComissaoDataC2) {
 		this.redComissaoDataC2 = redComissaoDataC2;
 	}
 

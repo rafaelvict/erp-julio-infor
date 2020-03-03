@@ -37,8 +37,9 @@ public class EstadoService implements Serializable {
 	}
 
 	public Estado update(Estado obj) {
-		find(obj.getCodigo());
-		return repo.save(obj);
+		Estado newObj = find(obj.getCodigo());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 
 	public void delete(Long id) {
@@ -62,5 +63,10 @@ public class EstadoService implements Serializable {
 	
 	public Estado fromDTO(EstadoDTO objDTO) {
 		return new Estado(objDTO.getNome(), objDTO.getSigla());
+	}
+	
+	private void updateData(Estado newObj, Estado obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setSigla(obj.getSigla());
 	}
 }

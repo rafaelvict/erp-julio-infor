@@ -3,6 +3,7 @@ package com.erp.adm.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
@@ -33,7 +34,7 @@ public class FuncionarioDTO implements Serializable{
 	private String cpf;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=8, max=50, message="Tamanho deve ser entre 8 e 50 caracteres")
+	@Email(message="Email inválido!")
 	private String email;
 	
 	@NotEmpty(message="Preenchimento obrigatório")

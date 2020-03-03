@@ -18,8 +18,8 @@ public class CidadeDTO implements Serializable{
 	private String nome;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=5, max=30, message="Tamanho deve ser entre 5 e 30 caracteres")
-	private Integer codigoIbge;
+	@Length(min=5, max=10, message="Tamanho deve ser entre 5 e 10 caracteres")
+	private String codigoIbge;
 	
 	public CidadeDTO() {
 		
@@ -39,11 +39,11 @@ public class CidadeDTO implements Serializable{
 		this.nome = nome;
 	}
 
-	public Integer getCodigoIbge() {
+	public String getCodigoIbge() {
 		return codigoIbge;
 	}
 
-	public void setCodigoIbge(Integer codigoIbge) {
+	public void setCodigoIbge(String codigoIbge) {
 		this.codigoIbge = codigoIbge;
 	}
 

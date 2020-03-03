@@ -2,10 +2,6 @@ package com.erp.adm.dto;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotEmpty;
-
-import org.hibernate.validator.constraints.Length;
-
 import com.erp.adm.domain.Estado;
 
 public class EstadoDTO implements Serializable {
@@ -13,12 +9,7 @@ public class EstadoDTO implements Serializable {
 
 	private Long id;
 	
-	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=2, max=2, message="Tamanho deve ser 2 caracteres")
 	private String sigla;
-	
-	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=2, max=30, message="Tamanho deve ser entre 2 e 30 caracteres")
 	private String nome;
 
 	public EstadoDTO() {

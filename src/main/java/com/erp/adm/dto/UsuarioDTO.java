@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.Length;
 
 import com.erp.adm.domain.Usuario;
 
-public class UsuarioDTO  implements Serializable{
+public class UsuarioDTO extends FuncionarioDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Long id;

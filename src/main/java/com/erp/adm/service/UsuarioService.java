@@ -35,8 +35,9 @@ public class UsuarioService implements Serializable{
 	}
 
 	public Usuario update(Usuario obj) {
-		find(obj.getCodigo());
-		return repo.save(obj);
+		Usuario newObj = find(obj.getCodigo());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 
 	public void delete(Long id) {
@@ -55,5 +56,18 @@ public class UsuarioService implements Serializable{
 
 	public Usuario fromDTO(UsuarioDTO objDTO) {
 		return new Usuario(objDTO.getCrf(), objDTO.getContaDtInicio(), objDTO.getQtdVendaData(), objDTO.getCodCartao(), objDTO.getLoginFarmaPop(), objDTO.getTipo(), objDTO.getAtivo());
+	}
+	
+	private void updateData(Usuario newObj, Usuario obj) {
+		newObj.setAtivo(obj.getAtivo());
+		newObj.setCodCartao(obj.getCodCartao());
+		newObj.setDataAltera(obj.getDataAltera());
+		newObj.setLoginFarmaPop(obj.getLoginFarmaPop());
+		newObj.setMaxComissao(obj.getMaxComissao());
+		newObj.setQtdVendaData(obj.getQtdVendaData());
+		newObj.setRedComissao(obj.getRedComissao());
+		newObj.setRedComissaoDataC1(obj.getRedComissaoDataC1());
+		newObj.setRedComissaoDataC2(obj.getRedComissaoDataC2());
+		newObj.setTipo(obj.getTipo());
 	}
 }

@@ -37,8 +37,9 @@ public class EmpresaService implements Serializable{
 	}
 
 	public Empresa update(Empresa obj) {
-		find(obj.getCodigo());
-		return repo.save(obj);
+		Empresa newObj = find(obj.getCodigo());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 
 	public void delete(Long id) {
@@ -64,4 +65,7 @@ public class EmpresaService implements Serializable{
 		return new Empresa(objDTO.getNome(), objDTO.getCnpjRaiz(), objDTO.getCnpjOrdem(), objDTO.getInsc_Estadual(), objDTO.getInsc_Municipal(), objDTO.getEmail(), objDTO.getCodigo_Ibge());
 	}
 
+	private void updateData(Empresa newObj, Empresa obj) {
+		newObj.setNome(obj.getNome());
+	}
 }

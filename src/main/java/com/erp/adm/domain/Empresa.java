@@ -20,14 +20,14 @@ public class Empresa extends GenericDomain implements Serializable{
 	private String cnpjRaiz;
 	private String cnpjOrdem;
 	private char tipo;
-	private Integer insc_Estadual;
-	private Integer insc_Municipal;
+	private String insc_Estadual;
+	private String insc_Municipal;
 	private String email;
 	private Integer vias;
 	private Integer vias_Boleto;
 	private Integer dias_Juros;
 	private Float multa;
-	private Integer mora;
+	private Float mora;
 	private Integer ini_Mes;
 	private Integer fim_Mes;
 	private boolean bolBancario;
@@ -35,7 +35,7 @@ public class Empresa extends GenericDomain implements Serializable{
 	private Double valor_AdcBoleto;
 	private Float desconto_Funcionario;
 	private Float desconto_Empresa;
-	private Double acrescimo;
+	private Float acrescimo;
 	private Integer tipo_Venda;
 	private Integer tipo_Preco;
 	private boolean delivery;
@@ -85,7 +85,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		
 	}
 	
-	public Empresa(String nome, String cnpjRaiz, String cnpjOrdem, Integer insc_Estadual, Integer insc_Municipal, String email, Integer codigo_Ibge) {
+	public Empresa(String nome, String cnpjRaiz, String cnpjOrdem, String insc_Estadual, String insc_Municipal, String email, Integer codigo_Ibge) {
 		this.nome = nome;
 		this.cnpjRaiz = cnpjRaiz;
 		this.cnpjOrdem = cnpjOrdem;
@@ -95,10 +95,10 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.codigo_Ibge = codigo_Ibge;
 	}
 
-	public Empresa(String nome, String cnpjRaiz, String cnpjOrdem, char tipo, Integer insc_Estadual,
-			Integer insc_Municipal, String email, Integer vias, Integer vias_Boleto, Integer dias_Juros, Float multa,
-			Integer mora, Integer ini_Mes, Integer fim_Mes, boolean bolBancario, Double valor_IsencaoBoleto,
-			Double valor_AdcBoleto, Float desconto_Funcionario, Float desconto_Empresa, Double acrescimo,
+	public Empresa(String nome, String cnpjRaiz, String cnpjOrdem, char tipo, String insc_Estadual,
+			String insc_Municipal, String email, Integer vias, Integer vias_Boleto, Integer dias_Juros, Float multa,
+			Float mora, Integer ini_Mes, Integer fim_Mes, boolean bolBancario, Double valor_IsencaoBoleto,
+			Double valor_AdcBoleto, Float desconto_Funcionario, Float desconto_Empresa, Float acrescimo,
 			TipoVenda tipo_Venda, TipoPreco tipo_Preco, boolean delivery, Integer dias_DescFab, Integer codigo_Ibge,
 			boolean creadiario, boolean pergNota, boolean descMaxGrupo, boolean pergPontoVenda, boolean usarProcPromo,
 			boolean usarDescVista, boolean permDesc, boolean pedirTransp, boolean farmaciaPopular,
@@ -128,8 +128,8 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.desconto_Funcionario = desconto_Funcionario;
 		this.desconto_Empresa = desconto_Empresa;
 		this.acrescimo = acrescimo;
-		this.tipo_Venda = tipo_Venda.getCodigo();
-		this.tipo_Preco = tipo_Preco.getCodigo();
+		this.tipo_Venda = (tipo_Venda==null) ? null : tipo_Venda.getCodigo();
+		this.tipo_Preco = (tipo_Preco==null) ? null : tipo_Preco.getCodigo();
 		this.delivery = delivery;
 		this.dias_DescFab = dias_DescFab;
 		this.codigo_Ibge = codigo_Ibge;
@@ -153,7 +153,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.log = log;
 		this.dataAltera = dataAltera;
 		this.impCv = impCv;
-		this.tipo_Vencto = tipo_Vencto.getCodigo();
+		this.tipo_Vencto = (tipo_Vencto==null) ? null : tipo_Vencto.getCodigo();
 		this.ignorarSaldo = ignorarSaldo;
 		this.msg_Venda = msg_Venda;
 		this.manterDescEmp = manterDescEmp;
@@ -198,19 +198,19 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.tipo = tipo;
 	}
 
-	public Integer getInsc_Estadual() {
+	public String getInsc_Estadual() {
 		return insc_Estadual;
 	}
 
-	public void setInsc_Estadual(Integer insc_Estadual) {
+	public void setInsc_Estadual(String insc_Estadual) {
 		this.insc_Estadual = insc_Estadual;
 	}
 
-	public Integer getInsc_Municipal() {
+	public String getInsc_Municipal() {
 		return insc_Municipal;
 	}
 
-	public void setInsc_Municipal(Integer insc_Municipal) {
+	public void setInsc_Municipal(String insc_Municipal) {
 		this.insc_Municipal = insc_Municipal;
 	}
 
@@ -254,11 +254,11 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.multa = multa;
 	}
 
-	public Integer getMora() {
+	public Float getMora() {
 		return mora;
 	}
 
-	public void setMora(Integer mora) {
+	public void setMora(Float mora) {
 		this.mora = mora;
 	}
 
@@ -318,11 +318,11 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.desconto_Funcionario = desconto_Funcionario;
 	}
 
-	public Double getAcrescimo() {
+	public Float getAcrescimo() {
 		return acrescimo;
 	}
 
-	public void setAcrescimo(Double acrescimo) {
+	public void setAcrescimo(Float acrescimo) {
 		this.acrescimo = acrescimo;
 	}
 
