@@ -9,7 +9,9 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 import com.erp.adm.domain.Empresa;
+import com.erp.adm.services.validation.EmpresaUpdate;
 
+@EmpresaUpdate
 public class EmpresaDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
