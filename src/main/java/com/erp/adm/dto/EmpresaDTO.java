@@ -6,6 +6,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 import com.erp.adm.domain.Empresa;
 
@@ -19,12 +20,8 @@ public class EmpresaDTO implements Serializable{
 	private String nome;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=8, max=8, message="Tamanho deve ser de 8 caracteres")
-	private String cnpjRaiz;
-	
-	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=6, max=6, message="Tamanho deve ser de 6 caracteres")
-	private String cnpjOrdem;
+	@CNPJ
+	private String cnpj;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(min=9, max=9, message="Tamanho deve ser de 6 caracteres")
@@ -49,8 +46,7 @@ public class EmpresaDTO implements Serializable{
 	public EmpresaDTO(Empresa obj) {
 		id = obj.getCodigo();
 		nome = obj.getNome();
-		cnpjRaiz = obj.getCnpjRaiz();
-		cnpjOrdem = obj.getCnpjOrdem();
+		cnpj = obj.getCnpj();
 		insc_Estadual = obj.getInsc_Estadual();
 		insc_Municipal = obj.getInsc_Municipal();
 		email = obj.getEmail();
@@ -73,20 +69,12 @@ public class EmpresaDTO implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getCnpjRaiz() {
-		return cnpjRaiz;
+	public String getCnpj() {
+		return cnpj;
 	}
 
-	public void setCnpjRaiz(String cnpjRaiz) {
-		this.cnpjRaiz = cnpjRaiz;
-	}
-
-	public String getCnpjOrdem() {
-		return cnpjOrdem;
-	}
-
-	public void setCnpjOrdem(String cnpjOrdem) {
-		this.cnpjOrdem = cnpjOrdem;
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
 
 	public String getInsc_Estadual() {

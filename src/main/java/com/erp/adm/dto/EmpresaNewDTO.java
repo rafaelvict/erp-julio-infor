@@ -3,81 +3,205 @@ package com.erp.adm.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.br.CNPJ;
+
 public class EmpresaNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=2, max=50, message="Tamanho deve ser entre 2 e 50 caracteres")
 	private String nome;
-	private String cnpjRaiz;
-	private String cnpjOrdem;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@CNPJ
+	private String cnpj;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=9, max=9, message="Tamanho deve ser de 6 caracteres")
 	private String insc_Estadual;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=11, max=11, message="Tamanho deve ser entre 2 e 30 caracteres")
 	private String insc_Municipal;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Email(message="Email inválido!")
 	private String email;
+	
 	private Integer vias;
+	
 	private Integer vias_Boleto;
+	
 	private Integer dias_Juros;
+	
 	private Float multa;
+	
 	private Float mora;
+	
 	private Integer ini_Mes;
+	
 	private Integer fim_Mes;
-	private Boolean bolBancario;
+	
+	private boolean bolBancario;
+	
 	private Double valor_IsencaoBoleto;
+	
 	private Double valor_AdcBoleto;
+	
 	private Float desconto_Funcionario;
+	
 	private Float desconto_Empresa;
+	
 	private Float acrescimo;
+	
 	private Integer tipo_Venda;
+	
 	private Integer tipo_Preco;
-	private Boolean delivery;
+	
+	@NotNull
+	private boolean delivery;
+	
 	private Integer dias_DescFab;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=9, max=9, message="Tamanho deve ser de 9  caracteres")
 	private String codigo_Ibge;
-	private Boolean creadiario;
-	private Boolean pergNota;
-	private Boolean descMaxGrupo;
-	private Boolean pergPontoVenda;
-	private Boolean usarProcPromo;
-	private Boolean usarDescVista;
-	private Boolean permDesc;
-	private Boolean pedirTransp;
-	private Boolean farmaciaPopular;
-	private Boolean controleVencto;
+	
+	@NotNull
+	private boolean creadiario;
+	
+	@NotNull
+	private boolean pergNota;
+	
+	@NotNull
+	private boolean descMaxGrupo;
+	
+	@NotNull
+	private boolean pergPontoVenda;
+	
+	@NotNull
+	private boolean usarProcPromo;
+	
+	@NotNull
+	private boolean usarDescVista;
+	
+	@NotNull
+	private boolean permDesc;
+	
+	@NotNull
+	private boolean pedirTransp;
+	
+	@NotNull
+	private boolean farmaciaPopular;
+	
+	@NotNull
+	private boolean controleVencto;
+	
+	@Length(max=40, message="Tamanho deve ser de até 40 caracteres")
 	private String msgBoleto1;
+	
+	@Length(max=40, message="Tamanho deve ser de até 40 caracteres")
 	private String msgBoleto2;
+	
 	private Integer mesReceb;
+	
+	@Length(max=20, message="Tamanho deve ser de até 20 caracteres")
 	private String mascara;
-	private Boolean cupomFisc;
-	private Boolean emitirBoletoBanc;
+	
+	@NotNull
+	private boolean cupomFisc;
+	
+	@NotNull
+	private boolean emitirBoletoBanc;
+	
 	private Integer vias_Pagto;
-	private Boolean log;
+	
+	@NotNull
+	private boolean log;
+	
 	private Date dataAltera;
-	private Boolean impCv;
+	
+	@NotNull
+	private boolean impCv;
+	
+	@NotNull
 	private Integer tipo_Vencto;
-	private Boolean ignorarSaldo;
+	
+	@NotNull
+	private boolean ignorarSaldo;
+	
+	@Length(max=150, message="Tamanho deve ser de até 150 caracteres")
 	private String msg_Venda;
-	private Boolean manterDescEmp;
-	private Boolean semComissao;
-	private Boolean numAutoriz;
-	private Boolean ignorarPrecoPrazo;
+	
+	@NotNull
+	private boolean manterDescEmp;
+	
+	@NotNull
+	private boolean semComissao;
+	
+	@NotNull
+	private boolean numAutoriz;
+	
+	@NotNull
+	private boolean ignorarPrecoPrazo;
+	
+	@NotNull
 	private Float percent_Vista;
+	
+	@NotNull
 	private Float percent_CartaFrete;
+	
+	@NotNull
 	private Integer pontos_PorReal;
 	
 	//Endereco
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=5, max=40, message="Tamanho deve ser entre 5 e 40 caracteres")
 	private String rua;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=1, max=5, message="Tamanho deve ser entre 1 e 5 caracteres")
 	private Integer numero;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=3, max=40, message="Tamanho deve ser entre 3 e 40 caracteres")
 	private String bairro;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=2, max=30, message="Tamanho deve ser entre 2 e 30 caracteres")
 	private String complemento;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=2, max=30, message="Tamanho deve ser entre 2 e 30 caracteres")
 	private String cep;
+	
+	@NotNull
 	private Integer tipo_End;
 	
+	@NotNull
 	private Long cidadeId;
 	
 	//Telefone
+	@NotNull
 	private Integer ddd;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=8, max=30, message="Tamanho deve ser entre 8 e 30 caracteres")
 	private String telefone;
+	
+	@NotNull
 	private Integer tipo;
+	
 	private Date data_altera;
 	
 	//Ramo Atividade
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=5, max=100, message="Tamanho deve ser entre 5 e 100 caracteres")
 	private String descricao;
 	
 	public EmpresaNewDTO() {
@@ -92,20 +216,12 @@ public class EmpresaNewDTO implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getCnpjRaiz() {
-		return cnpjRaiz;
+	public String getCnpj() {
+		return cnpj;
 	}
 
-	public void setCnpjRaiz(String cnpjRaiz) {
-		this.cnpjRaiz = cnpjRaiz;
-	}
-
-	public String getCnpjOrdem() {
-		return cnpjOrdem;
-	}
-
-	public void setCnpjOrdem(String cnpjOrdem) {
-		this.cnpjOrdem = cnpjOrdem;
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
 
 	public String getInsc_Estadual() {
@@ -188,11 +304,11 @@ public class EmpresaNewDTO implements Serializable {
 		this.fim_Mes = fim_Mes;
 	}
 
-	public Boolean getBolBancario() {
+	public boolean getBolBancario() {
 		return bolBancario;
 	}
 
-	public void setBolBancario(Boolean bolBancario) {
+	public void setBolBancario(boolean bolBancario) {
 		this.bolBancario = bolBancario;
 	}
 
@@ -252,11 +368,11 @@ public class EmpresaNewDTO implements Serializable {
 		this.tipo_Preco = tipo_Preco;
 	}
 
-	public Boolean getDelivery() {
+	public boolean getDelivery() {
 		return delivery;
 	}
 
-	public void setDelivery(Boolean delivery) {
+	public void setDelivery(boolean delivery) {
 		this.delivery = delivery;
 	}
 
@@ -276,83 +392,83 @@ public class EmpresaNewDTO implements Serializable {
 		this.codigo_Ibge = codigo_Ibge;
 	}
 
-	public Boolean getCreadiario() {
+	public boolean getCreadiario() {
 		return creadiario;
 	}
 
-	public void setCreadiario(Boolean creadiario) {
+	public void setCreadiario(boolean creadiario) {
 		this.creadiario = creadiario;
 	}
 
-	public Boolean getPergNota() {
+	public boolean getPergNota() {
 		return pergNota;
 	}
 
-	public void setPergNota(Boolean pergNota) {
+	public void setPergNota(boolean pergNota) {
 		this.pergNota = pergNota;
 	}
 
-	public Boolean getDescMaxGrupo() {
+	public boolean getDescMaxGrupo() {
 		return descMaxGrupo;
 	}
 
-	public void setDescMaxGrupo(Boolean descMaxGrupo) {
+	public void setDescMaxGrupo(boolean descMaxGrupo) {
 		this.descMaxGrupo = descMaxGrupo;
 	}
 
-	public Boolean getPergPontoVenda() {
+	public boolean getPergPontoVenda() {
 		return pergPontoVenda;
 	}
 
-	public void setPergPontoVenda(Boolean pergPontoVenda) {
+	public void setPergPontoVenda(boolean pergPontoVenda) {
 		this.pergPontoVenda = pergPontoVenda;
 	}
 
-	public Boolean getUsarProcPromo() {
+	public boolean getUsarProcPromo() {
 		return usarProcPromo;
 	}
 
-	public void setUsarProcPromo(Boolean usarProcPromo) {
+	public void setUsarProcPromo(boolean usarProcPromo) {
 		this.usarProcPromo = usarProcPromo;
 	}
 
-	public Boolean getUsarDescVista() {
+	public boolean getUsarDescVista() {
 		return usarDescVista;
 	}
 
-	public void setUsarDescVista(Boolean usarDescVista) {
+	public void setUsarDescVista(boolean usarDescVista) {
 		this.usarDescVista = usarDescVista;
 	}
 
-	public Boolean getPermDesc() {
+	public boolean getPermDesc() {
 		return permDesc;
 	}
 
-	public void setPermDesc(Boolean permDesc) {
+	public void setPermDesc(boolean permDesc) {
 		this.permDesc = permDesc;
 	}
 
-	public Boolean getPedirTransp() {
+	public boolean getPedirTransp() {
 		return pedirTransp;
 	}
 
-	public void setPedirTransp(Boolean pedirTransp) {
+	public void setPedirTransp(boolean pedirTransp) {
 		this.pedirTransp = pedirTransp;
 	}
 
-	public Boolean getFarmaciaPopular() {
+	public boolean getFarmaciaPopular() {
 		return farmaciaPopular;
 	}
 
-	public void setFarmaciaPopular(Boolean farmaciaPopular) {
+	public void setFarmaciaPopular(boolean farmaciaPopular) {
 		this.farmaciaPopular = farmaciaPopular;
 	}
 
-	public Boolean getControleVencto() {
+	public boolean getControleVencto() {
 		return controleVencto;
 	}
 
-	public void setControleVencto(Boolean controleVencto) {
+	public void setControleVencto(boolean controleVencto) {
 		this.controleVencto = controleVencto;
 	}
 
@@ -388,19 +504,19 @@ public class EmpresaNewDTO implements Serializable {
 		this.mascara = mascara;
 	}
 
-	public Boolean getCupomFisc() {
+	public boolean getCupomFisc() {
 		return cupomFisc;
 	}
 
-	public void setCupomFisc(Boolean cupomFisc) {
+	public void setCupomFisc(boolean cupomFisc) {
 		this.cupomFisc = cupomFisc;
 	}
 
-	public Boolean getEmitirBoletoBanc() {
+	public boolean getEmitirBoletoBanc() {
 		return emitirBoletoBanc;
 	}
 
-	public void setEmitirBoletoBanc(Boolean emitirBoletoBanc) {
+	public void setEmitirBoletoBanc(boolean emitirBoletoBanc) {
 		this.emitirBoletoBanc = emitirBoletoBanc;
 	}
 
@@ -412,11 +528,11 @@ public class EmpresaNewDTO implements Serializable {
 		this.vias_Pagto = vias_Pagto;
 	}
 
-	public Boolean getLog() {
+	public boolean getLog() {
 		return log;
 	}
 
-	public void setLog(Boolean log) {
+	public void setLog(boolean log) {
 		this.log = log;
 	}
 
@@ -428,11 +544,11 @@ public class EmpresaNewDTO implements Serializable {
 		this.dataAltera = dataAltera;
 	}
 
-	public Boolean getImpCv() {
+	public boolean getImpCv() {
 		return impCv;
 	}
 
-	public void setImpCv(Boolean impCv) {
+	public void setImpCv(boolean impCv) {
 		this.impCv = impCv;
 	}
 
@@ -444,11 +560,11 @@ public class EmpresaNewDTO implements Serializable {
 		this.tipo_Vencto = tipo_Vencto;
 	}
 
-	public Boolean getIgnorarSaldo() {
+	public boolean getIgnorarSaldo() {
 		return ignorarSaldo;
 	}
 
-	public void setIgnorarSaldo(Boolean ignorarSaldo) {
+	public void setIgnorarSaldo(boolean ignorarSaldo) {
 		this.ignorarSaldo = ignorarSaldo;
 	}
 
@@ -460,35 +576,35 @@ public class EmpresaNewDTO implements Serializable {
 		this.msg_Venda = msg_Venda;
 	}
 
-	public Boolean getManterDescEmp() {
+	public boolean getManterDescEmp() {
 		return manterDescEmp;
 	}
 
-	public void setManterDescEmp(Boolean manterDescEmp) {
+	public void setManterDescEmp(boolean manterDescEmp) {
 		this.manterDescEmp = manterDescEmp;
 	}
 
-	public Boolean getSemComissao() {
+	public boolean getSemComissao() {
 		return semComissao;
 	}
 
-	public void setSemComissao(Boolean semComissao) {
+	public void setSemComissao(boolean semComissao) {
 		this.semComissao = semComissao;
 	}
 
-	public Boolean getNumAutoriz() {
+	public boolean getNumAutoriz() {
 		return numAutoriz;
 	}
 
-	public void setNumAutoriz(Boolean numAutoriz) {
+	public void setNumAutoriz(boolean numAutoriz) {
 		this.numAutoriz = numAutoriz;
 	}
 
-	public Boolean getIgnorarPrecoPrazo() {
+	public boolean getIgnorarPrecoPrazo() {
 		return ignorarPrecoPrazo;
 	}
 
-	public void setIgnorarPrecoPrazo(Boolean ignorarPrecoPrazo) {
+	public void setIgnorarPrecoPrazo(boolean ignorarPrecoPrazo) {
 		this.ignorarPrecoPrazo = ignorarPrecoPrazo;
 	}
 

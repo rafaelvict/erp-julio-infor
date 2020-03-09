@@ -18,8 +18,7 @@ public class Empresa extends GenericDomain implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String nome;
-	private String cnpjRaiz;
-	private String cnpjOrdem;
+	private String cnpj;
 	private String insc_Estadual;
 	private String insc_Municipal;
 	private String email;
@@ -30,7 +29,7 @@ public class Empresa extends GenericDomain implements Serializable{
 	private Float mora;
 	private Integer ini_Mes;
 	private Integer fim_Mes;
-	private Boolean bolBancario;
+	private boolean bolBancario;
 	private Double valor_IsencaoBoleto;
 	private Double valor_AdcBoleto;
 	private Float desconto_Funcionario;
@@ -38,36 +37,36 @@ public class Empresa extends GenericDomain implements Serializable{
 	private Float acrescimo;
 	private Integer tipo_Venda;
 	private Integer tipo_Preco;
-	private Boolean delivery;
+	private boolean delivery;
 	private Integer dias_DescFab;
 	private String codigo_Ibge;
-	private Boolean creadiario;
-	private Boolean pergNota;
-	private Boolean descMaxGrupo;
-	private Boolean pergPontoVenda;
-	private Boolean usarProcPromo;
-	private Boolean usarDescVista;
-	private Boolean permDesc;
-	private Boolean pedirTransp;
-	private Boolean farmaciaPopular;
-	private Boolean controleVencto;
+	private boolean creadiario;
+	private boolean pergNota;
+	private boolean descMaxGrupo;
+	private boolean pergPontoVenda;
+	private boolean usarProcPromo;
+	private boolean usarDescVista;
+	private boolean permDesc;
+	private boolean pedirTransp;
+	private boolean farmaciaPopular;
+	private boolean controleVencto;
 	private String msgBoleto1;
 	private String msgBoleto2;
 	private Integer mesReceb;
 	private String mascara;
-	private Boolean cupomFisc;
-	private Boolean emitirBoletoBanc;
+	private boolean cupomFisc;
+	private boolean emitirBoletoBanc;
 	private Integer vias_Pagto;
-	private Boolean log;
+	private boolean log;
 	private Date dataAltera;
-	private Boolean impCv;
+	private boolean impCv;
 	private Integer tipo_Vencto;
-	private Boolean ignorarSaldo;
+	private boolean ignorarSaldo;
 	private String msg_Venda;
-	private Boolean manterDescEmp;
-	private Boolean semComissao;
-	private Boolean numAutoriz;
-	private Boolean ignorarPrecoPrazo;
+	private boolean manterDescEmp;
+	private boolean semComissao;
+	private boolean numAutoriz;
+	private boolean ignorarPrecoPrazo;
 	private Float percent_Vista;
 	private Float percent_CartaFrete;
 	private Integer pontos_PorReal;
@@ -92,22 +91,21 @@ public class Empresa extends GenericDomain implements Serializable{
 		
 	}
 
-	public Empresa(String nome, String cnpjRaiz, String cnpjOrdem, String insc_Estadual,
+	public Empresa(String nome, String cnpj, String insc_Estadual,
 			String insc_Municipal, String email, Integer vias, Integer vias_Boleto, Integer dias_Juros, Float multa,
-			Float mora, Integer ini_Mes, Integer fim_Mes, Boolean bolBancario, Double valor_IsencaoBoleto,
+			Float mora, Integer ini_Mes, Integer fim_Mes, boolean bolBancario, Double valor_IsencaoBoleto,
 			Double valor_AdcBoleto, Float desconto_Funcionario, Float desconto_Empresa, Float acrescimo,
-			TipoVenda tipo_Venda, TipoPreco tipo_Preco, Boolean delivery, Integer dias_DescFab, String codigo_Ibge,
-			Boolean creadiario, Boolean pergNota, Boolean descMaxGrupo, Boolean pergPontoVenda, Boolean usarProcPromo,
-			Boolean usarDescVista, Boolean permDesc, Boolean pedirTransp, Boolean farmaciaPopular,
-			Boolean controleVencto, String msgBoleto1, String msgBoleto2, Integer mesReceb, String mascara,
-			Boolean cupomFisc, Boolean emitirBoletoBanc, Integer vias_Pagto, Boolean log, Date dataAltera,
-			Boolean impCv, TipoVencto tipo_Vencto, Boolean ignorarSaldo, String msg_Venda, Boolean manterDescEmp,
-			Boolean semComissao, Boolean numAutoriz, Boolean ignorarPrecoPrazo, Float percent_Vista,
+			TipoVenda tipo_Venda, TipoPreco tipo_Preco, boolean delivery, Integer dias_DescFab, String codigo_Ibge,
+			boolean creadiario, boolean pergNota, boolean descMaxGrupo, boolean pergPontoVenda, boolean usarProcPromo,
+			boolean usarDescVista, boolean permDesc, boolean pedirTransp, boolean farmaciaPopular,
+			boolean controleVencto, String msgBoleto1, String msgBoleto2, Integer mesReceb, String mascara,
+			boolean cupomFisc, boolean emitirBoletoBanc, Integer vias_Pagto, boolean log, Date dataAltera,
+			boolean impCv, TipoVencto tipo_Vencto, boolean ignorarSaldo, String msg_Venda, boolean manterDescEmp,
+			boolean semComissao, boolean numAutoriz, boolean ignorarPrecoPrazo, Float percent_Vista,
 			Float percent_CartaFrete, Integer pontos_PorReal) {
 		super();
 		this.nome = nome;
-		this.cnpjRaiz = cnpjRaiz;
-		this.cnpjOrdem = cnpjOrdem;
+		this.cnpj = cnpj;
 		this.insc_Estadual = insc_Estadual;
 		this.insc_Municipal = insc_Municipal;
 		this.email = email;
@@ -170,20 +168,12 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getCnpjRaiz() {
-		return cnpjRaiz;
+	public String getCnpj() {
+		return cnpj;
 	}
 
-	public void setCnpjRaiz(String cnpjRaiz) {
-		this.cnpjRaiz = cnpjRaiz;
-	}
-
-	public String getCnpjOrdem() {
-		return cnpjOrdem;
-	}
-
-	public void setCnpjOrdem(String cnpjOrdem) {
-		this.cnpjOrdem = cnpjOrdem;
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
 
 	public String getInsc_Estadual() {
@@ -266,11 +256,11 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.fim_Mes = fim_Mes;
 	}
 
-	public Boolean isBolBancario() {
+	public boolean isBolBancario() {
 		return bolBancario;
 	}
 
-	public void setBolBancario(Boolean bolBancario) {
+	public void setBolBancario(boolean bolBancario) {
 		this.bolBancario = bolBancario;
 	}
 
@@ -330,11 +320,11 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.tipo_Preco = tipo_Preco.getCodigo();
 	}
 
-	public Boolean isDelivery() {
+	public boolean isDelivery() {
 		return delivery;
 	}
 
-	public void setDelivery(Boolean delivery) {
+	public void setDelivery(boolean delivery) {
 		this.delivery = delivery;
 	}
 
@@ -354,83 +344,83 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.codigo_Ibge = codigo_Ibge;
 	}
 
-	public Boolean isCreadiario() {
+	public boolean isCreadiario() {
 		return creadiario;
 	}
 
-	public void setCreadiario(Boolean creadiario) {
+	public void setCreadiario(boolean creadiario) {
 		this.creadiario = creadiario;
 	}
 
-	public Boolean isPergNota() {
+	public boolean isPergNota() {
 		return pergNota;
 	}
 
-	public void setPergNota(Boolean pergNota) {
+	public void setPergNota(boolean pergNota) {
 		this.pergNota = pergNota;
 	}
 
-	public Boolean isDescMaxGrupo() {
+	public boolean isDescMaxGrupo() {
 		return descMaxGrupo;
 	}
 
-	public void setDescMaxGrupo(Boolean descMaxGrupo) {
+	public void setDescMaxGrupo(boolean descMaxGrupo) {
 		this.descMaxGrupo = descMaxGrupo;
 	}
 
-	public Boolean isPergPontoVenda() {
+	public boolean isPergPontoVenda() {
 		return pergPontoVenda;
 	}
 
-	public void setPergPontoVenda(Boolean pergPontoVenda) {
+	public void setPergPontoVenda(boolean pergPontoVenda) {
 		this.pergPontoVenda = pergPontoVenda;
 	}
 
-	public Boolean isUsarProcPromo() {
+	public boolean isUsarProcPromo() {
 		return usarProcPromo;
 	}
 
-	public void setUsarProcPromo(Boolean usarProcPromo) {
+	public void setUsarProcPromo(boolean usarProcPromo) {
 		this.usarProcPromo = usarProcPromo;
 	}
 
-	public Boolean isUsarDescVista() {
+	public boolean isUsarDescVista() {
 		return usarDescVista;
 	}
 
-	public void setUsarDescVista(Boolean usarDescVista) {
+	public void setUsarDescVista(boolean usarDescVista) {
 		this.usarDescVista = usarDescVista;
 	}
 
-	public Boolean isPermDesc() {
+	public boolean isPermDesc() {
 		return permDesc;
 	}
 
-	public void setPermDesc(Boolean permDesc) {
+	public void setPermDesc(boolean permDesc) {
 		this.permDesc = permDesc;
 	}
 
-	public Boolean isPedirTransp() {
+	public boolean isPedirTransp() {
 		return pedirTransp;
 	}
 
-	public void setPedirTransp(Boolean pedirTransp) {
+	public void setPedirTransp(boolean pedirTransp) {
 		this.pedirTransp = pedirTransp;
 	}
 	
-	public Boolean isFarmaciaPopular() {
+	public boolean isFarmaciaPopular() {
 		return farmaciaPopular;
 	}
 
-	public void setFarmaciaPopular(Boolean farmaciaPopular) {
+	public void setFarmaciaPopular(boolean farmaciaPopular) {
 		this.farmaciaPopular = farmaciaPopular;
 	}
 	
-	public Boolean isControleVencto() {
+	public boolean isControleVencto() {
 		return controleVencto;
 	}
 
-	public void setControleVencto(Boolean controleVencto) {
+	public void setControleVencto(boolean controleVencto) {
 		this.controleVencto = controleVencto;
 	}
 
@@ -466,19 +456,19 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.mascara = mascara;
 	}
 
-	public Boolean isCupomFisc() {
+	public boolean isCupomFisc() {
 		return cupomFisc;
 	}
 
-	public void setCupomFisc(Boolean cupomFisc) {
+	public void setCupomFisc(boolean cupomFisc) {
 		this.cupomFisc = cupomFisc;
 	}
 
-	public Boolean isEmitirBoletoBanc() {
+	public boolean isEmitirBoletoBanc() {
 		return emitirBoletoBanc;
 	}
 
-	public void setEmitirBoletoBanc(Boolean emitirBoletoBanc) {
+	public void setEmitirBoletoBanc(boolean emitirBoletoBanc) {
 		this.emitirBoletoBanc = emitirBoletoBanc;
 	}
 
@@ -490,11 +480,11 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.vias_Pagto = vias_Pagto;
 	}
 
-	public Boolean isLog() {
+	public boolean isLog() {
 		return log;
 	}
 
-	public void setLog(Boolean log) {
+	public void setLog(boolean log) {
 		this.log = log;
 	}
 
@@ -506,11 +496,11 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.dataAltera = dataAltera;
 	}
 
-	public Boolean isImpCv() {
+	public boolean isImpCv() {
 		return impCv;
 	}
 
-	public void setImpCv(Boolean impCv) {
+	public void setImpCv(boolean impCv) {
 		this.impCv = impCv;
 	}
 
@@ -522,11 +512,11 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.tipo_Vencto = tipo_Vencto.getCodigo();
 	}
 
-	public Boolean isIgnorarSaldo() {
+	public boolean isIgnorarSaldo() {
 		return ignorarSaldo;
 	}
 
-	public void setIgnorarSaldo(Boolean ignorarSaldo) {
+	public void setIgnorarSaldo(boolean ignorarSaldo) {
 		this.ignorarSaldo = ignorarSaldo;
 	}
 
@@ -538,35 +528,35 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.msg_Venda = msg_Venda;
 	}
 
-	public Boolean isManterDescEmp() {
+	public boolean isManterDescEmp() {
 		return manterDescEmp;
 	}
 
-	public void setManterDescEmp(Boolean manterDescEmp) {
+	public void setManterDescEmp(boolean manterDescEmp) {
 		this.manterDescEmp = manterDescEmp;
 	}
 
-	public Boolean isSemComissao() {
+	public boolean isSemComissao() {
 		return semComissao;
 	}
 
-	public void setSemComissao(Boolean semComissao) {
+	public void setSemComissao(boolean semComissao) {
 		this.semComissao = semComissao;
 	}
 
-	public Boolean isNumAutoriz() {
+	public boolean isNumAutoriz() {
 		return numAutoriz;
 	}
 
-	public void setNumAutoriz(Boolean numAutoriz) {
+	public void setNumAutoriz(boolean numAutoriz) {
 		this.numAutoriz = numAutoriz;
 	}
 
-	public Boolean isIgnorarPrecoPrazo() {
+	public boolean isIgnorarPrecoPrazo() {
 		return ignorarPrecoPrazo;
 	}
 
-	public void setIgnorarPrecoPrazo(Boolean ignorarPrecoPrazo) {
+	public void setIgnorarPrecoPrazo(boolean ignorarPrecoPrazo) {
 		this.ignorarPrecoPrazo = ignorarPrecoPrazo;
 	}
 
