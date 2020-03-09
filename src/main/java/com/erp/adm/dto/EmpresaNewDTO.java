@@ -1,19 +1,9 @@
-package com.erp.adm.domain;
+package com.erp.adm.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-
-import com.erp.adm.enums.TipoPreco;
-import com.erp.adm.enums.TipoVencto;
-import com.erp.adm.enums.TipoVenda;
-
-@Entity
-public class Empresa extends GenericDomain implements Serializable{
+public class EmpresaNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String nome;
@@ -71,95 +61,28 @@ public class Empresa extends GenericDomain implements Serializable{
 	private Float percent_CartaFrete;
 	private Integer pontos_PorReal;
 	
-	@OneToMany(mappedBy = "empresa")
-	private List<Endereco> enderecos = new ArrayList<>();
+	//Endereco
+	private String rua;
+	private Integer numero;
+	private String bairro;
+	private String complemento;
+	private String cep;
+	private Integer tipo_End;
 	
-	@OneToMany(mappedBy = "empresa")
-	private List<Funcionario> funcionarios = new ArrayList<>();
+	private Long cidadeId;
 	
-	@OneToMany(mappedBy = "empresa")
-	private List<Telefone> telefones = new ArrayList<>();
+	//Telefone
+	private Integer ddd;
+	private String telefone;
+	private Integer tipo;
+	private Date data_altera;
 	
-	@OneToMany(mappedBy = "empresa")
-	private List<ProprietarioSocio> proprietariosSocios = new ArrayList<>();
+	//Ramo Atividade
+	private String descricao;
 	
-	@OneToMany(mappedBy = "empresa")
-	private List<RamoAtividade> ramoAtividades = new ArrayList<>();
-	
-	
-	public Empresa() {
+	public EmpresaNewDTO() {
 		
 	}
-
-	public Empresa(String nome, String cnpjRaiz, String cnpjOrdem, String insc_Estadual,
-			String insc_Municipal, String email, Integer vias, Integer vias_Boleto, Integer dias_Juros, Float multa,
-			Float mora, Integer ini_Mes, Integer fim_Mes, Boolean bolBancario, Double valor_IsencaoBoleto,
-			Double valor_AdcBoleto, Float desconto_Funcionario, Float desconto_Empresa, Float acrescimo,
-			TipoVenda tipo_Venda, TipoPreco tipo_Preco, Boolean delivery, Integer dias_DescFab, String codigo_Ibge,
-			Boolean creadiario, Boolean pergNota, Boolean descMaxGrupo, Boolean pergPontoVenda, Boolean usarProcPromo,
-			Boolean usarDescVista, Boolean permDesc, Boolean pedirTransp, Boolean farmaciaPopular,
-			Boolean controleVencto, String msgBoleto1, String msgBoleto2, Integer mesReceb, String mascara,
-			Boolean cupomFisc, Boolean emitirBoletoBanc, Integer vias_Pagto, Boolean log, Date dataAltera,
-			Boolean impCv, TipoVencto tipo_Vencto, Boolean ignorarSaldo, String msg_Venda, Boolean manterDescEmp,
-			Boolean semComissao, Boolean numAutoriz, Boolean ignorarPrecoPrazo, Float percent_Vista,
-			Float percent_CartaFrete, Integer pontos_PorReal) {
-		super();
-		this.nome = nome;
-		this.cnpjRaiz = cnpjRaiz;
-		this.cnpjOrdem = cnpjOrdem;
-		this.insc_Estadual = insc_Estadual;
-		this.insc_Municipal = insc_Municipal;
-		this.email = email;
-		this.vias = vias;
-		this.vias_Boleto = vias_Boleto;
-		this.dias_Juros = dias_Juros;
-		this.multa = multa;
-		this.mora = mora;
-		this.ini_Mes = ini_Mes;
-		this.fim_Mes = fim_Mes;
-		this.bolBancario = bolBancario;
-		this.valor_IsencaoBoleto = valor_IsencaoBoleto;
-		this.valor_AdcBoleto = valor_AdcBoleto;
-		this.desconto_Funcionario = desconto_Funcionario;
-		this.desconto_Empresa = desconto_Empresa;
-		this.acrescimo = acrescimo;
-		this.tipo_Venda = (tipo_Venda==null) ? null : tipo_Venda.getCodigo();
-		this.tipo_Preco = (tipo_Preco==null) ? null : tipo_Preco.getCodigo();
-		this.delivery = delivery;
-		this.dias_DescFab = dias_DescFab;
-		this.codigo_Ibge = codigo_Ibge;
-		this.creadiario = creadiario;
-		this.pergNota = pergNota;
-		this.descMaxGrupo = descMaxGrupo;
-		this.pergPontoVenda = pergPontoVenda;
-		this.usarProcPromo = usarProcPromo;
-		this.usarDescVista = usarDescVista;
-		this.permDesc = permDesc;
-		this.pedirTransp = pedirTransp;
-		this.farmaciaPopular = farmaciaPopular;
-		this.controleVencto = controleVencto;
-		this.msgBoleto1 = msgBoleto1;
-		this.msgBoleto2 = msgBoleto2;
-		this.mesReceb = mesReceb;
-		this.mascara = mascara;
-		this.cupomFisc = cupomFisc;
-		this.emitirBoletoBanc = emitirBoletoBanc;
-		this.vias_Pagto = vias_Pagto;
-		this.log = log;
-		this.dataAltera = dataAltera;
-		this.impCv = impCv;
-		this.tipo_Vencto = (tipo_Vencto==null) ? null : tipo_Vencto.getCodigo();
-		this.ignorarSaldo = ignorarSaldo;
-		this.msg_Venda = msg_Venda;
-		this.manterDescEmp = manterDescEmp;
-		this.semComissao = semComissao;
-		this.numAutoriz = numAutoriz;
-		this.ignorarPrecoPrazo = ignorarPrecoPrazo;
-		this.percent_Vista = percent_Vista;
-		this.percent_CartaFrete = percent_CartaFrete;
-		this.pontos_PorReal = pontos_PorReal;
-	}
-
 
 	public String getNome() {
 		return nome;
@@ -236,7 +159,7 @@ public class Empresa extends GenericDomain implements Serializable{
 	public Float getMulta() {
 		return multa;
 	}
-	
+
 	public void setMulta(Float multa) {
 		this.multa = multa;
 	}
@@ -265,7 +188,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.fim_Mes = fim_Mes;
 	}
 
-	public Boolean isBolBancario() {
+	public Boolean getBolBancario() {
 		return bolBancario;
 	}
 
@@ -289,20 +212,20 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.valor_AdcBoleto = valor_AdcBoleto;
 	}
 
-	public Float getDesconto_Empresa() {
-		return desconto_Empresa;
-	}
-	
-	public void setDesconto_Empresa(Float desconto_Empresa) {
-		this.desconto_Empresa = desconto_Empresa;
-	}
-	
 	public Float getDesconto_Funcionario() {
 		return desconto_Funcionario;
 	}
-	
+
 	public void setDesconto_Funcionario(Float desconto_Funcionario) {
 		this.desconto_Funcionario = desconto_Funcionario;
+	}
+
+	public Float getDesconto_Empresa() {
+		return desconto_Empresa;
+	}
+
+	public void setDesconto_Empresa(Float desconto_Empresa) {
+		this.desconto_Empresa = desconto_Empresa;
 	}
 
 	public Float getAcrescimo() {
@@ -313,23 +236,23 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.acrescimo = acrescimo;
 	}
 
-	public TipoVenda getTipo_Venda() {
-		return TipoVenda.toEnum(tipo_Venda);
-	}
-	
-	public void setTipo_Venda(TipoVenda tipo_Venda) {
-		this.tipo_Venda = tipo_Venda.getCodigo();
+	public Integer getTipo_Venda() {
+		return tipo_Venda;
 	}
 
-	public TipoPreco getTipo_Preco() {
-		return TipoPreco.toEnum(tipo_Preco);
+	public void setTipo_Venda(Integer tipo_Venda) {
+		this.tipo_Venda = tipo_Venda;
 	}
 
-	public void setTipo_Preco(TipoPreco tipo_Preco) {
-		this.tipo_Preco = tipo_Preco.getCodigo();
+	public Integer getTipo_Preco() {
+		return tipo_Preco;
 	}
 
-	public Boolean isDelivery() {
+	public void setTipo_Preco(Integer tipo_Preco) {
+		this.tipo_Preco = tipo_Preco;
+	}
+
+	public Boolean getDelivery() {
 		return delivery;
 	}
 
@@ -353,7 +276,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.codigo_Ibge = codigo_Ibge;
 	}
 
-	public Boolean isCreadiario() {
+	public Boolean getCreadiario() {
 		return creadiario;
 	}
 
@@ -361,7 +284,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.creadiario = creadiario;
 	}
 
-	public Boolean isPergNota() {
+	public Boolean getPergNota() {
 		return pergNota;
 	}
 
@@ -369,7 +292,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.pergNota = pergNota;
 	}
 
-	public Boolean isDescMaxGrupo() {
+	public Boolean getDescMaxGrupo() {
 		return descMaxGrupo;
 	}
 
@@ -377,7 +300,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.descMaxGrupo = descMaxGrupo;
 	}
 
-	public Boolean isPergPontoVenda() {
+	public Boolean getPergPontoVenda() {
 		return pergPontoVenda;
 	}
 
@@ -385,7 +308,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.pergPontoVenda = pergPontoVenda;
 	}
 
-	public Boolean isUsarProcPromo() {
+	public Boolean getUsarProcPromo() {
 		return usarProcPromo;
 	}
 
@@ -393,7 +316,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.usarProcPromo = usarProcPromo;
 	}
 
-	public Boolean isUsarDescVista() {
+	public Boolean getUsarDescVista() {
 		return usarDescVista;
 	}
 
@@ -401,7 +324,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.usarDescVista = usarDescVista;
 	}
 
-	public Boolean isPermDesc() {
+	public Boolean getPermDesc() {
 		return permDesc;
 	}
 
@@ -409,23 +332,23 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.permDesc = permDesc;
 	}
 
-	public Boolean isPedirTransp() {
+	public Boolean getPedirTransp() {
 		return pedirTransp;
 	}
 
 	public void setPedirTransp(Boolean pedirTransp) {
 		this.pedirTransp = pedirTransp;
 	}
-	
-	public Boolean isFarmaciaPopular() {
+
+	public Boolean getFarmaciaPopular() {
 		return farmaciaPopular;
 	}
 
 	public void setFarmaciaPopular(Boolean farmaciaPopular) {
 		this.farmaciaPopular = farmaciaPopular;
 	}
-	
-	public Boolean isControleVencto() {
+
+	public Boolean getControleVencto() {
 		return controleVencto;
 	}
 
@@ -465,7 +388,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.mascara = mascara;
 	}
 
-	public Boolean isCupomFisc() {
+	public Boolean getCupomFisc() {
 		return cupomFisc;
 	}
 
@@ -473,7 +396,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.cupomFisc = cupomFisc;
 	}
 
-	public Boolean isEmitirBoletoBanc() {
+	public Boolean getEmitirBoletoBanc() {
 		return emitirBoletoBanc;
 	}
 
@@ -489,7 +412,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.vias_Pagto = vias_Pagto;
 	}
 
-	public Boolean isLog() {
+	public Boolean getLog() {
 		return log;
 	}
 
@@ -505,7 +428,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.dataAltera = dataAltera;
 	}
 
-	public Boolean isImpCv() {
+	public Boolean getImpCv() {
 		return impCv;
 	}
 
@@ -513,15 +436,15 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.impCv = impCv;
 	}
 
-	public TipoVencto getTipo_Vencto() {
-		return TipoVencto.toEnum(tipo_Vencto);
-	}
-	
-	public void setTipo_Vencto(TipoVencto tipo_Vencto) {
-		this.tipo_Vencto = tipo_Vencto.getCodigo();
+	public Integer getTipo_Vencto() {
+		return tipo_Vencto;
 	}
 
-	public Boolean isIgnorarSaldo() {
+	public void setTipo_Vencto(Integer tipo_Vencto) {
+		this.tipo_Vencto = tipo_Vencto;
+	}
+
+	public Boolean getIgnorarSaldo() {
 		return ignorarSaldo;
 	}
 
@@ -537,7 +460,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.msg_Venda = msg_Venda;
 	}
 
-	public Boolean isManterDescEmp() {
+	public Boolean getManterDescEmp() {
 		return manterDescEmp;
 	}
 
@@ -545,7 +468,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.manterDescEmp = manterDescEmp;
 	}
 
-	public Boolean isSemComissao() {
+	public Boolean getSemComissao() {
 		return semComissao;
 	}
 
@@ -553,7 +476,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.semComissao = semComissao;
 	}
 
-	public Boolean isNumAutoriz() {
+	public Boolean getNumAutoriz() {
 		return numAutoriz;
 	}
 
@@ -561,7 +484,7 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.numAutoriz = numAutoriz;
 	}
 
-	public Boolean isIgnorarPrecoPrazo() {
+	public Boolean getIgnorarPrecoPrazo() {
 		return ignorarPrecoPrazo;
 	}
 
@@ -569,20 +492,20 @@ public class Empresa extends GenericDomain implements Serializable{
 		this.ignorarPrecoPrazo = ignorarPrecoPrazo;
 	}
 
-	public Float getPercent_CartaFrete() {
-		return percent_CartaFrete;
-	}
-	
-	public void setPercent_CartaFrete(Float percent_CartaFrete) {
-		this.percent_CartaFrete = percent_CartaFrete;
-	}
-	
 	public Float getPercent_Vista() {
 		return percent_Vista;
 	}
-	
+
 	public void setPercent_Vista(Float percent_Vista) {
 		this.percent_Vista = percent_Vista;
+	}
+
+	public Float getPercent_CartaFrete() {
+		return percent_CartaFrete;
+	}
+
+	public void setPercent_CartaFrete(Float percent_CartaFrete) {
+		this.percent_CartaFrete = percent_CartaFrete;
 	}
 
 	public Integer getPontos_PorReal() {
@@ -592,44 +515,104 @@ public class Empresa extends GenericDomain implements Serializable{
 	public void setPontos_PorReal(Integer pontos_PorReal) {
 		this.pontos_PorReal = pontos_PorReal;
 	}
-	
-	public List<Telefone> getTelefones() {
-		return telefones;
-	}
-	
-	public void setTelefones(List<Telefone> telefones) {
-		this.telefones = telefones;
-	}
-	
-	public List<Endereco> getEnderecos() {
-		return enderecos;
-	}
-	
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
+
+
+	public String getRua() {
+		return rua;
 	}
 
-	public List<Funcionario> getFuncionarios() {
-		return funcionarios;
+	public void setRua(String rua) {
+		this.rua = rua;
 	}
 
-	public void setFuncionarios(List<Funcionario> funcionarios) {
-		this.funcionarios = funcionarios;
+	public Integer getNumero() {
+		return numero;
 	}
 
-	public List<ProprietarioSocio> getProprietariosSocios() {
-		return proprietariosSocios;
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public Integer getTipo_End() {
+		return tipo_End;
+	}
+
+	public void setTipo_End(Integer tipo_End) {
+		this.tipo_End = tipo_End;
+	}
+
+	public Long getCidadeId() {
+		return cidadeId;
+	}
+
+	public void setCidadeId(Long cidadeId) {
+		this.cidadeId = cidadeId;
+	}
+
+	public Integer getDdd() {
+		return ddd;
+	}
+
+	public void setDdd(Integer ddd) {
+		this.ddd = ddd;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public Integer getTipo_tel() {
+		return tipo;
+	}
+
+	public void setTipo_tel(Integer tipo) {
+		this.tipo = tipo;
+	}
+
+	public Date getData_altera() {
+		return data_altera;
+	}
+
+	public void setData_altera(Date data_altera) {
+		this.data_altera = data_altera;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
-	public void setProprietariosSocios(List<ProprietarioSocio> proprietariosSocios) {
-		this.proprietariosSocios = proprietariosSocios;
-	}
 	
-	public List<RamoAtividade> getRamoAtividades() {
-		return ramoAtividades;
-	}
 	
-	public void setRamoAtividades(List<RamoAtividade> ramoAtividades) {
-		this.ramoAtividades = ramoAtividades;
-	}
 }

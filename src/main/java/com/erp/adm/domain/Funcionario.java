@@ -54,17 +54,6 @@ public class Funcionario extends GenericDomain implements Serializable{
 	public Funcionario() {
 		
 	}
-	
-	public Funcionario(String nome, Date nascimento, String nascionalidade, String cpf, String email, TipoEstadoCivil estadoCivil, TipoSexo sexo, String carteiraTrabalho, Date dataAdmissao) {
-		this.nome = nome;
-		this.nascimento = nascimento;
-		this.cpf = cpf;
-		this.email = email;
-		this.estadoCivil = estadoCivil.getCodigo();
-		this.sexo = sexo.getCod();
-		this.carteiraTrabalho = carteiraTrabalho;
-		this.dataAdmissao = dataAdmissao;
-	}
 
 	public Funcionario(String nome, Date nascimento, String nascionalidade, String cpf, String email,
 			TipoEstadoCivil estadoCivil, TipoSexo sexo, String carteiraTrabalho, Date dataAdmissao, Float percComissaoAtac1,
@@ -76,8 +65,8 @@ public class Funcionario extends GenericDomain implements Serializable{
 		this.nascionalidade = nascionalidade;
 		this.cpf = cpf;
 		this.email = email;
-		this.estadoCivil = estadoCivil.getCodigo();
-		this.sexo = sexo.getCod();
+		this.estadoCivil = (estadoCivil==null) ? null : estadoCivil.getCodigo();
+		this.sexo = (sexo==null) ? null : sexo.getCod();
 		this.carteiraTrabalho = carteiraTrabalho;
 		this.dataAdmissao = dataAdmissao;
 		this.percComissaoAtac1 = percComissaoAtac1;

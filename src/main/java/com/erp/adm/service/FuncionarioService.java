@@ -6,6 +6,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.erp.adm.domain.Funcionario;
@@ -58,10 +61,15 @@ public class FuncionarioService implements Serializable{
 	public List<Funcionario> findAll() {
 		return repo.findAll();
 	}
+	
+	public Page<Funcionario> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		return repo.findAll(pageRequest);
+	}
 
 
 	public Funcionario fromDTO(FuncionarioDTO objDTO) {
-		return new Funcionario(objDTO.getNome(), objDTO.getNascimento(), objDTO.getNascionalidade(), objDTO.getCpf(), objDTO.getEmail(), objDTO.getEstadoCivil(), objDTO.getSexo(), objDTO.getCarteiraTrabalho(), objDTO.getDataAdmissao());
+		return new Funcionario(objDTO.getNome(), objDTO.getNascimento(), objDTO.getNascionalidade(), objDTO.getCpf(), objDTO.getEmail(), null, null, objDTO.getCarteiraTrabalho(), objDTO.getDataAdmissao(), null, null, null, null, null, null, null, null);
 	}
 	
 	private void updateData(Funcionario newObj, Funcionario obj) {

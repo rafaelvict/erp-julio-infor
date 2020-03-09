@@ -64,13 +64,12 @@ public class TelefoneService implements Serializable {
 	}
 
 	public Telefone fromDTO(TelefoneDTO objDTO) {
-		return new Telefone(objDTO.getDdd(), objDTO.getTelefone(), objDTO.getTipo());
+		return new Telefone(objDTO.getDdd(), objDTO.getTelefone(), null, null, null, null, null);
 	}
 	
 	private void updateData(Telefone newObj, Telefone obj) {
 		newObj.setData_altera(obj.getData_altera());
 		newObj.setDdd(obj.getDdd());
-		newObj.setLog(obj.getLog());
 		newObj.setTelefone(obj.getTelefone());
 	}
 

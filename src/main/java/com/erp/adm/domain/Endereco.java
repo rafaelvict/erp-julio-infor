@@ -19,7 +19,7 @@ public class Endereco extends GenericDomain implements Serializable{
 	private String bairro;
 	private String complemento;
 	private String cep;
-	private Integer tipo;
+	private Integer tipo_End;
 	
 	@OneToOne
 	@JoinColumn(name="cidade_id")
@@ -35,31 +35,29 @@ public class Endereco extends GenericDomain implements Serializable{
 	@JoinColumn(name="funcionario_id")
 	private Funcionario funcionario;
 	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="proprietarioSocio_id")
+	private ProprietarioSocio proprietarioSocio;
+	
 	
 	public Endereco() {
 		
 	}
-	
-	public Endereco(String rua, Integer numero, String bairro, String complemento, String cep, TipoEndereco tipo) {
-		this.rua = rua;
-		this.numero = numero;
-		this.bairro = bairro;
-		this.complemento = complemento;
-		this.cep = cep;
-		this.tipo = tipo.getCod();
-	}
 
-	public Endereco(String rua, Integer numero, String bairro, String complemento, String cep, TipoEndereco tipo, Cidade cidade, Empresa empresa, Funcionario funcionario) {
+	public Endereco(String rua, Integer numero, String bairro, String complemento, String cep, TipoEndereco tipo_End, Cidade cidade, Empresa empresa,
+			Funcionario funcionario, ProprietarioSocio proprietarioSocio) {
 		super();
 		this.rua = rua;
 		this.numero = numero;
 		this.bairro = bairro;
 		this.complemento = complemento;
 		this.cep = cep;
-		this.tipo = tipo.getCod();
+		this.tipo_End = (tipo_End==null) ? null : tipo_End.getCod();
 		this.cidade = cidade;
 		this.empresa = empresa;
 		this.funcionario = funcionario;
+		this.proprietarioSocio = proprietarioSocio;
 	}
 
 	public String getRua() {
@@ -103,11 +101,11 @@ public class Endereco extends GenericDomain implements Serializable{
 	}
 
 	public TipoEndereco getTipo() {
-		return TipoEndereco.toEnum(tipo);
+		return TipoEndereco.toEnum(tipo_End);
 	}
 
-	public void setTipo(TipoEndereco tipo) {
-		this.tipo = tipo.getCod();
+	public void setTipo(TipoEndereco tipo_End) {
+		this.tipo_End = tipo_End.getCod();
 	}
 
 	public Cidade getCidade() {
@@ -132,6 +130,14 @@ public class Endereco extends GenericDomain implements Serializable{
 
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
+	}
+
+	public ProprietarioSocio getProprietarioSocio() {
+		return proprietarioSocio;
+	}
+
+	public void setProprietarioSocio(ProprietarioSocio proprietarioSocio) {
+		this.proprietarioSocio = proprietarioSocio;
 	}
 	
 	

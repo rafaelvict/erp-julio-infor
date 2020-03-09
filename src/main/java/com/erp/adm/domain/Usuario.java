@@ -8,6 +8,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
+import com.erp.adm.enums.TipoUsuario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Usuario extends GenericDomain implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -16,7 +19,6 @@ public class Usuario extends GenericDomain implements Serializable{
 	private Float maxComissao;
 	private Float redComissaoDataC1;
 	private Float redComissaoDataC2;
-	private boolean log;
 	private Date dataAltera;
 	private String senha;
 	private String crf;
@@ -25,40 +27,34 @@ public class Usuario extends GenericDomain implements Serializable{
 	private String codCartao;
 	private String loginFarmaPop;
 	private String senhaFarmaPop;
-	private Character tipo;
+	private Integer tipo;
 	private Boolean ativo;
 
 	@Transient
 	private String senhaSemCriptografia;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="funcionario_id")
 	private Funcionario funcionario;
 	
+	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name="proprietarioSocio_id")
+	private ProprietarioSocio proprietarioSocio;
+	
 	public Usuario() {
 		
 	}
-	
-	public Usuario(String crf, Date contaDtInicio, Integer qtdVendaData, String codCartao, String loginFarmaPop, Character tipo, Boolean ativo) {
-		this.crf = crf;
-		this.contaDtInicio = contaDtInicio;
-		this.qtdVendaData = qtdVendaData;
-		this.codCartao = codCartao;
-		this.loginFarmaPop = loginFarmaPop;
-		this.tipo = tipo;
-		this.ativo = ativo;
-	}
 
-	public Usuario(Float redComissao, Float maxComissao, Float redComissaoDataC1, Float redComissaoDataC2,
-			boolean log, Date dataAltera, String senha, String crf, Date contaDtInicio, Integer qtdVendaData,
+	public Usuario(Float redComissao, Float maxComissao, Float redComissaoDataC1, Float redComissaoDataC2, Date dataAltera, String senha, String crf, Date contaDtInicio, Integer qtdVendaData,
 			String codCartao, String loginFarmaPop, String senhaFarmaPop, String senhaSemCriptografia,
-			Funcionario funcionario, Boolean ativo, Character tipo) {
+			Funcionario funcionario, Boolean ativo, TipoUsuario tipo, ProprietarioSocio proprietarioSocio) {
 		super();
 		this.redComissao = redComissao;
 		this.maxComissao = maxComissao;
 		this.redComissaoDataC1 = redComissaoDataC1;
 		this.redComissaoDataC2 = redComissaoDataC2;
-		this.log = log;
 		this.dataAltera = dataAltera;
 		this.senha = senha;
 		this.crf = crf;
@@ -70,7 +66,8 @@ public class Usuario extends GenericDomain implements Serializable{
 		this.senhaSemCriptografia = senhaSemCriptografia;
 		this.funcionario = funcionario;
 		this.ativo = ativo;
-		this.tipo = tipo;
+		this.tipo = tipo.getCodigo();
+		this.proprietarioSocio = proprietarioSocio;
 	}
 
 	public Float getRedComissao() {
@@ -103,14 +100,6 @@ public class Usuario extends GenericDomain implements Serializable{
 
 	public void setRedComissaoDataC2(Float redComissaoDataC2) {
 		this.redComissaoDataC2 = redComissaoDataC2;
-	}
-
-	public boolean isLog() {
-		return log;
-	}
-
-	public void setLog(boolean log) {
-		this.log = log;
 	}
 
 	public Date getDataAltera() {
@@ -194,42 +183,28 @@ public class Usuario extends GenericDomain implements Serializable{
 	}
 
 
-	public Character getTipo() {
-		return tipo;
+	public TipoUsuario getTipo() {
+		return TipoUsuario.toEnum(tipo);
 	}
 	
-	@Transient
-	public String getTipoFormatado() {
-		String tipoFormatado = null;
-		
-		if(tipo == 'A') {
-			tipoFormatado = "Administrador";
-		}else if(tipo == 'B') {
-			tipoFormatado = "Balconista";
-		}else if(tipo == 'G') {
-			tipoFormatado = "Gerente";
-		}
-		return tipoFormatado;
-	}
-
-	public void setTipo(Character tipo) {
-		this.tipo = tipo;
+	public void setTipo(TipoUsuario tipo) {
+		this.tipo = tipo.getCodigo();
 	}
 
 	public Boolean getAtivo() {
 		return ativo;
 	}
-	
-	public String getAtivoFormatado() {
-		String ativoFormatado = "Não";
-		if(ativo) {
-			ativoFormatado = "Sim";
-		}
-		return ativoFormatado;
-	}
 
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public ProprietarioSocio getProprietarioSocio() {
+		return proprietarioSocio;
+	}
+
+	public void setProprietarioSocio(ProprietarioSocio proprietarioSocio) {
+		this.proprietarioSocio = proprietarioSocio;
 	}
 	
 	

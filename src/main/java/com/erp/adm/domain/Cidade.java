@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 public class Cidade extends GenericDomain implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	private String nome;
+	private String nomeCidade;
 	private String codigoIbge;
 	
 	@ManyToOne
@@ -22,24 +22,19 @@ public class Cidade extends GenericDomain implements Serializable{
 		
 	}
 	
-	public Cidade(String nome, String codigoIbge) {
-		this.nome = nome;
-		this.codigoIbge = codigoIbge;
-	}
-	
-	public Cidade(String nome, String codigoIbge, Estado estado) {
+	public Cidade(String nomeCidade, String codigoIbge, Estado estado) {
 		super();
-		this.nome = nome;
+		this.nomeCidade = nomeCidade;
 		this.codigoIbge = codigoIbge;
 		this.estado = estado;
 	}
 	
 	public String getNome() {
-		return nome;
+		return nomeCidade;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setNome(String nomeCidade) {
+		this.nomeCidade = nomeCidade;
 	}
 
 	public Estado getEstado() {

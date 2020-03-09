@@ -16,8 +16,7 @@ public class Telefone extends GenericDomain implements Serializable{
 
 	private Integer ddd;
 	private String telefone;
-	private Integer tipo;
-	private boolean log;
+	private Integer tipo_Tel;
 	private Date data_altera;
 	
 	@JsonIgnore
@@ -29,27 +28,27 @@ public class Telefone extends GenericDomain implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="funcionario_id")
 	private Funcionario funcionario;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="proprietarioSocio_id")
+	private ProprietarioSocio proprietarioSocio;
 
 
 	public Telefone() {
 		
 	}
-	
-	public Telefone(Integer ddd, String telefone, TipoTelefone tipo) {
-		this.ddd = ddd;
-		this.telefone = telefone;
-		this.tipo = tipo.getCod();
-	}
 
-	public Telefone(Integer ddd, String telefone, TipoTelefone tipo, boolean log, Date data_altera, Empresa empresa, Funcionario funcionario) {
+	public Telefone(Integer ddd, String telefone, TipoTelefone tipo_Tel, Date data_altera, Empresa empresa,
+			Funcionario funcionario, ProprietarioSocio proprietarioSocio) {
 		super();
 		this.ddd = ddd;
 		this.telefone = telefone;
-		this.tipo = tipo.getCod();
-		this.log = log;
+		this.tipo_Tel = (tipo_Tel==null) ? null : tipo_Tel.getCod();
 		this.data_altera = data_altera;
 		this.empresa = empresa;
 		this.funcionario = funcionario;
+		this.proprietarioSocio = proprietarioSocio;
 	}
 
 	public int getDdd() {
@@ -69,21 +68,12 @@ public class Telefone extends GenericDomain implements Serializable{
 	}
 
 	public TipoTelefone getTipo() {
-		return TipoTelefone.toEnum(tipo);
+		return TipoTelefone.toEnum(tipo_Tel);
 	}
 
-	public void setTipo(TipoTelefone tipo) {
-		this.tipo = tipo.getCod();
+	public void setTipo(TipoTelefone tipo_Tel) {
+		this.tipo_Tel = tipo_Tel.getCod();
 	}
-
-	public boolean getLog() {
-		return log;
-	}
-
-	public void setLog(boolean log) {
-		this.log = log;
-	}
-
 	public Date getData_altera() {
 		return data_altera;
 	}
@@ -106,6 +96,14 @@ public class Telefone extends GenericDomain implements Serializable{
 
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
+	}
+
+	public ProprietarioSocio getProprietarioSocio() {
+		return proprietarioSocio;
+	}
+
+	public void setProprietarioSocio(ProprietarioSocio proprietarioSocio) {
+		this.proprietarioSocio = proprietarioSocio;
 	}
 
 	

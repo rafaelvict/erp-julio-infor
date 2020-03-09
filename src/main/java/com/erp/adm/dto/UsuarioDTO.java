@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -14,28 +15,25 @@ public class UsuarioDTO extends FuncionarioDTO implements Serializable{
 
 	private Long id;
 	
+	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(max=20, message="Tamanho deve ser de 20 caracteres")
 	private String crf;
 	
+	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(max=8, message="Tamanho deve ser de 8 caracteres")
 	private Date contaDtInicio;
 	
-	@Length(max=10, message="Tamanho deve ser de 10 caracteres")
+	@NotNull
 	private Integer qtdVendaData;
 	
+	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(max=15, message="Tamanho deve ser de 15 caracteres")
 	private String codCartao;
 	
+	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(max=20, message="Tamanho deve ser de 20 caracteres")
 	private String loginFarmaPop;
 	
-	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=1, max=1, message="Tamanho deve ser de 1 caractere")
-	private Character tipo;
-	
-	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=1, max=1, message="Tamanho deve ser de 1 caractere")
-	private Boolean ativo;
 	
 	public UsuarioDTO() {
 		
@@ -48,8 +46,6 @@ public class UsuarioDTO extends FuncionarioDTO implements Serializable{
 		qtdVendaData = obj.getQtdVendaData();
 		codCartao = obj.getCodCartao();
 		loginFarmaPop = obj.getLoginFarmaPop();
-		tipo = obj.getTipo();
-		ativo = obj.getAtivo();
 	}
 
 	public String getCrf() {
@@ -90,22 +86,6 @@ public class UsuarioDTO extends FuncionarioDTO implements Serializable{
 
 	public void setLoginFarmaPop(String loginFarmaPop) {
 		this.loginFarmaPop = loginFarmaPop;
-	}
-
-	public Character getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(Character tipo) {
-		this.tipo = tipo;
-	}
-
-	public Boolean getAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
 	}
 
 	public Long getId() {

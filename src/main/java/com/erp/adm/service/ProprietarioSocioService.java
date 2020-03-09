@@ -11,36 +11,39 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.erp.adm.domain.Endereco;
-import com.erp.adm.dto.EnderecoDTO;
-import com.erp.adm.repositories.EnderecoRepository;
+import com.erp.adm.domain.ProprietarioSocio;
+import com.erp.adm.dto.ProprietarioSocioDTO;
+import com.erp.adm.repositories.ProprietarioSocioRepository;
 import com.erp.adm.services.exceptions.DataIntegrityException;
 import com.erp.adm.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class EnderecoService implements Serializable {
+public class ProprietarioSocioService implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	private EnderecoRepository repo;
-	
-	public Endereco find(Long id) {
-		Optional<Endereco> obj = repo.findById(id);
+	private ProprietarioSocioRepository repo;
+
+	public ProprietarioSocio find(Long id) {
+		Optional<ProprietarioSocio> obj = repo.findById(id);
 
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: " + id + ", Tipo: " + Endereco.class.getName()));
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + ProprietarioSocio.class.getName()));
 	}
+
 	
-	public Endereco insert(Endereco obj) {
+	public ProprietarioSocio insert(ProprietarioSocio obj) {
 		obj.setCodigo(null);
 		return repo.save(obj);
 	}
 
-	public Endereco update(Endereco obj) {
-		Endereco newObj = find(obj.getCodigo());
+
+	public ProprietarioSocio update(ProprietarioSocio obj) {
+		ProprietarioSocio newObj = find(obj.getCodigo());
 		updateData(newObj, obj);
 		return repo.save(newObj);
 	}
+
 
 	public void delete(Long id) {
 		find(id);
@@ -52,25 +55,24 @@ public class EnderecoService implements Serializable {
 		}
 		
 	}
-	
-	public List<Endereco> findAll() {
+
+
+	public List<ProprietarioSocio> findAll() {
 		return repo.findAll();
 	}
 
-	public Page<Endereco> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+	public Page<ProprietarioSocio> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
 
-	public Endereco fromDTO(EnderecoDTO objDTO) {
-		return new Endereco(objDTO.getRua(), objDTO.getNumero(), objDTO.getBairro(), objDTO.getComplemento(), objDTO.getCep(), null, null, null, null, null);
+	public ProprietarioSocio fromDTO(ProprietarioSocioDTO objDTO) {
+		return new ProprietarioSocio(objDTO.getNome(), objDTO.getNascimento(), objDTO.getNascionalidade(), objDTO.getCpfCnpj(), objDTO.getEmail(), null, null, null, null, null);
 	}
-
-	private void updateData(Endereco newObj, Endereco obj) {
-		newObj.setBairro(obj.getBairro());
-		newObj.setCep(obj.getCep());
-		newObj.setComplemento(obj.getComplemento());
-		newObj.setNumero(obj.getNumero());
-		newObj.setRua(obj.getRua());
+	
+	private void updateData(ProprietarioSocio newObj, ProprietarioSocio obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setSexo(obj.getSexo());
+		newObj.setEmail(obj.getEmail());
 	}
 }

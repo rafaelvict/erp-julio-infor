@@ -7,7 +7,6 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 import com.erp.adm.domain.Endereco;
-import com.erp.adm.enums.TipoEndereco;
 
 public class EnderecoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -34,10 +33,6 @@ public class EnderecoDTO implements Serializable {
 	@Length(min=2, max=30, message="Tamanho deve ser entre 2 e 30 caracteres")
 	private String cep;
 	
-	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=5, max=10, message="Tamanho deve ser entre 5 e 10 caracteres")
-	private Integer tipo;
-	
 	public EnderecoDTO() {
 		
 	}
@@ -49,10 +44,9 @@ public class EnderecoDTO implements Serializable {
 		bairro = obj.getBairro();
 		complemento = obj.getComplemento();
 		cep = obj.getCep();
-		tipo = obj.getTipo().getCod();
 	}
 
-	public EnderecoDTO(Long id, String rua, int numero, String bairro, String complemento, String cep, TipoEndereco tipo) {
+	public EnderecoDTO(Long id, String rua, int numero, String bairro, String complemento, String cep) {
 		super();
 		this.id = id;
 		this.rua = rua;
@@ -60,7 +54,6 @@ public class EnderecoDTO implements Serializable {
 		this.bairro = bairro;
 		this.complemento = complemento;
 		this.cep = cep;
-		this.tipo = tipo.getCod();
 	}
 
 	public String getRua() {
@@ -101,14 +94,6 @@ public class EnderecoDTO implements Serializable {
 
 	public void setCep(String cep) {
 		this.cep = cep;
-	}
-
-	public TipoEndereco getTipo() {
-		return TipoEndereco.toEnum(tipo);
-	}
-
-	public void setTipo(TipoEndereco tipo) {
-		this.tipo = tipo.getCod();
 	}
 
 	public Long getId() {

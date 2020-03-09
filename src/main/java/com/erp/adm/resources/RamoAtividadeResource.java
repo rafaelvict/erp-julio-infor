@@ -17,27 +17,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.erp.adm.domain.Empresa;
-import com.erp.adm.dto.EmpresaDTO;
-import com.erp.adm.dto.EmpresaNewDTO;
-import com.erp.adm.service.EmpresaService;
+import com.erp.adm.domain.RamoAtividade;
+import com.erp.adm.dto.RamoAtividadeDTO;
+import com.erp.adm.service.RamoAtividadeService;
 
 @RestController
-@RequestMapping(value = "/empresas")
-public class EmpresaResource {
+@RequestMapping(value = "/ramoAtividades")
+public class RamoAtividadeResource {
 	
 	@Autowired
-	private EmpresaService service;
+	private RamoAtividadeService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Empresa> find(@PathVariable Long id){
-		Empresa obj = service.find(id);
+	public ResponseEntity<RamoAtividade> find(@PathVariable Long id){
+		RamoAtividade obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody EmpresaNewDTO objDTO){
-		Empresa obj = service.fromDTO(objDTO);
+	public ResponseEntity<Void> insert(@Valid @RequestBody RamoAtividadeDTO objDTO){
+		RamoAtividade obj = service.fromDTO(objDTO);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("{/id}").buildAndExpand(obj.getCodigo()).toUri();
@@ -46,8 +45,8 @@ public class EmpresaResource {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody EmpresaDTO objDTO, @PathVariable Long id){
-		Empresa obj = service.fromDTO(objDTO);
+	public ResponseEntity<Void> update(@Valid @RequestBody RamoAtividadeDTO objDTO, @PathVariable Long id){
+		RamoAtividade obj = service.fromDTO(objDTO);
 		obj.setCodigo(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
@@ -60,20 +59,20 @@ public class EmpresaResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<EmpresaDTO>> findAll(){
-		List<Empresa> list = service.findAll();
-		List<EmpresaDTO> listDto = list.stream().map(obj ->  new EmpresaDTO(obj)).collect(Collectors.toList());
+	public ResponseEntity<List<RamoAtividadeDTO>> findAll(){
+		List<RamoAtividade> list = service.findAll();
+		List<RamoAtividadeDTO> listDto = list.stream().map(obj ->  new RamoAtividadeDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}
 	
 	@RequestMapping(value="/page", method=RequestMethod.GET)
-	public ResponseEntity<Page<EmpresaDTO>> findPage(
+	public ResponseEntity<Page<RamoAtividadeDTO>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page, 
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
 			@RequestParam(value="orderBy", defaultValue="nome") String orderBy, 
 			@RequestParam(value="direction", defaultValue="ASC") String direction) {
-		Page<Empresa> list = service.findPage(page, linesPerPage, orderBy, direction);
-		Page<EmpresaDTO> listDto = list.map(obj ->  new EmpresaDTO(obj));
+		Page<RamoAtividade> list = service.findPage(page, linesPerPage, orderBy, direction);
+		Page<RamoAtividadeDTO> listDto = list.map(obj ->  new RamoAtividadeDTO(obj));
 		return ResponseEntity.ok().body(listDto);
 	}
 

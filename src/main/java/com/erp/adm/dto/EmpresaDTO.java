@@ -40,7 +40,7 @@ public class EmpresaDTO implements Serializable{
 	
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(min=9, max=9, message="Tamanho deve ser de 9  caracteres")
-	private Integer codigo_Ibge;
+	private String codigo_Ibge;
 	
 	public EmpresaDTO() {
 		
@@ -113,11 +113,11 @@ public class EmpresaDTO implements Serializable{
 		this.email = email;
 	}
 
-	public Integer getCodigo_Ibge() {
+	public String getCodigo_Ibge() {
 		return codigo_Ibge;
 	}
 
-	public void setCodigo_Ibge(Integer codigo_Ibge) {
+	public void setCodigo_Ibge(String codigo_Ibge) {
 		this.codigo_Ibge = codigo_Ibge;
 	}
 	
