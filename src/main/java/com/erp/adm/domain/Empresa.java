@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -71,16 +72,16 @@ public class Empresa extends GenericDomain implements Serializable{
 	private Float percent_CartaFrete;
 	private Integer pontos_PorReal;
 	
-	@OneToMany(mappedBy = "empresa")
+	@OneToMany(mappedBy = "empresa", cascade=CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "empresa")
+	@OneToMany(mappedBy = "empresa", cascade=CascadeType.ALL)
 	private List<Funcionario> funcionarios = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "empresa")
+	@OneToMany(mappedBy = "empresa", cascade=CascadeType.ALL)
 	private List<Telefone> telefones = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "empresa")
+	@OneToMany(mappedBy = "empresa", cascade=CascadeType.ALL)
 	private List<ProprietarioSocio> proprietariosSocios = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "empresa")
