@@ -1,4 +1,4 @@
-package com.erp.adm.service;
+package com.erp.adm.services;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,7 +10,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.erp.adm.domain.Cidade;
 import com.erp.adm.domain.Empresa;
@@ -58,7 +57,7 @@ public class EmpresaService implements Serializable{
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Empresa.class.getName()));
 	}
 	
-	@Transactional
+	
 	public Empresa insert(Empresa obj) {
 		obj.setCodigo(null);
 		obj = repo.save(obj);

@@ -17,7 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.erp.adm.domain.Funcionario;
 import com.erp.adm.dto.FuncionarioDTO;
-import com.erp.adm.service.FuncionarioService;
+import com.erp.adm.services.FuncionarioService;
 
 
 @RestController

@@ -28,7 +28,7 @@ public class Usuario extends GenericDomain implements Serializable{
 	private String loginFarmaPop;
 	private String senhaFarmaPop;
 	private Integer tipo;
-	private Boolean ativo;
+	private boolean ativo;
 
 	@Transient
 	private String senhaSemCriptografia;
@@ -49,7 +49,7 @@ public class Usuario extends GenericDomain implements Serializable{
 
 	public Usuario(Float redComissao, Float maxComissao, Float redComissaoDataC1, Float redComissaoDataC2, Date dataAltera, String senha, String crf, Date contaDtInicio, Integer qtdVendaData,
 			String codCartao, String loginFarmaPop, String senhaFarmaPop, String senhaSemCriptografia,
-			Funcionario funcionario, Boolean ativo, TipoUsuario tipo, ProprietarioSocio proprietarioSocio) {
+			Funcionario funcionario, boolean ativo, TipoUsuario tipo, ProprietarioSocio proprietarioSocio) {
 		super();
 		this.redComissao = redComissao;
 		this.maxComissao = maxComissao;
@@ -191,11 +191,11 @@ public class Usuario extends GenericDomain implements Serializable{
 		this.tipo = tipo.getCodigo();
 	}
 
-	public Boolean getAtivo() {
+	public boolean getAtivo() {
 		return ativo;
 	}
 
-	public void setAtivo(Boolean ativo) {
+	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
 

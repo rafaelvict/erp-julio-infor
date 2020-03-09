@@ -19,7 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.erp.adm.domain.Telefone;
 import com.erp.adm.dto.TelefoneDTO;
-import com.erp.adm.service.TelefoneService;
+import com.erp.adm.services.TelefoneService;
 
 
 @RestController

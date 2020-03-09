@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -21,7 +22,10 @@ public class Empresa extends GenericDomain implements Serializable{
 	private String cnpj;
 	private String insc_Estadual;
 	private String insc_Municipal;
+	
+	@Column(unique=true)
 	private String email;
+	
 	private Integer vias;
 	private Integer vias_Boleto;
 	private Integer dias_Juros;

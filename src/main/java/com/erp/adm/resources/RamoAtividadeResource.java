@@ -19,7 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.erp.adm.domain.RamoAtividade;
 import com.erp.adm.dto.RamoAtividadeDTO;
-import com.erp.adm.service.RamoAtividadeService;
+import com.erp.adm.services.RamoAtividadeService;
 
 @RestController
 @RequestMapping(value = "/ramoAtividades")

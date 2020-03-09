@@ -1,4 +1,4 @@
-package com.erp.adm.service;
+package com.erp.adm.services;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,40 +11,36 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.erp.adm.domain.RamoAtividade;
-import com.erp.adm.dto.RamoAtividadeDTO;
-import com.erp.adm.repositories.RamoAtividadeRepository;
+import com.erp.adm.domain.Endereco;
+import com.erp.adm.dto.EnderecoDTO;
+import com.erp.adm.repositories.EnderecoRepository;
 import com.erp.adm.services.exceptions.DataIntegrityException;
 import com.erp.adm.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class RamoAtividadeService implements Serializable {
+public class EnderecoService implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-
+	
 	@Autowired
-	private RamoAtividadeRepository repo;
-
-	public RamoAtividade find(Long id) {
-		Optional<RamoAtividade> obj = repo.findById(id);
+	private EnderecoRepository repo;
+	
+	public Endereco find(Long id) {
+		Optional<Endereco> obj = repo.findById(id);
 
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: " + id + ", Tipo: " + RamoAtividade.class.getName()));
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Endereco.class.getName()));
 	}
-
 	
-	public RamoAtividade insert(RamoAtividade obj) {
+	public Endereco insert(Endereco obj) {
 		obj.setCodigo(null);
 		return repo.save(obj);
 	}
 
-
-	public RamoAtividade update(RamoAtividade obj) {
-		RamoAtividade newObj = find(obj.getCodigo());
+	public Endereco update(Endereco obj) {
+		Endereco newObj = find(obj.getCodigo());
 		updateData(newObj, obj);
 		return repo.save(newObj);
 	}
-
 
 	public void delete(Long id) {
 		find(id);
@@ -56,22 +52,25 @@ public class RamoAtividadeService implements Serializable {
 		}
 		
 	}
-
-
-	public List<RamoAtividade> findAll() {
+	
+	public List<Endereco> findAll() {
 		return repo.findAll();
 	}
 
-	public Page<RamoAtividade> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+	public Page<Endereco> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
 
-	public RamoAtividade fromDTO(RamoAtividadeDTO objDTO) {
-		return new RamoAtividade(objDTO.getDescricao(), null);
+	public Endereco fromDTO(EnderecoDTO objDTO) {
+		return new Endereco(objDTO.getRua(), objDTO.getNumero(), objDTO.getBairro(), objDTO.getComplemento(), objDTO.getCep(), null, null, null, null, null);
 	}
-	
-	private void updateData(RamoAtividade newObj, RamoAtividade obj) {
-		
+
+	private void updateData(Endereco newObj, Endereco obj) {
+		newObj.setBairro(obj.getBairro());
+		newObj.setCep(obj.getCep());
+		newObj.setComplemento(obj.getComplemento());
+		newObj.setNumero(obj.getNumero());
+		newObj.setRua(obj.getRua());
 	}
 }

@@ -1,4 +1,4 @@
-package com.erp.adm.service;
+package com.erp.adm.services;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,33 +11,33 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.erp.adm.domain.Endereco;
-import com.erp.adm.dto.EnderecoDTO;
-import com.erp.adm.repositories.EnderecoRepository;
+import com.erp.adm.domain.Estado;
+import com.erp.adm.dto.EstadoDTO;
+import com.erp.adm.repositories.EstadoRepository;
 import com.erp.adm.services.exceptions.DataIntegrityException;
 import com.erp.adm.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class EnderecoService implements Serializable {
+public class EstadoService implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	private EnderecoRepository repo;
-	
-	public Endereco find(Long id) {
-		Optional<Endereco> obj = repo.findById(id);
+	private EstadoRepository repo;
+
+	public Estado find(Long id) {
+		Optional<Estado> obj = repo.findById(id);
 
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: " + id + ", Tipo: " + Endereco.class.getName()));
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Estado.class.getName()));
 	}
 	
-	public Endereco insert(Endereco obj) {
+	public Estado insert(Estado obj) {
 		obj.setCodigo(null);
 		return repo.save(obj);
 	}
 
-	public Endereco update(Endereco obj) {
-		Endereco newObj = find(obj.getCodigo());
+	public Estado update(Estado obj) {
+		Estado newObj = find(obj.getCodigo());
 		updateData(newObj, obj);
 		return repo.save(newObj);
 	}
@@ -50,27 +50,23 @@ public class EnderecoService implements Serializable {
 		catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir esse Objeto pois ele está associado a outro Objeto.");
 		}
-		
 	}
-	
-	public List<Endereco> findAll() {
+
+	public List<Estado> findAll() {
 		return repo.findAll();
 	}
 
-	public Page<Endereco> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+	public Page<Estado> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
-
-	public Endereco fromDTO(EnderecoDTO objDTO) {
-		return new Endereco(objDTO.getRua(), objDTO.getNumero(), objDTO.getBairro(), objDTO.getComplemento(), objDTO.getCep(), null, null, null, null, null);
+	
+	public Estado fromDTO(EstadoDTO objDTO) {
+		return new Estado(objDTO.getNome(), objDTO.getSigla());
 	}
-
-	private void updateData(Endereco newObj, Endereco obj) {
-		newObj.setBairro(obj.getBairro());
-		newObj.setCep(obj.getCep());
-		newObj.setComplemento(obj.getComplemento());
-		newObj.setNumero(obj.getNumero());
-		newObj.setRua(obj.getRua());
+	
+	private void updateData(Estado newObj, Estado obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setSigla(obj.getSigla());
 	}
 }

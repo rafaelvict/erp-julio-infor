@@ -17,7 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.erp.adm.domain.Usuario;
 import com.erp.adm.dto.UsuarioDTO;
-import com.erp.adm.service.UsuarioService;
+import com.erp.adm.services.UsuarioService;
 
 @RestController
 @RequestMapping(value = "/usuarios")

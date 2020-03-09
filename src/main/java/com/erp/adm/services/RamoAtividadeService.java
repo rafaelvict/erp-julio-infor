@@ -1,4 +1,4 @@
-package com.erp.adm.service;
+package com.erp.adm.services;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,38 +11,40 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.erp.adm.domain.Cidade;
-import com.erp.adm.dto.CidadeDTO;
-import com.erp.adm.repositories.CidadeRepository;
+import com.erp.adm.domain.RamoAtividade;
+import com.erp.adm.dto.RamoAtividadeDTO;
+import com.erp.adm.repositories.RamoAtividadeRepository;
 import com.erp.adm.services.exceptions.DataIntegrityException;
 import com.erp.adm.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class CidadeService implements Serializable {
+public class RamoAtividadeService implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	
+
+
 	@Autowired
-	private CidadeRepository repo;
-	
-	public Cidade find(Long id) {
-			Optional<Cidade> obj = repo.findById(id);
-		
-			return obj.orElseThrow(() -> new ObjectNotFoundException(
-					"Objeto não encontrado! Id: " + id + ", Tipo: " + Cidade.class.getName()));
-			
+	private RamoAtividadeRepository repo;
+
+	public RamoAtividade find(Long id) {
+		Optional<RamoAtividade> obj = repo.findById(id);
+
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + RamoAtividade.class.getName()));
 	}
+
 	
-	public Cidade insert(Cidade obj) {
+	public RamoAtividade insert(RamoAtividade obj) {
 		obj.setCodigo(null);
 		return repo.save(obj);
 	}
 
-	public Cidade update(Cidade obj) {
-		Cidade newObj = find(obj.getCodigo());
+
+	public RamoAtividade update(RamoAtividade obj) {
+		RamoAtividade newObj = find(obj.getCodigo());
 		updateData(newObj, obj);
-		return repo.save(obj);
+		return repo.save(newObj);
 	}
+
 
 	public void delete(Long id) {
 		find(id);
@@ -52,24 +54,24 @@ public class CidadeService implements Serializable {
 		catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir esse Objeto pois ele está associado a outro Objeto.");
 		}
+		
 	}
 
-	public List<Cidade> findAll() {
+
+	public List<RamoAtividade> findAll() {
 		return repo.findAll();
 	}
 
-	public Page<Cidade> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+	public Page<RamoAtividade> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
-	
-	public Cidade fromDTO(CidadeDTO objDTO) {
-		return new Cidade(objDTO.getNome(), objDTO.getCodigoIbge(), null);
+
+	public RamoAtividade fromDTO(RamoAtividadeDTO objDTO) {
+		return new RamoAtividade(objDTO.getDescricao(), null);
 	}
 	
-	private void updateData(Cidade newObj, Cidade obj) {
-		newObj.setNome(obj.getNome());
-		newObj.setCodigoIbge(obj.getCodigoIbge());
+	private void updateData(RamoAtividade newObj, RamoAtividade obj) {
+		
 	}
 }
-

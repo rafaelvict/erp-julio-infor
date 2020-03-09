@@ -20,7 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.erp.adm.domain.Empresa;
 import com.erp.adm.dto.EmpresaDTO;
 import com.erp.adm.dto.EmpresaNewDTO;
-import com.erp.adm.service.EmpresaService;
+import com.erp.adm.services.EmpresaService;
 
 @RestController
 @RequestMapping(value = "/empresas")
@@ -36,7 +36,7 @@ public class EmpresaResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody EmpresaNewDTO objDTO){
+	public ResponseEntity<Void> insert(@RequestBody @Valid EmpresaNewDTO objDTO){
 		Empresa obj = service.fromDTO(objDTO);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

@@ -1,4 +1,4 @@
-package com.erp.adm.service;
+package com.erp.adm.services;
 
 import java.io.Serializable;
 import java.util.List;

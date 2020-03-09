@@ -3,6 +3,7 @@ package com.erp.adm.dto;
 import java.io.Serializable;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -17,8 +18,7 @@ public class EnderecoDTO implements Serializable {
 	@Length(min=5, max=40, message="Tamanho deve ser entre 5 e 40 caracteres")
 	private String rua;
 	
-	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=1, max=5, message="Tamanho deve ser entre 1 e 5 caracteres")
+	@NotNull
 	private Integer numero;
 	
 	@NotEmpty(message="Preenchimento obrigatório")

@@ -20,7 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.erp.adm.domain.Estado;
 import com.erp.adm.dto.EstadoDTO;
-import com.erp.adm.service.EstadoService;
+import com.erp.adm.services.EstadoService;
 
 @RestController
 @RequestMapping(value = "/estados")

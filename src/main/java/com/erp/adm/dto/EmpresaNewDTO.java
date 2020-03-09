@@ -10,6 +10,9 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CNPJ;
 
+import com.erp.adm.services.validation.EmpresaInsert;
+
+@EmpresaInsert
 public class EmpresaNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -26,7 +29,7 @@ public class EmpresaNewDTO implements Serializable {
 	private String insc_Estadual;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=11, max=11, message="Tamanho deve ser entre 2 e 30 caracteres")
+	@Length(min=11, max=11, message="Tamanho deve ser de 11 caracteres")
 	private String insc_Municipal;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
@@ -159,13 +162,14 @@ public class EmpresaNewDTO implements Serializable {
 	@NotNull
 	private Integer pontos_PorReal;
 	
+	
+	
 	//Endereco
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(min=5, max=40, message="Tamanho deve ser entre 5 e 40 caracteres")
 	private String rua;
 	
-	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=1, max=5, message="Tamanho deve ser entre 1 e 5 caracteres")
+	@NotNull
 	private Integer numero;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
@@ -185,6 +189,8 @@ public class EmpresaNewDTO implements Serializable {
 	
 	@NotNull
 	private Long cidadeId;
+	
+	
 	
 	//Telefone
 	@NotNull

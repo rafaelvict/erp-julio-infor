@@ -19,7 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.erp.adm.domain.ProprietarioSocio;
 import com.erp.adm.dto.ProprietarioSocioDTO;
-import com.erp.adm.service.ProprietarioSocioService;
+import com.erp.adm.services.ProprietarioSocioService;
 
 @RestController
 @RequestMapping(value = "/proprietarioSocios")

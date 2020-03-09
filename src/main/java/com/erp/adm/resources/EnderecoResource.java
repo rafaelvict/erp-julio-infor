@@ -19,7 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.erp.adm.domain.Endereco;
 import com.erp.adm.dto.EnderecoDTO;
-import com.erp.adm.service.EnderecoService;
+import com.erp.adm.services.EnderecoService;
 
 
 @RestController

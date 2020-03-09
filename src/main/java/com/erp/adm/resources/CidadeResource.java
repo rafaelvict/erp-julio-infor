@@ -19,7 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.erp.adm.domain.Cidade;
 import com.erp.adm.dto.CidadeDTO;
-import com.erp.adm.service.CidadeService;
+import com.erp.adm.services.CidadeService;
 
 @RestController
 @RequestMapping(value="/cidades")

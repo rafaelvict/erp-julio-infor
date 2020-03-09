@@ -1,4 +1,4 @@
-package com.erp.adm.service;
+package com.erp.adm.services;
 
 import java.io.Serializable;
 import java.util.List;
@@ -63,7 +63,7 @@ public class UsuarioService implements Serializable{
 	}
 
 	public Usuario fromDTO(UsuarioDTO objDTO) {
-		return new Usuario(null, null, null, null, null, null, objDTO.getCrf(), objDTO.getContaDtInicio(), objDTO.getQtdVendaData(), objDTO.getCodCartao(), objDTO.getLoginFarmaPop(), null, null, null, null, null, null);
+		return new Usuario(null, null, null, null, null, null, objDTO.getCrf(), objDTO.getContaDtInicio(), objDTO.getQtdVendaData(), objDTO.getCodCartao(), objDTO.getLoginFarmaPop(), null, null, null, false, null, null);
 	}
 	
 	private void updateData(Usuario newObj, Usuario obj) {

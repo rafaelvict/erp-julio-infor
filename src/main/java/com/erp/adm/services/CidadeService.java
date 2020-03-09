@@ -1,4 +1,4 @@
-package com.erp.adm.service;
+package com.erp.adm.services;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,35 +11,37 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.erp.adm.domain.Estado;
-import com.erp.adm.dto.EstadoDTO;
-import com.erp.adm.repositories.EstadoRepository;
+import com.erp.adm.domain.Cidade;
+import com.erp.adm.dto.CidadeDTO;
+import com.erp.adm.repositories.CidadeRepository;
 import com.erp.adm.services.exceptions.DataIntegrityException;
 import com.erp.adm.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class EstadoService implements Serializable {
+public class CidadeService implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	
 	@Autowired
-	private EstadoRepository repo;
-
-	public Estado find(Long id) {
-		Optional<Estado> obj = repo.findById(id);
-
-		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: " + id + ", Tipo: " + Estado.class.getName()));
+	private CidadeRepository repo;
+	
+	public Cidade find(Long id) {
+			Optional<Cidade> obj = repo.findById(id);
+		
+			return obj.orElseThrow(() -> new ObjectNotFoundException(
+					"Objeto não encontrado! Id: " + id + ", Tipo: " + Cidade.class.getName()));
+			
 	}
 	
-	public Estado insert(Estado obj) {
+	public Cidade insert(Cidade obj) {
 		obj.setCodigo(null);
 		return repo.save(obj);
 	}
 
-	public Estado update(Estado obj) {
-		Estado newObj = find(obj.getCodigo());
+	public Cidade update(Cidade obj) {
+		Cidade newObj = find(obj.getCodigo());
 		updateData(newObj, obj);
-		return repo.save(newObj);
+		return repo.save(obj);
 	}
 
 	public void delete(Long id) {
@@ -52,21 +54,22 @@ public class EstadoService implements Serializable {
 		}
 	}
 
-	public List<Estado> findAll() {
+	public List<Cidade> findAll() {
 		return repo.findAll();
 	}
 
-	public Page<Estado> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+	public Page<Cidade> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
 	
-	public Estado fromDTO(EstadoDTO objDTO) {
-		return new Estado(objDTO.getNome(), objDTO.getSigla());
+	public Cidade fromDTO(CidadeDTO objDTO) {
+		return new Cidade(objDTO.getNome(), objDTO.getCodigoIbge(), null);
 	}
 	
-	private void updateData(Estado newObj, Estado obj) {
+	private void updateData(Cidade newObj, Cidade obj) {
 		newObj.setNome(obj.getNome());
-		newObj.setSigla(obj.getSigla());
+		newObj.setCodigoIbge(obj.getCodigoIbge());
 	}
 }
+
