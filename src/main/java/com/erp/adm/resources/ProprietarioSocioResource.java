@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.erp.adm.domain.ProprietarioSocio;
 import com.erp.adm.dto.ProprietarioSocioDTO;
+import com.erp.adm.dto.ProprietarioSocioNewDTO;
 import com.erp.adm.services.ProprietarioSocioService;
 
 @RestController
@@ -35,7 +36,7 @@ public class ProprietarioSocioResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody ProprietarioSocioDTO objDTO){
+	public ResponseEntity<Void> insert(@Valid @RequestBody ProprietarioSocioNewDTO objDTO){
 		ProprietarioSocio obj = service.fromDTO(objDTO);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

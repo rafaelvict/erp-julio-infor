@@ -16,6 +16,8 @@ import com.erp.adm.services.validation.EmpresaInsert;
 public class EmpresaNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	
+	//Empresa
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(min=2, max=50, message="Tamanho deve ser entre 2 e 50 caracteres")
 	private String nome;
@@ -176,7 +178,6 @@ public class EmpresaNewDTO implements Serializable {
 	@Length(min=3, max=40, message="Tamanho deve ser entre 3 e 40 caracteres")
 	private String bairro;
 	
-	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(min=2, max=30, message="Tamanho deve ser entre 2 e 30 caracteres")
 	private String complemento;
 	
@@ -203,6 +204,7 @@ public class EmpresaNewDTO implements Serializable {
 	@NotNull
 	private Integer tipo;
 	
+	@NotNull
 	private Date data_altera;
 	
 	//Ramo Atividade

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.erp.adm.enums.TipoEstadoCivil;
+import com.erp.adm.enums.TipoPessoa;
 import com.erp.adm.enums.TipoProprietarioSocio;
 import com.erp.adm.enums.TipoSexo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,10 +27,13 @@ public class ProprietarioSocio extends GenericDomain implements Serializable {
 	private Date nascimento;
 	private String nascionalidade;
 	private String cpfCnpj;
+	
+	@Column(unique=true)
 	private String email;
 	private Integer estadoCivil;
 	private Integer sexo;
-	private Integer tipoPS;
+	private Integer pessoa;
+	private Integer proprietarioSocio;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -53,7 +58,7 @@ public class ProprietarioSocio extends GenericDomain implements Serializable {
 
 
 	public ProprietarioSocio(String nome, Date nascimento, String nascionalidade, String cpfCnpj, String email,
-			TipoEstadoCivil estadoCivil, TipoSexo sexo, TipoProprietarioSocio tipoPS, Empresa empresa, Usuario usuario) {
+			TipoEstadoCivil estadoCivil, TipoSexo sexo, TipoPessoa pessoa, Empresa empresa, Usuario usuario, TipoProprietarioSocio proprietarioSocio) {
 		super();
 		this.nome = nome;
 		this.nascimento = nascimento;
@@ -62,9 +67,10 @@ public class ProprietarioSocio extends GenericDomain implements Serializable {
 		this.email = email;
 		this.estadoCivil = (estadoCivil==null) ? null : estadoCivil.getCodigo();
 		this.sexo = (sexo==null) ? null : sexo.getCod();
-		this.tipoPS = (tipoPS==null) ? null : tipoPS.getCodigo();
+		this.pessoa = (pessoa==null) ? null : pessoa.getCodigo();
 		this.empresa = empresa;
 		this.usuario = usuario;
+		this.proprietarioSocio = (proprietarioSocio==null) ? null : proprietarioSocio.getCodigo();
 	}
 
 
@@ -128,23 +134,23 @@ public class ProprietarioSocio extends GenericDomain implements Serializable {
 	}
 
 
-	public Integer getSexo() {
-		return sexo;
+	public TipoSexo getSexo() {
+		return TipoSexo.toEnum(sexo);
 	}
 
 
-	public void setSexo(Integer sexo) {
-		this.sexo = sexo;
+	public void setSexo(TipoSexo sexo) {
+		this.sexo = sexo.getCod();
 	}
 
 
-	public Integer getTipoPS() {
-		return tipoPS;
+	public TipoPessoa getPessoa() {
+		return TipoPessoa.toEnum(pessoa);
 	}
 
 
-	public void setTipoPS(Integer tipoPS) {
-		this.tipoPS = tipoPS;
+	public void setPessoa(TipoPessoa pessoa) {
+		this.pessoa = pessoa.getCodigo();
 	}
 
 
@@ -185,6 +191,16 @@ public class ProprietarioSocio extends GenericDomain implements Serializable {
 
 	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
+	}
+
+
+	public TipoProprietarioSocio getProprietarioSocio() {
+		return TipoProprietarioSocio.toEnum(proprietarioSocio);
+	}
+
+
+	public void setProprietarioSocio(TipoProprietarioSocio proprietarioSocio) {
+		this.proprietarioSocio = proprietarioSocio.getCodigo();
 	}
 
 

@@ -20,16 +20,20 @@ public class Usuario extends GenericDomain implements Serializable{
 	private Float redComissaoDataC1;
 	private Float redComissaoDataC2;
 	private Date dataAltera;
+	
+	@JsonIgnore
 	private String senha;
 	private String crf;
 	private Date contaDtInicio;
 	private Integer qtdVendaData;
 	private String codCartao;
 	private String loginFarmaPop;
+	
+	@JsonIgnore
 	private String senhaFarmaPop;
 	private Integer tipo;
 	private boolean ativo;
-
+	
 	@Transient
 	private String senhaSemCriptografia;
 	
