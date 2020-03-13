@@ -204,7 +204,7 @@ public class EmpresaNewDTO implements Serializable {
 	@NotNull
 	private Integer tipo;
 	
-	@NotNull
+	
 	private Date data_altera;
 	
 	//Ramo Atividade

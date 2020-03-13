@@ -1,6 +1,5 @@
 package com.erp.adm.services;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +31,7 @@ import com.erp.adm.services.exceptions.DataIntegrityException;
 import com.erp.adm.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class EmpresaService implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class EmpresaService {
 	
 	@Autowired
 	private EmpresaRepository repo;

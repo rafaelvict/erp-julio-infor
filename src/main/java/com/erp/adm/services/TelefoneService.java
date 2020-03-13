@@ -1,6 +1,5 @@
 package com.erp.adm.services;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,8 +18,7 @@ import com.erp.adm.services.exceptions.ObjectNotFoundException;
 
 
 @Service
-public class TelefoneService implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class TelefoneService {
 	
 	@Autowired
 	private TelefoneRepository repo;

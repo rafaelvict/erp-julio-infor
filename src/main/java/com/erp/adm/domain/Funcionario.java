@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import com.erp.adm.enums.TipoEstadoCivil;
 import com.erp.adm.enums.TipoSexo;
@@ -40,15 +40,10 @@ public class Funcionario extends GenericDomain implements Serializable{
 	@JoinColumn(name="empresa_id")
 	private Empresa empresa;
 	
-	@JsonIgnore
-	@OneToOne
-	@JoinColumn(name="usuario_id")
-	private Usuario usuario;
-	
-	@OneToMany(mappedBy = "funcionario")
+	@OneToMany(mappedBy = "funcionario", cascade=CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "funcionario")
+	@OneToMany(mappedBy = "funcionario", cascade=CascadeType.ALL)
 	private List<Telefone> telefones = new ArrayList<>();
 	
 	public Funcionario() {
@@ -58,7 +53,7 @@ public class Funcionario extends GenericDomain implements Serializable{
 	public Funcionario(String nome, Date nascimento, String nascionalidade, String cpf, String email,
 			TipoEstadoCivil estadoCivil, TipoSexo sexo, String carteiraTrabalho, Date dataAdmissao, Float percComissaoAtac1,
 			Float percComissaoAtac2, Float descontoMax, Float maxHoras, Float horasSubst, Float salarioHora,
-			Empresa empresa, Usuario usuario) {
+			Empresa empresa) {
 		super();
 		this.nome = nome;
 		this.nascimento = nascimento;
@@ -76,7 +71,6 @@ public class Funcionario extends GenericDomain implements Serializable{
 		this.horasSubst = horasSubst;
 		this.salarioHora = salarioHora;
 		this.empresa = empresa;
-		this.usuario = usuario;
 	}
 
 	public String getNome() {
@@ -206,15 +200,7 @@ public class Funcionario extends GenericDomain implements Serializable{
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
+	
 	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
@@ -230,9 +216,5 @@ public class Funcionario extends GenericDomain implements Serializable{
 	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
 	}
-	
-	
-	
-	
 	
 }

@@ -10,17 +10,16 @@ import org.hibernate.validator.constraints.Length;
 
 import com.erp.adm.domain.Usuario;
 
-public class UsuarioDTO extends FuncionarioDTO implements Serializable{
+public class UsuarioDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
-
+	
 	private Long id;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(max=20, message="Tamanho deve ser de 20 caracteres")
 	private String crf;
 	
-	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(max=8, message="Tamanho deve ser de 8 caracteres")
+	
 	private Date contaDtInicio;
 	
 	@NotNull
@@ -46,6 +45,15 @@ public class UsuarioDTO extends FuncionarioDTO implements Serializable{
 		qtdVendaData = obj.getQtdVendaData();
 		codCartao = obj.getCodCartao();
 		loginFarmaPop = obj.getLoginFarmaPop();
+	}
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getCrf() {
@@ -87,15 +95,6 @@ public class UsuarioDTO extends FuncionarioDTO implements Serializable{
 	public void setLoginFarmaPop(String loginFarmaPop) {
 		this.loginFarmaPop = loginFarmaPop;
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
 	
 	
 }

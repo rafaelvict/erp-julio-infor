@@ -1,6 +1,5 @@
 package com.erp.adm.services;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,19 +10,26 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.erp.adm.domain.Funcionario;
 import com.erp.adm.domain.Usuario;
 import com.erp.adm.dto.UsuarioDTO;
+import com.erp.adm.dto.UsuarioNewDTO;
+import com.erp.adm.enums.TipoUsuario;
+import com.erp.adm.repositories.FuncionarioRepository;
 import com.erp.adm.repositories.UsuarioRepository;
 import com.erp.adm.services.exceptions.DataIntegrityException;
 import com.erp.adm.services.exceptions.ObjectNotFoundException;
 
 
 @Service
-public class UsuarioService implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class UsuarioService {
 
 	@Autowired
 	private UsuarioRepository repo;
+	
+	@Autowired
+	private FuncionarioRepository funcRepository;
+	
 
 	public Usuario find(Long id) {
 		Optional<Usuario> obj = repo.findById(id);
@@ -63,7 +69,14 @@ public class UsuarioService implements Serializable{
 	}
 
 	public Usuario fromDTO(UsuarioDTO objDTO) {
-		return new Usuario(null, null, null, null, null, null, objDTO.getCrf(), objDTO.getContaDtInicio(), objDTO.getQtdVendaData(), objDTO.getCodCartao(), objDTO.getLoginFarmaPop(), null, null, null, false, null, null);
+		return new Usuario(null, null, null, null, null, null, objDTO.getCrf(), objDTO.getContaDtInicio(), objDTO.getQtdVendaData(), objDTO.getCodCartao(), objDTO.getLoginFarmaPop(), null, null, false, null, null, null);
+	}
+	
+	public Usuario fromDTO(UsuarioNewDTO objDTO) {
+		Optional<Funcionario> func = funcRepository.findById(objDTO.getFuncId());
+		Usuario usu = new Usuario(objDTO.getRedComissao(), objDTO.getMaxComissao(), objDTO.getRedComissaoDataC1(), objDTO.getRedComissaoDataC2(), objDTO.getDataAltera(), objDTO.getSenha(), objDTO.getCrf(), objDTO.getContaDtInicio(), objDTO.getQtdVendaData(), objDTO.getCodCartao(), objDTO.getLoginFarmaPop(), objDTO.getSenhaFarmaPop(), objDTO.getSenhaSemCriptografia(), true, TipoUsuario.toEnum(objDTO.getTipo()), null, func.get());
+		
+		return usu;
 	}
 	
 	private void updateData(Usuario newObj, Usuario obj) {

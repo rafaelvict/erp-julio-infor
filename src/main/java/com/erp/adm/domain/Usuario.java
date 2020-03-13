@@ -3,6 +3,7 @@ package com.erp.adm.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -38,7 +39,7 @@ public class Usuario extends GenericDomain implements Serializable{
 	private String senhaSemCriptografia;
 	
 	@JsonIgnore
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="funcionario_id")
 	private Funcionario funcionario;
 	
@@ -53,7 +54,7 @@ public class Usuario extends GenericDomain implements Serializable{
 
 	public Usuario(Float redComissao, Float maxComissao, Float redComissaoDataC1, Float redComissaoDataC2, Date dataAltera, String senha, String crf, Date contaDtInicio, Integer qtdVendaData,
 			String codCartao, String loginFarmaPop, String senhaFarmaPop, String senhaSemCriptografia,
-			Funcionario funcionario, boolean ativo, TipoUsuario tipo, ProprietarioSocio proprietarioSocio) {
+			boolean ativo, TipoUsuario tipo, ProprietarioSocio proprietarioSocio, Funcionario funcionario) {
 		super();
 		this.redComissao = redComissao;
 		this.maxComissao = maxComissao;
@@ -68,11 +69,13 @@ public class Usuario extends GenericDomain implements Serializable{
 		this.loginFarmaPop = loginFarmaPop;
 		this.senhaFarmaPop = senhaFarmaPop;
 		this.senhaSemCriptografia = senhaSemCriptografia;
-		this.funcionario = funcionario;
 		this.ativo = ativo;
 		this.tipo = tipo.getCodigo();
 		this.proprietarioSocio = proprietarioSocio;
+		this.funcionario = funcionario;
 	}
+
+	
 
 	public Float getRedComissao() {
 		return redComissao;
@@ -178,14 +181,6 @@ public class Usuario extends GenericDomain implements Serializable{
 		this.senhaSemCriptografia = senhaSemCriptografia;
 	}
 
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
-
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
-	}
-
 
 	public TipoUsuario getTipo() {
 		return TipoUsuario.toEnum(tipo);
@@ -209,6 +204,14 @@ public class Usuario extends GenericDomain implements Serializable{
 
 	public void setProprietarioSocio(ProprietarioSocio proprietarioSocio) {
 		this.proprietarioSocio = proprietarioSocio;
+	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 	
 	

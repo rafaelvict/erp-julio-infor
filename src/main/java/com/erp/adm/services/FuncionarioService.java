@@ -1,6 +1,5 @@
 package com.erp.adm.services;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,11 +18,11 @@ import com.erp.adm.services.exceptions.ObjectNotFoundException;
 
 
 @Service
-public class FuncionarioService implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class FuncionarioService { 
 	
 	@Autowired
 	private FuncionarioRepository repo;
+	
 
 	public Funcionario find(Long id) {
 		Optional<Funcionario> obj = repo.findById(id);
@@ -69,7 +68,7 @@ public class FuncionarioService implements Serializable{
 
 
 	public Funcionario fromDTO(FuncionarioDTO objDTO) {
-		return new Funcionario(objDTO.getNome(), objDTO.getNascimento(), objDTO.getNascionalidade(), objDTO.getCpf(), objDTO.getEmail(), null, null, objDTO.getCarteiraTrabalho(), objDTO.getDataAdmissao(), null, null, null, null, null, null, null, null);
+		return new Funcionario(objDTO.getNome(), objDTO.getNascimento(), objDTO.getNascionalidade(), objDTO.getCpf(), objDTO.getEmail(), null, null, objDTO.getCarteiraTrabalho(), objDTO.getDataAdmissao(), null, null, null, null, null, null, null);
 	}
 	
 	private void updateData(Funcionario newObj, Funcionario obj) {

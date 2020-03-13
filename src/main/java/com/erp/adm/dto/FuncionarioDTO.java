@@ -5,7 +5,6 @@ import java.util.Date;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -20,7 +19,7 @@ public class FuncionarioDTO implements Serializable{
 	@Length(min=5, max=50, message="Tamanho deve ser entre 5 e 50 caracteres")
 	private String nome;
 	
-	@NotNull
+	
 	private Date nascimento;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
@@ -39,7 +38,7 @@ public class FuncionarioDTO implements Serializable{
 	@Length(min=10, max=20, message="Tamanho deve ser entre 10 e 20 caracteres")
 	private String carteiraTrabalho;
 	
-	@NotNull
+	
 	private Date dataAdmissao;
 	
 	public FuncionarioDTO() {

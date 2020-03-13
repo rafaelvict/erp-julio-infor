@@ -7,5 +7,5 @@ import com.erp.adm.domain.Funcionario;
 
 @Repository
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long>{
-
+	
 }
