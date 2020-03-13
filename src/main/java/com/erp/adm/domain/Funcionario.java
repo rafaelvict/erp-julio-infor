@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import com.erp.adm.enums.TipoEstadoCivil;
 import com.erp.adm.enums.TipoSexo;
@@ -39,6 +41,10 @@ public class Funcionario extends GenericDomain implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="empresa_id")
 	private Empresa empresa;
+	
+	@Transient
+	@OneToOne(cascade = CascadeType.ALL)
+	private Usuario usuario;
 	
 	@OneToMany(mappedBy = "funcionario", cascade=CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
