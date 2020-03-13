@@ -10,9 +10,22 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.erp.adm.domain.Cidade;
+import com.erp.adm.domain.Empresa;
+import com.erp.adm.domain.Endereco;
 import com.erp.adm.domain.Funcionario;
+import com.erp.adm.domain.Telefone;
 import com.erp.adm.dto.FuncionarioDTO;
+import com.erp.adm.dto.FuncionarioNewDTO;
+import com.erp.adm.enums.TipoEndereco;
+import com.erp.adm.enums.TipoEstadoCivil;
+import com.erp.adm.enums.TipoSexo;
+import com.erp.adm.enums.TipoTelefone;
+import com.erp.adm.repositories.CidadeRepository;
+import com.erp.adm.repositories.EmpresaRepository;
+import com.erp.adm.repositories.EnderecoRepository;
 import com.erp.adm.repositories.FuncionarioRepository;
+import com.erp.adm.repositories.TelefoneRepository;
 import com.erp.adm.services.exceptions.DataIntegrityException;
 import com.erp.adm.services.exceptions.ObjectNotFoundException;
 
@@ -22,6 +35,19 @@ public class FuncionarioService {
 	
 	@Autowired
 	private FuncionarioRepository repo;
+	
+	@Autowired
+	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	private TelefoneRepository telefoneRepository;
+	
+	@Autowired
+	private EmpresaRepository empresaRepository;
+	
 	
 
 	public Funcionario find(Long id) {
@@ -34,7 +60,10 @@ public class FuncionarioService {
 	
 	public Funcionario insert(Funcionario obj) {
 		obj.setCodigo(null);
-		return repo.save(obj);
+		obj = repo.save(obj);
+		enderecoRepository.saveAll(obj.getEnderecos());
+		telefoneRepository.saveAll(obj.getTelefones());
+		return obj;
 	}
 
 
@@ -69,6 +98,18 @@ public class FuncionarioService {
 
 	public Funcionario fromDTO(FuncionarioDTO objDTO) {
 		return new Funcionario(objDTO.getNome(), objDTO.getNascimento(), objDTO.getNascionalidade(), objDTO.getCpf(), objDTO.getEmail(), null, null, objDTO.getCarteiraTrabalho(), objDTO.getDataAdmissao(), null, null, null, null, null, null, null);
+	}
+	
+	public Funcionario fromDTO(FuncionarioNewDTO objDTO) {
+		Optional<Empresa> emp = empresaRepository.findById(objDTO.getEmpresaId());
+		Optional<Cidade> cid = cidadeRepository.findById(objDTO.getCidadeId());
+		Funcionario func = new Funcionario(objDTO.getNome(), objDTO.getNascimento(), objDTO.getNascionalidade(), objDTO.getCpf(), objDTO.getEmail(), TipoEstadoCivil.toEnum(objDTO.getEstadoCivil()), TipoSexo.toEnum(objDTO.getSexo()), objDTO.getCarteiraTrabalho(), objDTO.getDataAdmissao(), objDTO.getPercComissaoAtac1(), objDTO.getPercComissaoAtac2(), objDTO.getDescontoMax(), objDTO.getMaxHoras(), objDTO.getHorasSubst(), objDTO.getSalarioHora(), emp.get());
+		Endereco end = new Endereco(objDTO.getRua(), objDTO.getNumero(), objDTO.getBairro(), objDTO.getComplemento(), objDTO.getCep(), TipoEndereco.toEnum(objDTO.getTipo_End()), cid.get(), null, func, null);
+		Telefone tel = new Telefone(objDTO.getDdd(), objDTO.getTelefone(), TipoTelefone.toEnum(objDTO.getTipo_Tel()), objDTO.getData_altera(), null, func, null);
+		func.getEnderecos().add(end);
+		func.getTelefones().add(tel);
+		
+		return func;
 	}
 	
 	private void updateData(Funcionario newObj, Funcionario obj) {

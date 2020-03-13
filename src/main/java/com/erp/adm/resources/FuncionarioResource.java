@@ -17,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.erp.adm.domain.Funcionario;
 import com.erp.adm.dto.FuncionarioDTO;
+import com.erp.adm.dto.FuncionarioNewDTO;
 import com.erp.adm.services.FuncionarioService;
 
 
@@ -35,7 +36,7 @@ public class FuncionarioResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody FuncionarioDTO objDTO){
+	public ResponseEntity<Void> insert(@Valid @RequestBody FuncionarioNewDTO objDTO){
 		Funcionario obj = service.fromDTO(objDTO);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

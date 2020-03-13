@@ -103,8 +103,8 @@ public class ProprietarioSocioService {
 		Optional<Cidade> cid = cidadeRepository.findById(objDTO.getCidadeId());
 		Optional<Empresa> emp = empresaRepository.findById(objDTO.getEmpresaId());
 		ProprietarioSocio propsoc = new ProprietarioSocio(objDTO.getNome(), objDTO.getNascimento(), objDTO.getNascionalidade(), objDTO.getCpfCnpj(), objDTO.getEmail(), TipoEstadoCivil.toEnum(objDTO.getEstadoCivil()), TipoSexo.toEnum(objDTO.getSexo()), TipoPessoa.toEnum( objDTO.getPessoa()), emp.get(), null, TipoProprietarioSocio.toEnum(objDTO.getProprietarioSocio()));
-		Endereco end = new Endereco(objDTO.getRua(), objDTO.getNumero(), objDTO.getBairro(), objDTO.getComplemento(), objDTO.getCep(), TipoEndereco.toEnum(objDTO.getTipo_End()), cid.get(), emp.get(), null, null);
-		Telefone tel = new Telefone(objDTO.getDdd(), objDTO.getTelefone(), TipoTelefone.toEnum(objDTO.getTipo_Tel()),objDTO.getData_altera(), emp.get(), null, null);
+		Endereco end = new Endereco(objDTO.getRua(), objDTO.getNumero(), objDTO.getBairro(), objDTO.getComplemento(), objDTO.getCep(), TipoEndereco.toEnum(objDTO.getTipo_End()), cid.get(), null, null, propsoc);
+		Telefone tel = new Telefone(objDTO.getDdd(), objDTO.getTelefone(), TipoTelefone.toEnum(objDTO.getTipo_Tel()),objDTO.getData_altera(), null, null, propsoc);
 		propsoc.getEnderecos().add(end);
 		propsoc.getTelefones().add(tel);
 		
