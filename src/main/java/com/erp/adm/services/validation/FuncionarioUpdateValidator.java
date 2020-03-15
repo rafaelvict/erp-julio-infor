@@ -11,26 +11,26 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerMapping;
 
-import com.erp.adm.domain.Empresa;
-import com.erp.adm.dto.EmpresaDTO;
-import com.erp.adm.repositories.EmpresaRepository;
+import com.erp.adm.domain.Funcionario;
+import com.erp.adm.dto.FuncionarioDTO;
+import com.erp.adm.repositories.FuncionarioRepository;
 import com.erp.adm.resources.exception.FieldMessage;
 
-public class EmpresaUpdateValidator implements ConstraintValidator<EmpresaUpdate, EmpresaDTO> {
+public class FuncionarioUpdateValidator implements ConstraintValidator<FuncionarioUpdate, FuncionarioDTO> {
 
 	@Autowired
 	private HttpServletRequest request;
 	
 	@Autowired
-	private EmpresaRepository repo;
+	private FuncionarioRepository repo;
 	
 	@Override
-	public void initialize(EmpresaUpdate ann) {
+	public void initialize(FuncionarioUpdate ann) {
 	}
 
 	@SuppressWarnings("unlikely-arg-type")
 	@Override
-	public boolean isValid(EmpresaDTO objDto, ConstraintValidatorContext context) {
+	public boolean isValid(FuncionarioDTO objDto, ConstraintValidatorContext context) {
 		
 		@SuppressWarnings("unchecked")
 		Map<String, String> map = (Map<String, String>) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
@@ -38,7 +38,7 @@ public class EmpresaUpdateValidator implements ConstraintValidator<EmpresaUpdate
 		
 		List<FieldMessage> list = new ArrayList<>();
 		
-		Empresa aux = repo.findByEmail(objDto.getEmail());
+		Funcionario aux = repo.findByEmail(objDto.getEmail());
 		if (aux != null && !aux.getCodigo().equals(uriId)) {
 			list.add(new FieldMessage("email", "Email já existente"));
 		}

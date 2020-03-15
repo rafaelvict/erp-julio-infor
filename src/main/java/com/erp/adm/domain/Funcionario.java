@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,6 +26,8 @@ public class Funcionario extends GenericDomain implements Serializable{
 	private Date nascimento;
 	private String nascionalidade;
 	private String cpf;
+	
+	@Column(unique=true)
 	private String email;
 	private Integer estadoCivil;
 	private Integer sexo;

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -45,10 +46,10 @@ public class ProprietarioSocio extends GenericDomain implements Serializable {
 	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
 
-	@OneToMany(mappedBy = "proprietarioSocio")
+	@OneToMany(mappedBy = "proprietarioSocio", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "proprietarioSocio")
+	@OneToMany(mappedBy = "proprietarioSocio", cascade = CascadeType.ALL)
 	private List<Telefone> telefones = new ArrayList<>();
 	
 	

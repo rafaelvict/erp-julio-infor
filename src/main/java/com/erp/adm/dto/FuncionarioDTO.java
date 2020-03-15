@@ -9,7 +9,9 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 import com.erp.adm.domain.Funcionario;
+import com.erp.adm.services.validation.FuncionarioUpdate;
 
+@FuncionarioUpdate
 public class FuncionarioDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
