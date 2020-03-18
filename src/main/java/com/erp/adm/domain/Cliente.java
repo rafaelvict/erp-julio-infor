@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import com.erp.adm.enums.TipoDocumento;
 import com.erp.adm.enums.TipoEstadoCivil;
@@ -75,14 +76,12 @@ public class Cliente extends GenericDomain implements Serializable{
 	@JoinColumn(name="usuarioCad_id")
 	private Usuario usuario;
 	
-	@JsonIgnore
+	@Transient
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="perfilCliente_id")
 	private PerfilCliente perfilCliente;
 	
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name="banco_id")
+	@Transient
+	@OneToOne(cascade = CascadeType.ALL)
 	private Banco banco;
 	
 	@ElementCollection
@@ -103,6 +102,10 @@ public class Cliente extends GenericDomain implements Serializable{
 	
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Telefone> telefones =  new ArrayList<>();;
+	
+	public Cliente() {
+		
+	}
 
 	public Cliente(String nome, Date nascimento, String nascionalidade, String cpfCnpj, String email,
 			TipoEstadoCivil estadoCivil, TipoSexo sexo, boolean ativo, boolean online, String status, String senha,

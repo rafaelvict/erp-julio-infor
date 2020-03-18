@@ -1,12 +1,13 @@
 package com.erp.adm.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Banco extends GenericDomain implements Serializable{
@@ -16,21 +17,23 @@ public class Banco extends GenericDomain implements Serializable{
 	private Integer agencia;
 	private Integer contaCorrente;
 	private Date dataAlteraBanco;
-	
-	@OneToMany(mappedBy = "banco")
-	private List<Cliente> clientes = new ArrayList<>();
-	
+
+	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name="cliente_id")
+	private Cliente cliente;
 	
 	public Banco() {
 		
 	}
 
-	public Banco(String nomeBanco, Integer agencia, Integer contaCorrente, Date dataAlteraBanco) {
+	public Banco(String nomeBanco, Integer agencia, Integer contaCorrente, Date dataAlteraBanco, Cliente cliente) {
 		super();
 		this.nomeBanco = nomeBanco;
 		this.agencia = agencia;
 		this.contaCorrente = contaCorrente;
 		this.dataAlteraBanco = dataAlteraBanco;
+		this.cliente = cliente;
 	}
 
 	public String getNomeBanco() {
@@ -65,15 +68,14 @@ public class Banco extends GenericDomain implements Serializable{
 		this.dataAlteraBanco = dataAlteraBanco;
 	}
 
-	public List<Cliente> getClientes() {
-		return clientes;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
-	
 	
 	
 }

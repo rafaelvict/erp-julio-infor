@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.erp.adm.domain.Estado;
 import com.erp.adm.dto.EstadoDTO;
-import com.erp.adm.services.CidadeService;
 import com.erp.adm.services.EstadoService;
 
 @RestController

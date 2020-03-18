@@ -9,13 +9,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.erp.adm.domain.Banco;
 import com.erp.adm.domain.Cidade;
 import com.erp.adm.domain.Cliente;
 import com.erp.adm.domain.Empresa;
 import com.erp.adm.domain.Endereco;
-import com.erp.adm.domain.PerfilCliente;
 import com.erp.adm.domain.RamoAtividade;
 import com.erp.adm.domain.Telefone;
 import com.erp.adm.domain.Usuario;
@@ -68,7 +67,7 @@ public class ClienteService {
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
 	}
 	
-	
+	@Transactional
 	public Cliente insert(Cliente obj) {
 		obj.setCodigo(null);
 		obj = repo.save(obj);
@@ -115,15 +114,10 @@ public class ClienteService {
 		Optional<Cidade> cid = cidadeRepository.findById(objDTO.getCidadeId());
 		Endereco end = new Endereco(objDTO.getRua(), objDTO.getNumero(), objDTO.getBairro(), objDTO.getComplemento(), objDTO.getCep(), TipoEndereco.toEnum(objDTO.getTipo_End()), cid.get(), null, null, null, cli);
 		Telefone tel = new Telefone(objDTO.getDdd(), objDTO.getTelefone(), TipoTelefone.toEnum(objDTO.getTipo_Tel()), objDTO.getDataAlteraTel(), null, null, null, cli);
-		PerfilCliente perf = new PerfilCliente(objDTO.getDescricaoPerf(), objDTO.getDtPrimComp(), objDTO.getDtUltComp(), objDTO.getDesconto(), objDTO.getDescMaxVista(), objDTO.getDescMaxPrazo(), objDTO.getDataCad(), objDTO.isSomenteVista(), objDTO.getDiasAtraso(), objDTO.getSaldoDev(), objDTO.getSaldoMes(), objDTO.getCredito(), objDTO.getLimite(), objDTO.getLimiteMes(), objDTO.getDiasAtraso(), objDTO.getAcrescimo(), objDTO.getCodigoIbge(), objDTO.getDiaVencto(), objDTO.getAbc(), objDTO.getDtAlteraPerf(), cli);
-		Banco banco = new Banco(objDTO.getNomeBanco(), objDTO.getAgencia(), objDTO.getContaCorrente(), objDTO.getDataAlteraBanco());
 		RamoAtividade ramatv = new RamoAtividade(objDTO.getDescricaoRamo(), null, cli);
 		cli.getEnderecos().add(end);
 		cli.getTelefones().add(tel);
 		cli.getRamoAtividades().add(ramatv);
-		cli.setPerfilCliente(perf);
-		cli.setBanco(banco);
-		
 		
 		return cli;
 	}
