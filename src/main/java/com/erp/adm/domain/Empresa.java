@@ -87,8 +87,11 @@ public class Empresa extends GenericDomain implements Serializable{
 	@OneToMany(mappedBy = "empresa", cascade=CascadeType.ALL)
 	private List<ProprietarioSocio> proprietariosSocios = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "empresa")
+	@OneToMany(mappedBy = "empresa", cascade=CascadeType.ALL)
 	private List<RamoAtividade> ramoAtividades = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "empresa", cascade=CascadeType.ALL)
+	private List<Cliente> clientes = new ArrayList<>();
 	
 	
 	public Empresa() {
@@ -627,4 +630,14 @@ public class Empresa extends GenericDomain implements Serializable{
 	public void setRamoAtividades(List<RamoAtividade> ramoAtividades) {
 		this.ramoAtividades = ramoAtividades;
 	}
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+	
+	
 }

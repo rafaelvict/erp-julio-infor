@@ -1,11 +1,14 @@
 package com.erp.adm.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
@@ -39,7 +42,7 @@ public class Usuario extends GenericDomain implements Serializable{
 	private String senhaSemCriptografia;
 	
 	@JsonIgnore
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name="funcionario_id")
 	private Funcionario funcionario;
 	
@@ -47,6 +50,9 @@ public class Usuario extends GenericDomain implements Serializable{
 	@OneToOne
 	@JoinColumn(name="proprietarioSocio_id")
 	private ProprietarioSocio proprietarioSocio;
+	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private List<Cliente> clientes = new ArrayList<>();
 	
 	public Usuario() {
 		
@@ -212,6 +218,14 @@ public class Usuario extends GenericDomain implements Serializable{
 
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
+	}
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
 	}
 	
 	

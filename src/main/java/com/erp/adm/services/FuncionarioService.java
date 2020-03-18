@@ -104,8 +104,8 @@ public class FuncionarioService {
 		Optional<Empresa> emp = empresaRepository.findById(objDTO.getEmpresaId());
 		Optional<Cidade> cid = cidadeRepository.findById(objDTO.getCidadeId());
 		Funcionario func = new Funcionario(objDTO.getNome(), objDTO.getNascimento(), objDTO.getNascionalidade(), objDTO.getCpf(), objDTO.getEmail(), TipoEstadoCivil.toEnum(objDTO.getEstadoCivil()), TipoSexo.toEnum(objDTO.getSexo()), objDTO.getCarteiraTrabalho(), objDTO.getDataAdmissao(), objDTO.getPercComissaoAtac1(), objDTO.getPercComissaoAtac2(), objDTO.getDescontoMax(), objDTO.getMaxHoras(), objDTO.getHorasSubst(), objDTO.getSalarioHora(), emp.get());
-		Endereco end = new Endereco(objDTO.getRua(), objDTO.getNumero(), objDTO.getBairro(), objDTO.getComplemento(), objDTO.getCep(), TipoEndereco.toEnum(objDTO.getTipo_End()), cid.get(), null, func, null);
-		Telefone tel = new Telefone(objDTO.getDdd(), objDTO.getTelefone(), TipoTelefone.toEnum(objDTO.getTipo_Tel()), objDTO.getData_altera(), null, func, null);
+		Endereco end = new Endereco(objDTO.getRua(), objDTO.getNumero(), objDTO.getBairro(), objDTO.getComplemento(), objDTO.getCep(), TipoEndereco.toEnum(objDTO.getTipo_End()), cid.get(), null, func, null, null);
+		Telefone tel = new Telefone(objDTO.getDdd(), objDTO.getTelefone(), TipoTelefone.toEnum(objDTO.getTipo_Tel()), objDTO.getData_altera(), null, func, null, null);
 		func.getEnderecos().add(end);
 		func.getTelefones().add(tel);
 		

@@ -106,6 +106,9 @@ public class FuncionarioNewDTO implements Serializable {
 	
 	private Date data_altera;
 	
+	//Ramo Atividade
+	private String descricao;
+	
 	public FuncionarioNewDTO() {
 		
 	}
@@ -324,6 +327,14 @@ public class FuncionarioNewDTO implements Serializable {
 
 	public void setData_altera(Date data_altera) {
 		this.data_altera = data_altera;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
 	

@@ -66,7 +66,7 @@ public class RamoAtividadeService {
 	}
 
 	public RamoAtividade fromDTO(RamoAtividadeDTO objDTO) {
-		return new RamoAtividade(objDTO.getDescricao(), null);
+		return new RamoAtividade(objDTO.getDescricaoRamo(), null, null);
 	}
 	
 	private void updateData(RamoAtividade newObj, RamoAtividade obj) {

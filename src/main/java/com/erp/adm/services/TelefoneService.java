@@ -62,11 +62,11 @@ public class TelefoneService {
 	}
 
 	public Telefone fromDTO(TelefoneDTO objDTO) {
-		return new Telefone(objDTO.getDdd(), objDTO.getTelefone(), null, null, null, null, null);
+		return new Telefone(objDTO.getDdd(), objDTO.getTelefone(), null, null, null, null, null, null);
 	}
 	
 	private void updateData(Telefone newObj, Telefone obj) {
-		newObj.setData_altera(obj.getData_altera());
+		newObj.setDataAlteraTel(obj.getDataAlteraTel());
 		newObj.setDdd(obj.getDdd());
 		newObj.setTelefone(obj.getTelefone());
 	}

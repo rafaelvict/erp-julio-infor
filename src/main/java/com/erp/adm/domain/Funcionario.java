@@ -48,7 +48,7 @@ public class Funcionario extends GenericDomain implements Serializable{
 	@Transient
 	@OneToOne(cascade = CascadeType.ALL)
 	private Usuario usuario;
-	
+		
 	@OneToMany(mappedBy = "funcionario", cascade=CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 	

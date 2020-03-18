@@ -17,7 +17,7 @@ public class Telefone extends GenericDomain implements Serializable{
 	private Integer ddd;
 	private String telefone;
 	private Integer tipo_Tel;
-	private Date data_altera;
+	private Date dataAlteraTel;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -33,22 +33,28 @@ public class Telefone extends GenericDomain implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="proprietarioSocio_id")
 	private ProprietarioSocio proprietarioSocio;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="cliente_id")
+	private Cliente cliente;
 
 
 	public Telefone() {
 		
 	}
 
-	public Telefone(Integer ddd, String telefone, TipoTelefone tipo_Tel, Date data_altera, Empresa empresa,
-			Funcionario funcionario, ProprietarioSocio proprietarioSocio) {
+	public Telefone(Integer ddd, String telefone, TipoTelefone tipo_Tel, Date dataAlteraTel, Empresa empresa,
+			Funcionario funcionario, ProprietarioSocio proprietarioSocio, Cliente cliente) {
 		super();
 		this.ddd = ddd;
 		this.telefone = telefone;
 		this.tipo_Tel = (tipo_Tel==null) ? null : tipo_Tel.getCod();
-		this.data_altera = data_altera;
+		this.dataAlteraTel = dataAlteraTel;
 		this.empresa = empresa;
 		this.funcionario = funcionario;
 		this.proprietarioSocio = proprietarioSocio;
+		this.cliente = cliente;
 	}
 
 	public int getDdd() {
@@ -74,12 +80,13 @@ public class Telefone extends GenericDomain implements Serializable{
 	public void setTipo(TipoTelefone tipo_Tel) {
 		this.tipo_Tel = tipo_Tel.getCod();
 	}
-	public Date getData_altera() {
-		return data_altera;
+
+	public Date getDataAlteraTel() {
+		return dataAlteraTel;
 	}
 
-	public void setData_altera(Date data_altera) {
-		this.data_altera = data_altera;
+	public void setDataAlteraTel(Date dataAlteraTel) {
+		this.dataAlteraTel = dataAlteraTel;
 	}
 
 	public Empresa getEmpresa() {
@@ -106,7 +113,12 @@ public class Telefone extends GenericDomain implements Serializable{
 		this.proprietarioSocio = proprietarioSocio;
 	}
 
-	
-	
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 	
 }

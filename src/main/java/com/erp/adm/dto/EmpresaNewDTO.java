@@ -164,8 +164,6 @@ public class EmpresaNewDTO implements Serializable {
 	@NotNull
 	private Integer pontos_PorReal;
 	
-	
-	
 	//Endereco
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(min=5, max=40, message="Tamanho deve ser entre 5 e 40 caracteres")

@@ -40,13 +40,18 @@ public class Endereco extends GenericDomain implements Serializable{
 	@JoinColumn(name="proprietarioSocio_id")
 	private ProprietarioSocio proprietarioSocio;
 	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="cliente_id")
+	private Cliente cliente;
+	
 	
 	public Endereco() {
 		
 	}
 
 	public Endereco(String rua, Integer numero, String bairro, String complemento, String cep, TipoEndereco tipo_End, Cidade cidade, Empresa empresa,
-			Funcionario funcionario, ProprietarioSocio proprietarioSocio) {
+			Funcionario funcionario, ProprietarioSocio proprietarioSocio, Cliente cliente) {
 		super();
 		this.rua = rua;
 		this.numero = numero;
@@ -58,6 +63,7 @@ public class Endereco extends GenericDomain implements Serializable{
 		this.empresa = empresa;
 		this.funcionario = funcionario;
 		this.proprietarioSocio = proprietarioSocio;
+		this.cliente = cliente;
 	}
 
 	public String getRua() {
@@ -138,6 +144,14 @@ public class Endereco extends GenericDomain implements Serializable{
 
 	public void setProprietarioSocio(ProprietarioSocio proprietarioSocio) {
 		this.proprietarioSocio = proprietarioSocio;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 	

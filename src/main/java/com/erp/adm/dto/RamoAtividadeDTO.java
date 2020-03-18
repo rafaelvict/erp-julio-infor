@@ -15,7 +15,7 @@ public class RamoAtividadeDTO implements Serializable{
 
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(min=5, max=100, message="Tamanho deve ser entre 5 e 100 caracteres")
-	private String descricao;
+	private String descricaoRamo;
 	
 	public RamoAtividadeDTO() {
 		
@@ -23,7 +23,7 @@ public class RamoAtividadeDTO implements Serializable{
 
 	public RamoAtividadeDTO(RamoAtividade obj) {
 		id = obj.getCodigo();
-		descricao = obj.getDescricao();
+		descricaoRamo = obj.getDescricaoRamo();
 	}
 
 	public Long getId() {
@@ -34,12 +34,12 @@ public class RamoAtividadeDTO implements Serializable{
 		this.id = id;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getDescricaoRamo() {
+		return descricaoRamo;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDescricaoRamo(String descricaoRamo) {
+		this.descricaoRamo = descricaoRamo;
 	}
 	
 	
