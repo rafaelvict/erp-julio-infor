@@ -84,24 +84,28 @@ public class Cliente extends GenericDomain implements Serializable{
 	@OneToOne(cascade = CascadeType.ALL)
 	private Banco banco;
 	
+	@JsonIgnore
 	@ElementCollection
 	@CollectionTable(name="obsimp")
 	private Set<String> obsImps = new HashSet<>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-	private List<HistCliente> historicosCliente = new ArrayList<>();;
+	private List<HistCliente> historicosCliente = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+	private List<RamoAtividade> ramoAtividades = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+	private List<Dependente> dependentes = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-	private List<RamoAtividade> ramoAtividades = new ArrayList<>();;
+	private List<Endereco> enderecos = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-	private List<Dependente> dependentes = new ArrayList<>();;
-	
-	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-	private List<Endereco> enderecos = new ArrayList<>();;
-	
-	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-	private List<Telefone> telefones =  new ArrayList<>();;
+	private List<Telefone> telefones =  new ArrayList<>();
 	
 	public Cliente() {
 		

@@ -41,7 +41,6 @@ public class Usuario extends GenericDomain implements Serializable{
 	@Transient
 	private String senhaSemCriptografia;
 	
-	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="funcionario_id")
 	private Funcionario funcionario;
@@ -51,6 +50,7 @@ public class Usuario extends GenericDomain implements Serializable{
 	@JoinColumn(name="proprietarioSocio_id")
 	private ProprietarioSocio proprietarioSocio;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Cliente> clientes = new ArrayList<>();
 	

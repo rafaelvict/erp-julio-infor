@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Banco extends GenericDomain implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -18,7 +16,6 @@ public class Banco extends GenericDomain implements Serializable{
 	private Integer contaCorrente;
 	private Date dataAlteraBanco;
 
-	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
