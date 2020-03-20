@@ -13,7 +13,8 @@ public enum TipoDependente {
 	CONJUGUE(9, "Cônjugue"),
 	PAIS(10, "Pais"),
 	AVOS(11, "Avós"),
-	BISAVOS(12, "Bisavós");
+	BISAVOS(12, "Bisavós"),
+	ANIMAL(13, "Animal");
 	
 	private int codigo;
 	private String descricao;
