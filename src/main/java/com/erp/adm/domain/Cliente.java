@@ -501,9 +501,4 @@ public class Cliente extends GenericDomain implements Serializable{
 	public void setObsImps(Set<String> obsImps) {
 		this.obsImps = obsImps;
 	}
-	
-	
-	
-	
-	
 }

@@ -1,6 +1,6 @@
 package com.erp.adm.enums;
 
-public enum TipoReceituario {
+public enum TipoReceita {
 
 	RECEITAAMARELA(1, "Receita Amarela"),
 	RECEITAAZUL(2, "Receita Azul"),
@@ -9,7 +9,7 @@ public enum TipoReceituario {
 	private int codigo;
 	private String descricao;
 	
-	private TipoReceituario(int codigo, String descricao) {
+	private TipoReceita(int codigo, String descricao) {
 		this.codigo = codigo;
 		this.descricao = descricao;
 	}
@@ -22,12 +22,12 @@ public enum TipoReceituario {
 		return descricao;
 	}
 	
-	public static TipoReceituario toEnum(Integer codigo) {
+	public static TipoReceita toEnum(Integer codigo) {
 		if(codigo == null) {
 			return null;
 		}
 		
-		for(TipoReceituario x: TipoReceituario.values()) {
+		for(TipoReceita x: TipoReceita.values()) {
 			if(codigo.equals(x.getCodigo())) {
 				return x;
 			}

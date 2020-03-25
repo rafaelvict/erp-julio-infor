@@ -24,16 +24,27 @@ public class RamoAtividade extends GenericDomain implements Serializable {
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
 	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="fabricante_id")
+	private Fabricante fabricante;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "fornecedor_id")
+	private Fornecedor fornecedor;
 	
 	public RamoAtividade() {
 		
 	}
 	
-	public RamoAtividade(String descricaoRamo, Empresa empresa, Cliente cliente) {
+	public RamoAtividade(String descricaoRamo, Empresa empresa, Cliente cliente, Fabricante fabricante, Fornecedor fornecedor) {
 		super();
 		this.descricaoRamo = descricaoRamo;
 		this.empresa = empresa;
 		this.cliente = cliente;
+		this.fabricante = fabricante;
+		this.fornecedor = fornecedor;
 	}
 
 
@@ -59,6 +70,22 @@ public class RamoAtividade extends GenericDomain implements Serializable {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public Fabricante getFabricante() {
+		return fabricante;
+	}
+
+	public void setFabricante(Fabricante fabricante) {
+		this.fabricante = fabricante;
+	}
+
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
 	}
 	
 	

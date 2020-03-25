@@ -62,7 +62,7 @@ public class TelefoneService {
 	}
 
 	public Telefone fromDTO(TelefoneDTO objDTO) {
-		return new Telefone(objDTO.getDdd(), objDTO.getTelefone(), null, null, null, null, null, null);
+		return new Telefone(objDTO.getDdd(), objDTO.getTelefone(), null, null, null, null, null, null, null, null);
 	}
 	
 	private void updateData(Telefone newObj, Telefone obj) {

@@ -98,9 +98,9 @@ public class EmpresaService {
 	public Empresa fromDTO(EmpresaNewDTO objDTO) {
 		Empresa emp = new Empresa(objDTO.getNome(), objDTO.getCnpj(), objDTO.getInsc_Estadual(), objDTO.getInsc_Municipal(), objDTO.getEmail(), objDTO.getVias(), objDTO.getVias_Boleto(), objDTO.getDias_Juros(), objDTO.getMulta(), objDTO.getMora(), objDTO.getIni_Mes(), objDTO.getFim_Mes(), objDTO.getBolBancario(), objDTO.getValor_IsencaoBoleto(), objDTO.getValor_AdcBoleto(), objDTO.getDesconto_Funcionario(), objDTO.getDesconto_Empresa(), objDTO.getAcrescimo(), TipoVenda.toEnum(objDTO.getTipo_Venda()), TipoPreco.toEnum(objDTO.getTipo_Preco()), objDTO.getDelivery(), objDTO.getDias_DescFab(), objDTO.getCodigo_Ibge(), objDTO.getCreadiario(), objDTO.getPergNota(), objDTO.getDescMaxGrupo(), objDTO.getPergPontoVenda(), objDTO.getUsarProcPromo(), objDTO.getUsarDescVista(), objDTO.getPermDesc(), objDTO.getPedirTransp(), objDTO.getFarmaciaPopular(), objDTO.getControleVencto(), objDTO.getMsgBoleto1(), objDTO.getMsgBoleto2(), objDTO.getMesReceb(), objDTO.getMascara(), objDTO.getCupomFisc(), objDTO.getEmitirBoletoBanc(), objDTO.getVias_Pagto(), objDTO.getLog(), objDTO.getData_altera(), objDTO.getImpCv(), TipoVencto.toEnum(objDTO.getTipo_Vencto()), objDTO.getIgnorarSaldo(), objDTO.getMsg_Venda(), objDTO.getManterDescEmp(), objDTO.getSemComissao(), objDTO.getNumAutoriz(), objDTO.getIgnorarPrecoPrazo(), objDTO.getPercent_Vista(), objDTO.getPercent_CartaFrete(), objDTO.getPontos_PorReal());
 		Optional<Cidade> cid = cidadeRepository.findById(objDTO.getCidadeId());
-		Endereco end = new Endereco(objDTO.getRua(), objDTO.getNumero(), objDTO.getBairro(), objDTO.getComplemento(), objDTO.getCep(), TipoEndereco.toEnum(objDTO.getTipo_End()), cid.get(), emp, null, null, null);
-		Telefone tel = new Telefone(objDTO.getDdd(), objDTO.getTelefone(), TipoTelefone.toEnum(objDTO.getTipo_tel()),objDTO.getDataAltera(), emp, null, null, null);
-		RamoAtividade ratv = new RamoAtividade(objDTO.getDescricao(), emp, null);
+		Endereco end = new Endereco(objDTO.getRua(), objDTO.getNumero(), objDTO.getBairro(), objDTO.getComplemento(), objDTO.getCep(), TipoEndereco.toEnum(objDTO.getTipo_End()), cid.get(), emp, null, null, null, null, null);
+		Telefone tel = new Telefone(objDTO.getDdd(), objDTO.getTelefone(), TipoTelefone.toEnum(objDTO.getTipo_tel()),objDTO.getDataAltera(), emp, null, null, null, null, null);
+		RamoAtividade ratv = new RamoAtividade(objDTO.getDescricao(), emp, null, null, null);
 		emp.getEnderecos().add(end);
 		emp.getTelefones().add(tel);
 		emp.getRamoAtividades().add(ratv);
