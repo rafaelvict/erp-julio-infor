@@ -26,18 +26,11 @@ public enum TipoItem {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
-	}
-
 	public String getDescricao() {
 		return descricao;
 	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
 	
+
 	public static TipoItem toEnum(Integer cod) {
 		if(cod == null) {
 			return null;

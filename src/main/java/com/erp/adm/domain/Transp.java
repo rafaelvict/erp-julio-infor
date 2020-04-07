@@ -18,13 +18,13 @@ public class Transp extends GenericDomain {
 	private String nomeTransp;
 	private String cnpj;
 	private String uf;
-	private String inscEstadual;
-	private String email;
+	private String inscEstadualTransp;
+	private String emailTransp;
 	private String placa;
 	private boolean log;
 	private Date dtAltera;
-	private String codIbge;
-	private String suframa;
+	private String codIbgeTransp;
+	private String suframaTransp;
 
 	
 	@JsonIgnore
@@ -45,19 +45,19 @@ public class Transp extends GenericDomain {
 		
 	}
 
-	public Transp(String nomeTransp, String cnpj, String uf, String inscEstadual, String email, String placa,
-			boolean log, Date dtAltera, String codIbge, String suframa, Fornecedor fornecedor) {
+	public Transp(String nomeTransp, String cnpj, String uf, String inscEstadualTransp, String emailTransp, String placa,
+			boolean log, Date dtAltera, String codIbgeTransp, String suframaTransp, Fornecedor fornecedor) {
 		super();
 		this.nomeTransp = nomeTransp;
 		this.cnpj = cnpj;
 		this.uf = uf;
-		this.inscEstadual = inscEstadual;
-		this.email = email;
+		this.inscEstadualTransp = inscEstadualTransp;
+		this.emailTransp = emailTransp;
 		this.placa = placa;
 		this.log = log;
 		this.dtAltera = dtAltera;
-		this.codIbge = codIbge;
-		this.suframa = suframa;
+		this.codIbgeTransp = codIbgeTransp;
+		this.suframaTransp = suframaTransp;
 		this.fornecedor = fornecedor;
 	}
 
@@ -86,19 +86,19 @@ public class Transp extends GenericDomain {
 	}
 
 	public String getInscEstadual() {
-		return inscEstadual;
+		return inscEstadualTransp;
 	}
 
-	public void setInscEstadual(String inscEstadual) {
-		this.inscEstadual = inscEstadual;
+	public void setInscEstadual(String inscEstadualTransp) {
+		this.inscEstadualTransp = inscEstadualTransp;
 	}
 
 	public String getEmail() {
-		return email;
+		return emailTransp;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(String emailTransp) {
+		this.emailTransp = emailTransp;
 	}
 
 	public String getPlaca() {
@@ -126,19 +126,19 @@ public class Transp extends GenericDomain {
 	}
 
 	public String getCodIbge() {
-		return codIbge;
+		return codIbgeTransp;
 	}
 
-	public void setCodIbge(String codIbge) {
-		this.codIbge = codIbge;
+	public void setCodIbge(String codIbgeTransp) {
+		this.codIbgeTransp = codIbgeTransp;
 	}
 
 	public String getSuframa() {
-		return suframa;
+		return suframaTransp;
 	}
 
-	public void setSuframa(String suframa) {
-		this.suframa = suframa;
+	public void setSuframa(String suframaTransp) {
+		this.suframaTransp = suframaTransp;
 	}
 
 	public List<Endereco> getEnderecosTransp() {

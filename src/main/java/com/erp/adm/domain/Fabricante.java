@@ -19,19 +19,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Fabricante extends GenericDomain implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	
-	private String razao;
-	private String fantasia;
-	private Integer desconto;
-	private Date dataCad;
-	private String cnpj;
-	private String inscEstadual;
-	private boolean inativo;
+	private String nomeFab;
+	private String razaoFab;
+	private String fantasiaFab;
+	private Float descontoFab;
+	private Date dataCadFab;
+	private String cnpjFab;
+	private String inscEstadualFab;
+	private boolean logFab;
 	
 	@Column(unique = true)
-	private String email;
-	private String site;
-	private Date dtAltera;
+	private String emailFab;
+	private String siteFab;
+	private Date dtAlteraFab;
 	
 	@JsonIgnore
 	@ManyToMany
@@ -61,101 +61,117 @@ public class Fabricante extends GenericDomain implements Serializable{
 		
 	}
 
-	public Fabricante(String razao, String fantasia, Integer desconto, Date dataCad, String cnpj, String inscEstadual,
-			boolean inativo, String email, String site, Date dtAltera) {
+	public Fabricante(String nomeFab, String razaoFab, String fantasiaFab, Float descontoFab, Date dataCadFab,
+			String cnpjFab, String inscEstadualFab, boolean logFab, String emailFab, String siteFab, Date dtAlteraFab) {
 		super();
-		this.razao = razao;
-		this.fantasia = fantasia;
-		this.desconto = desconto;
-		this.dataCad = dataCad;
-		this.cnpj = cnpj;
-		this.inscEstadual = inscEstadual;
-		this.inativo = inativo;
-		this.email = email;
-		this.site = site;
-		this.dtAltera = dtAltera;
+		this.nomeFab = nomeFab;
+		this.razaoFab = razaoFab;
+		this.fantasiaFab = fantasiaFab;
+		this.descontoFab = descontoFab;
+		this.dataCadFab = dataCadFab;
+		this.cnpjFab = cnpjFab;
+		this.inscEstadualFab = inscEstadualFab;
+		this.logFab = logFab;
+		this.emailFab = emailFab;
+		this.siteFab = siteFab;
+		this.dtAlteraFab = dtAlteraFab;
 	}
 
-	public String getRazao() {
-		return razao;
+	public String getNomeFab() {
+		return nomeFab;
 	}
 
-	public void setRazao(String razao) {
-		this.razao = razao;
+	public void setNomeFab(String nomeFab) {
+		this.nomeFab = nomeFab;
 	}
 
-	public String getFantasia() {
-		return fantasia;
+	public String getRazaoFab() {
+		return razaoFab;
 	}
 
-	public void setFantasia(String fantasia) {
-		this.fantasia = fantasia;
+	public void setRazaoFab(String razaoFab) {
+		this.razaoFab = razaoFab;
 	}
 
-	public Integer getDesconto() {
-		return desconto;
+	public String getFantasiaFab() {
+		return fantasiaFab;
 	}
 
-	public void setDesconto(Integer desconto) {
-		this.desconto = desconto;
+	public void setFantasiaFab(String fantasiaFab) {
+		this.fantasiaFab = fantasiaFab;
 	}
 
-	public Date getDataCad() {
-		return dataCad;
+	public Float getDescontoFab() {
+		return descontoFab;
 	}
 
-	public void setDataCad(Date dataCad) {
-		this.dataCad = dataCad;
+	public void setDescontoFab(Float descontoFab) {
+		this.descontoFab = descontoFab;
 	}
 
-	public String getCnpj() {
-		return cnpj;
+	public Date getDataCadFab() {
+		return dataCadFab;
 	}
 
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
+	public void setDataCadFab(Date dataCadFab) {
+		this.dataCadFab = dataCadFab;
 	}
 
-	public String getInscEstadual() {
-		return inscEstadual;
+	public String getCnpjFab() {
+		return cnpjFab;
 	}
 
-	public void setInscEstadual(String inscEstadual) {
-		this.inscEstadual = inscEstadual;
+	public void setCnpjFab(String cnpjFab) {
+		this.cnpjFab = cnpjFab;
 	}
 
-	public boolean isInativo() {
-		return inativo;
+	public String getInscEstadualFab() {
+		return inscEstadualFab;
 	}
 
-	public void setInativo(boolean inativo) {
-		this.inativo = inativo;
+	public void setInscEstadualFab(String inscEstadualFab) {
+		this.inscEstadualFab = inscEstadualFab;
 	}
 
-	public String getEmail() {
-		return email;
+	public boolean isLogFab() {
+		return logFab;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setLogFab(boolean logFab) {
+		this.logFab = logFab;
 	}
 
-	public String getSite() {
-		return site;
+	public String getEmailFab() {
+		return emailFab;
 	}
 
-	public void setSite(String site) {
-		this.site = site;
+	public void setEmailFab(String emailFab) {
+		this.emailFab = emailFab;
 	}
 
-	public Date getDtAltera() {
-		return dtAltera;
+	public String getSiteFab() {
+		return siteFab;
 	}
 
-	public void setDtAltera(Date dtAltera) {
-		this.dtAltera = dtAltera;
+	public void setSiteFab(String siteFab) {
+		this.siteFab = siteFab;
 	}
 
+	public Date getDtAlteraFab() {
+		return dtAlteraFab;
+	}
+
+	public void setDtAlteraFab(Date dtAlteraFab) {
+		this.dtAlteraFab = dtAlteraFab;
+	}
+
+	public List<Fornecedor> getFornecedores() {
+		return fornecedores;
+	}
+
+	public void setFornecedores(List<Fornecedor> fornecedores) {
+		this.fornecedores = fornecedores;
+	}
 
 	public List<Produto> getProdutos() {
 		return produtos;
@@ -189,12 +205,8 @@ public class Fabricante extends GenericDomain implements Serializable{
 		this.ramoAtividades = ramoAtividades;
 	}
 
-	public List<Fornecedor> getFornecedores() {
-		return fornecedores;
-	}
 
-	public void setFornecedores(List<Fornecedor> fornecedores) {
-		this.fornecedores = fornecedores;
-	}
+
+	
 	
 }

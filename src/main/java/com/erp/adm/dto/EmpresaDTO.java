@@ -30,7 +30,7 @@ public class EmpresaDTO implements Serializable{
 	private String insc_Estadual;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=11, max=11, message="Tamanho deve ser entre 2 e 30 caracteres")
+	@Length(min=11, max=11, message="Tamanho deve ser de 11 caracteres")
 	private String insc_Municipal;
 	
 	@NotEmpty(message="Preenchimento obrigatório")

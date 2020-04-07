@@ -32,7 +32,7 @@ public class Fornecedor extends GenericDomain implements Serializable{
 	private String fantasia;
 	private String inscEstadual;
 	private String inscMunicipal;
-	private Integer suframa;
+	private String suframa;
 	private Integer tipoFornecedor;
 	private String codIbge;
 	private String obs;
@@ -51,6 +51,14 @@ public class Fornecedor extends GenericDomain implements Serializable{
 	private List<Transp> transportadoras = new ArrayList<>();
 	
 	@JsonIgnore
+	@OneToMany(mappedBy = "fabricante", cascade = CascadeType.ALL)
+	private List<Telefone> telefones = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "fabricante", cascade = CascadeType.ALL)
+	private List<Endereco> enderecos = new ArrayList<>();
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "fornecedor", cascade = CascadeType.ALL)
 	private List<RamoAtividade> ramoAtividades = new ArrayList<>();
 	
@@ -60,7 +68,7 @@ public class Fornecedor extends GenericDomain implements Serializable{
 
 	public Fornecedor(String nome, Date nascimento, String nascionalidade, String cpfCnpj, String email,
 			Integer tipoEstadoCivil, Integer tipoSexo, String razao, String fantasia, String inscEstadual,
-			String inscMunicipal, Integer suframa, Integer tipoFornecedor, String codIbge, String obs, boolean inativo,
+			String inscMunicipal, String suframa, Integer tipoFornecedor, String codIbge, String obs, boolean inativo,
 			Empresa empresa) {
 		super();
 		this.nome = nome;
@@ -170,11 +178,11 @@ public class Fornecedor extends GenericDomain implements Serializable{
 		this.inscMunicipal = inscMunicipal;
 	}
 
-	public Integer getSuframa() {
+	public String getSuframa() {
 		return suframa;
 	}
 
-	public void setSuframa(Integer suframa) {
+	public void setSuframa(String suframa) {
 		this.suframa = suframa;
 	}
 
@@ -232,6 +240,30 @@ public class Fornecedor extends GenericDomain implements Serializable{
 
 	public void setRamoAtividades(List<RamoAtividade> ramoAtividades) {
 		this.ramoAtividades = ramoAtividades;
+	}
+
+	public List<Fabricante> getFabricantes() {
+		return fabricantes;
+	}
+
+	public void setFabricantes(List<Fabricante> fabricantes) {
+		this.fabricantes = fabricantes;
+	}
+
+	public List<Telefone> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(List<Telefone> telefones) {
+		this.telefones = telefones;
+	}
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
 	}
 	
 	
