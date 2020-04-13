@@ -19,7 +19,7 @@ public class Endereco extends GenericDomain implements Serializable{
 	private String bairro;
 	private String complemento;
 	private String cep;
-	private Integer tipo_End;
+	private Integer tipoEnd;
 	
 	@OneToOne
 	@JoinColumn(name="cidade_id")
@@ -55,20 +55,25 @@ public class Endereco extends GenericDomain implements Serializable{
 	@JoinColumn(name = "transp_id")
 	private Transp transp;
 	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "fornecedor_id")
+	private Fornecedor fornecedor;
+	
 	
 	public Endereco() {
 		
 	}
 
-	public Endereco(String rua, Integer numero, String bairro, String complemento, String cep, TipoEndereco tipo_End, Cidade cidade, Empresa empresa,
-			Funcionario funcionario, ProprietarioSocio proprietarioSocio, Cliente cliente, Fabricante fabricante, Transp transp) {
+	public Endereco(String rua, Integer numero, String bairro, String complemento, String cep, TipoEndereco tipoEnd, Cidade cidade, Empresa empresa,
+			Funcionario funcionario, ProprietarioSocio proprietarioSocio, Cliente cliente, Fabricante fabricante, Transp transp, Fornecedor fornecedor) {
 		super();
 		this.rua = rua;
 		this.numero = numero;
 		this.bairro = bairro;
 		this.complemento = complemento;
 		this.cep = cep;
-		this.tipo_End = (tipo_End==null) ? null : tipo_End.getCod();
+		this.tipoEnd = (tipoEnd==null) ? null : tipoEnd.getCod();
 		this.cidade = cidade;
 		this.empresa = empresa;
 		this.funcionario = funcionario;
@@ -76,6 +81,7 @@ public class Endereco extends GenericDomain implements Serializable{
 		this.cliente = cliente;
 		this.fabricante = fabricante;
 		this.transp = transp;
+		this.fornecedor = fornecedor;
 	}
 
 	public String getRua() {
@@ -118,12 +124,12 @@ public class Endereco extends GenericDomain implements Serializable{
 		this.cep = cep;
 	}
 
-	public TipoEndereco getTipo() {
-		return TipoEndereco.toEnum(tipo_End);
+	public TipoEndereco getTipoEnd() {
+		return TipoEndereco.toEnum(tipoEnd);
 	}
 
-	public void setTipo(TipoEndereco tipo_End) {
-		this.tipo_End = tipo_End.getCod();
+	public void setTipoEnd(TipoEndereco tipoEnd) {
+		this.tipoEnd = tipoEnd.getCod();
 	}
 
 	public Cidade getCidade() {
@@ -181,7 +187,13 @@ public class Endereco extends GenericDomain implements Serializable{
 	public void setTransp(Transp transp) {
 		this.transp = transp;
 	}
-	
-	
+
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
+	}
 	
 }

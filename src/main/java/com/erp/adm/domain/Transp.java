@@ -1,5 +1,6 @@
 package com.erp.adm.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,16 +14,17 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Transp extends GenericDomain {
+public class Transp extends GenericDomain implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	private String nomeTransp;
-	private String cnpj;
-	private String uf;
+	private String cnpjTransp;
+	private String ufTransp;
 	private String inscEstadualTransp;
 	private String emailTransp;
-	private String placa;
-	private boolean log;
-	private Date dtAltera;
+	private String placaTransp;
+	private boolean logTransp;
+	private Date dtAlteraTransp;
 	private String codIbgeTransp;
 	private String suframaTransp;
 
@@ -38,132 +40,161 @@ public class Transp extends GenericDomain {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "transp", cascade = CascadeType.ALL)
-	private List<Telefone> telefones = new ArrayList<>();
+	private List<Telefone> telefonesTransp = new ArrayList<>();
 	
 	
 	public Transp() {
 		
 	}
 
-	public Transp(String nomeTransp, String cnpj, String uf, String inscEstadualTransp, String emailTransp, String placa,
-			boolean log, Date dtAltera, String codIbgeTransp, String suframaTransp, Fornecedor fornecedor) {
+	
+	public Transp(String nomeTransp, String cnpjTransp, String ufTransp, String inscEstadualTransp, String emailTransp,
+			String placaTransp, boolean logTransp, Date dtAlteraTransp, String codIbgeTransp, String suframaTransp,
+			Fornecedor fornecedor) {
 		super();
 		this.nomeTransp = nomeTransp;
-		this.cnpj = cnpj;
-		this.uf = uf;
+		this.cnpjTransp = cnpjTransp;
+		this.ufTransp = ufTransp;
 		this.inscEstadualTransp = inscEstadualTransp;
 		this.emailTransp = emailTransp;
-		this.placa = placa;
-		this.log = log;
-		this.dtAltera = dtAltera;
+		this.placaTransp = placaTransp;
+		this.logTransp = logTransp;
+		this.dtAlteraTransp = dtAlteraTransp;
 		this.codIbgeTransp = codIbgeTransp;
 		this.suframaTransp = suframaTransp;
 		this.fornecedor = fornecedor;
 	}
+
 
 	public String getNomeTransp() {
 		return nomeTransp;
 	}
 
+
 	public void setNomeTransp(String nomeTransp) {
 		this.nomeTransp = nomeTransp;
 	}
 
-	public String getCnpj() {
-		return cnpj;
+
+	public String getCnpjTransp() {
+		return cnpjTransp;
 	}
 
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
+
+	public void setCnpjTransp(String cnpjTransp) {
+		this.cnpjTransp = cnpjTransp;
 	}
 
-	public String getUf() {
-		return uf;
+
+	public String getUfTransp() {
+		return ufTransp;
 	}
 
-	public void setUf(String uf) {
-		this.uf = uf;
+
+	public void setUfTransp(String ufTransp) {
+		this.ufTransp = ufTransp;
 	}
 
-	public String getInscEstadual() {
+
+	public String getInscEstadualTransp() {
 		return inscEstadualTransp;
 	}
 
-	public void setInscEstadual(String inscEstadualTransp) {
+
+	public void setInscEstadualTransp(String inscEstadualTransp) {
 		this.inscEstadualTransp = inscEstadualTransp;
 	}
 
-	public String getEmail() {
+
+	public String getEmailTransp() {
 		return emailTransp;
 	}
 
-	public void setEmail(String emailTransp) {
+
+	public void setEmailTransp(String emailTransp) {
 		this.emailTransp = emailTransp;
 	}
 
-	public String getPlaca() {
-		return placa;
+
+	public String getPlacaTransp() {
+		return placaTransp;
 	}
 
-	public void setPlaca(String placa) {
-		this.placa = placa;
+
+	public void setPlacaTransp(String placaTransp) {
+		this.placaTransp = placaTransp;
 	}
 
-	public boolean isLog() {
-		return log;
+
+	public boolean isLogTransp() {
+		return logTransp;
 	}
 
-	public void setLog(boolean log) {
-		this.log = log;
+
+	public void setLogTransp(boolean logTransp) {
+		this.logTransp = logTransp;
 	}
 
-	public Date getDtAltera() {
-		return dtAltera;
+
+	public Date getDtAlteraTransp() {
+		return dtAlteraTransp;
 	}
 
-	public void setDtAltera(Date dtAltera) {
-		this.dtAltera = dtAltera;
+
+	public void setDtAlteraTransp(Date dtAlteraTransp) {
+		this.dtAlteraTransp = dtAlteraTransp;
 	}
 
-	public String getCodIbge() {
+
+	public String getCodIbgeTransp() {
 		return codIbgeTransp;
 	}
 
-	public void setCodIbge(String codIbgeTransp) {
+
+	public void setCodIbgeTransp(String codIbgeTransp) {
 		this.codIbgeTransp = codIbgeTransp;
 	}
 
-	public String getSuframa() {
+
+	public String getSuframaTransp() {
 		return suframaTransp;
 	}
 
-	public void setSuframa(String suframaTransp) {
+
+	public void setSuframaTransp(String suframaTransp) {
 		this.suframaTransp = suframaTransp;
 	}
 
-	public List<Endereco> getEnderecosTransp() {
-		return enderecosTransp;
-	}
-
-	public void setEnderecosTransp(List<Endereco> enderecosTransp) {
-		this.enderecosTransp = enderecosTransp;
-	}
 
 	public Fornecedor getFornecedor() {
 		return fornecedor;
 	}
 
+
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}
 
-	public List<Telefone> getTelefones() {
-		return telefones;
+
+	public List<Endereco> getEnderecosTransp() {
+		return enderecosTransp;
 	}
 
-	public void setTelefones(List<Telefone> telefones) {
-		this.telefones = telefones;
+
+	public void setEnderecosTransp(List<Endereco> enderecosTransp) {
+		this.enderecosTransp = enderecosTransp;
 	}
-	
+
+
+	public List<Telefone> getTelefonesTransp() {
+		return telefonesTransp;
+	}
+
+
+	public void setTelefonesTransp(List<Telefone> telefonesTransp) {
+		this.telefonesTransp = telefonesTransp;
+	}
+
+
 	
 }

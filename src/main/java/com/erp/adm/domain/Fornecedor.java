@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.erp.adm.enums.TipoEstadoCivil;
+import com.erp.adm.enums.TipoSexo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -67,7 +69,7 @@ public class Fornecedor extends GenericDomain implements Serializable{
 	}
 
 	public Fornecedor(String nome, Date nascimento, String nascionalidade, String cpfCnpj, String email,
-			Integer tipoEstadoCivil, Integer tipoSexo, String razao, String fantasia, String inscEstadual,
+			TipoEstadoCivil tipoEstadoCivil, TipoSexo tipoSexo, String razao, String fantasia, String inscEstadual,
 			String inscMunicipal, String suframa, Integer tipoFornecedor, String codIbge, String obs, boolean inativo,
 			Empresa empresa) {
 		super();
@@ -76,8 +78,8 @@ public class Fornecedor extends GenericDomain implements Serializable{
 		this.nascionalidade = nascionalidade;
 		this.cpfCnpj = cpfCnpj;
 		this.email = email;
-		this.tipoEstadoCivil = tipoEstadoCivil;
-		this.tipoSexo = tipoSexo;
+		this.tipoEstadoCivil = tipoEstadoCivil.getCodigo();
+		this.tipoSexo = tipoSexo.getCod();
 		this.razao = razao;
 		this.fantasia = fantasia;
 		this.inscEstadual = inscEstadual;
@@ -130,20 +132,20 @@ public class Fornecedor extends GenericDomain implements Serializable{
 		this.email = email;
 	}
 
-	public Integer getTipoEstadoCivil() {
-		return tipoEstadoCivil;
+	public TipoEstadoCivil getTipoEstadoCivil() {
+		return TipoEstadoCivil.toEnum(tipoEstadoCivil);
 	}
 
-	public void setTipoEstadoCivil(Integer tipoEstadoCivil) {
-		this.tipoEstadoCivil = tipoEstadoCivil;
+	public void setTipoEstadoCivil(TipoEstadoCivil tipoEstadoCivil) {
+		this.tipoEstadoCivil = tipoEstadoCivil.getCodigo();
 	}
 
-	public Integer getTipoSexo() {
-		return tipoSexo;
+	public TipoSexo getTipoSexo() {
+		return TipoSexo.toEnum(tipoSexo);
 	}
 
-	public void setTipoSexo(Integer tipoSexo) {
-		this.tipoSexo = tipoSexo;
+	public void setTipoSexo(TipoSexo tipoSexo) {
+		this.tipoSexo = tipoSexo.getCod();
 	}
 
 	public String getRazao() {

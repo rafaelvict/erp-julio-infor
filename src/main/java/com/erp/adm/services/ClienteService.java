@@ -112,8 +112,8 @@ public class ClienteService {
 		Optional<Usuario> usu = usuarioRepository.findById(objDTO.getUsuarioId());
 		Cliente cli = new Cliente(objDTO.getNome(), objDTO.getNascimento(), objDTO.getNascionalidade(), objDTO.getCpfCnpj(), objDTO.getEmail(), TipoEstadoCivil.toEnum(objDTO.getEstadoCivil()), TipoSexo.toEnum(objDTO.getSexo()), objDTO.isAtivo(), objDTO.isOnline(), objDTO.getStatus(), null, objDTO.getInsc_Estadual(), objDTO.getInsc_Municipal(), TipoPessoa.toEnum(objDTO.getTipoPessoa()), objDTO.getFantasia(), objDTO.isBloqManual(), objDTO.getCartaoFidelidade(), objDTO.getPontosFidelidade(), objDTO.isVidaLink(), objDTO.getAcrescimo(), objDTO.isEpharma(), objDTO.getSuframa(), objDTO.isnExtConta(), objDTO.isMostraMsg(), objDTO.isGeraCobranca(), objDTO.getDocOrgaoExp(), objDTO.getDocUfEmissao(), TipoDocumento.toEnum(objDTO.getDocTipo()), objDTO.getCodControle(), objDTO.getObs(), objDTO.getDtAlteraCli(), objDTO.getNumeroChapa(), objDTO.isUltraCard(), emp.get(), usu.get(), null, null);
 		Optional<Cidade> cid = cidadeRepository.findById(objDTO.getCidadeId());
-		Endereco end = new Endereco(objDTO.getRua(), objDTO.getNumero(), objDTO.getBairro(), objDTO.getComplemento(), objDTO.getCep(), TipoEndereco.toEnum(objDTO.getTipo_End()), cid.get(), null, null, null, cli, null, null);
-		Telefone tel = new Telefone(objDTO.getDdd(), objDTO.getTelefone(), TipoTelefone.toEnum(objDTO.getTipo_Tel()), objDTO.getDataAlteraTel(), null, null, null, cli, null, null);
+		Endereco end = new Endereco(objDTO.getRua(), objDTO.getNumero(), objDTO.getBairro(), objDTO.getComplemento(), objDTO.getCep(), TipoEndereco.toEnum(objDTO.getTipo_End()), cid.get(), null, null, null, cli, null, null, null);
+		Telefone tel = new Telefone(objDTO.getDdd(), objDTO.getTelefone(), TipoTelefone.toEnum(objDTO.getTipo_Tel()), objDTO.getDataAlteraTel(), null, null, null, cli, null, null, null);
 		RamoAtividade ramatv = new RamoAtividade(objDTO.getDescricaoRamo(), null, cli, null, null);
 		cli.getEnderecos().add(end);
 		cli.getTelefones().add(tel);

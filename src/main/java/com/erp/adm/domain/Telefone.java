@@ -16,7 +16,7 @@ public class Telefone extends GenericDomain implements Serializable{
 
 	private Integer ddd;
 	private String telefone;
-	private Integer tipo_Tel;
+	private Integer tipoTel;
 	private Date dataAlteraTel;
 	
 	@JsonIgnore
@@ -48,17 +48,22 @@ public class Telefone extends GenericDomain implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "transp_id")
 	private Transp transp;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "fornecedor_id")
+	private Fornecedor fornecedor;
 
 	public Telefone() {
 		
 	}
 
-	public Telefone(Integer ddd, String telefone, TipoTelefone tipo_Tel, Date dataAlteraTel, Empresa empresa,
-			Funcionario funcionario, ProprietarioSocio proprietarioSocio, Cliente cliente, Fabricante fabricante, Transp transp) {
+	public Telefone(Integer ddd, String telefone, TipoTelefone tipoTel, Date dataAlteraTel, Empresa empresa,
+			Funcionario funcionario, ProprietarioSocio proprietarioSocio, Cliente cliente, Fabricante fabricante, Transp transp, Fornecedor fornecedor) {
 		super();
 		this.ddd = ddd;
 		this.telefone = telefone;
-		this.tipo_Tel = (tipo_Tel==null) ? null : tipo_Tel.getCod();
+		this.tipoTel = (tipoTel==null) ? null : tipoTel.getCod();
 		this.dataAlteraTel = dataAlteraTel;
 		this.empresa = empresa;
 		this.funcionario = funcionario;
@@ -66,6 +71,7 @@ public class Telefone extends GenericDomain implements Serializable{
 		this.cliente = cliente;
 		this.fabricante = fabricante;
 		this.transp = transp;
+		this.fornecedor = fornecedor;
 	}
 
 	public int getDdd() {
@@ -84,12 +90,12 @@ public class Telefone extends GenericDomain implements Serializable{
 		this.telefone = telefone;
 	}
 
-	public TipoTelefone getTipo() {
-		return TipoTelefone.toEnum(tipo_Tel);
+	public TipoTelefone getTipoTel() {
+		return TipoTelefone.toEnum(tipoTel);
 	}
 
-	public void setTipo(TipoTelefone tipo_Tel) {
-		this.tipo_Tel = tipo_Tel.getCod();
+	public void setTipoTel(TipoTelefone tipoTel) {
+		this.tipoTel = tipoTel.getCod();
 	}
 
 	public Date getDataAlteraTel() {
@@ -147,6 +153,15 @@ public class Telefone extends GenericDomain implements Serializable{
 	public void setTransp(Transp transp) {
 		this.transp = transp;
 	}
+
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
+	}
+	
 	
 	
 }

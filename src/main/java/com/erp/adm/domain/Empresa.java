@@ -96,6 +96,9 @@ public class Empresa extends GenericDomain implements Serializable{
 	@OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
 	private List<Fornecedor> fornecedores = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+	private List<Produto> produtos = new ArrayList<>();
+	
 	
 	public Empresa() {
 		
@@ -648,6 +651,14 @@ public class Empresa extends GenericDomain implements Serializable{
 
 	public void setFornecedores(List<Fornecedor> fornecedores) {
 		this.fornecedores = fornecedores;
+	}
+
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
 	}
 	
 	

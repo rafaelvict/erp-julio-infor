@@ -5,54 +5,54 @@ import java.util.Date;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CNPJ;
 
-import com.sun.istack.NotNull;
-
-public class FabricanteNewDTO implements Serializable {
+public class TranspNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(max=40, message="Tamanho deve ser de até 40 caracteres")
-	private String nomeFab;
-	
-	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(max=30, message="Tamanho deve ser de até 30 caracteres")
-	private String razaoFab;
-	
-	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(max=30, message="Tamanho deve ser de até 30 caracteres")
-	private String fantasiaFab;
+	private String nomeTransp;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
 	@CNPJ
-	private String cnpjFab;
+	private String cnpjTransp;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=9, max=9, message="Tamanho deve ser de 6 caracteres")
-	private String inscEstadualFab;
+	@Length(max=20, message="Tamanho deve ser de até 20 caracteres")
+	private String inscEstadualTransp;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
-	@Email(message="Email inválido!")
-	private String emailFab;
+	@Email
+	private String emailTransp;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(max=2, message="Tamanho deve ser de até 2 caracteres")
+	private String ufTransp;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(max=10, message="Tamanho deve ser de até 10 caracteres")
+	private String placaTransp;
 	
 	@NotNull
-	private Float descontoFab;
+	private boolean logTransp;
 	
-	private Date dataCadFab;
 	
-	private boolean logFab;
+	private Date dtAlteraTransp;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(max=50, message="Tamanho deve ser de até 50 caracteres")
-	private String siteFab;
+	@Length(max=9, message="Tamanho deve ser de até 9 caracteres")
+	private String codIbgeTransp;
 	
-	private Date dtAlteraFab;
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(max=30, message="Tamanho deve ser de até 30 caracteres")
+	private String suframaTransp;
 	
 	
-	//Endereço
+	//Endereco
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(min=5, max=40, message="Tamanho deve ser entre 5 e 40 caracteres")
 	private String rua;
@@ -72,7 +72,7 @@ public class FabricanteNewDTO implements Serializable {
 	private String cep;
 	
 	@NotNull
-	private Integer tipo_End;
+	private Integer tipoEnd;
 	
 	@NotNull
 	private Long cidadeId;
@@ -85,129 +85,137 @@ public class FabricanteNewDTO implements Serializable {
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(min=8, max=30, message="Tamanho deve ser entre 8 e 30 caracteres")
 	private String telefone;
-
+	
 	@NotNull
 	private Integer tipoTel;
 	
-	private Date dataAlteraTel;
+	
+	private Date dataAltera;
 	
 	
-	//Ramo Atividade
-	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=5, max=100, message="Tamanho deve ser entre 5 e 100 caracteres")
-	private String descricao;
-	
-	
-	@NotNull
+	//Fornecedor
 	private Long fornecedorId;
 	
 	
-	public FabricanteNewDTO() {
+	public TranspNewDTO() {
 		
 	}
 
 
-	
-	public String getNomeFab() {
-		return nomeFab;
-	}
-	
-	public void setNomeFab(String nomeFab) {
-		this.nomeFab = nomeFab;
-	}
-
-	public String getRazaoFab() {
-		return razaoFab;
-	}
-
-	public void setRazaoFab(String razaoFab) {
-		this.razaoFab = razaoFab;
-	}
-
-	public String getFantasiaFab() {
-		return fantasiaFab;
-	}
-
-	public void setFantasiaFab(String fantasiaFab) {
-		this.fantasiaFab = fantasiaFab;
-	}
-
-	public String getCnpjFab() {
-		return cnpjFab;
-	}
-
-	public void setCnpjFab(String cnpjFab) {
-		this.cnpjFab = cnpjFab;
-	}
-
-	public String getInscEstadualFab() {
-		return inscEstadualFab;
-	}
-
-	public void setInscEstadualFab(String inscEstadualFab) {
-		this.inscEstadualFab = inscEstadualFab;
-	}
-
-	public String getEmailFab() {
-		return emailFab;
-	}
-
-	public void setEmailFab(String emailFab) {
-		this.emailFab = emailFab;
-	}
-
-	public Float getDescontoFab() {
-		return descontoFab;
-	}
-
-	public void setDescontoFab(Float descontoFab) {
-		this.descontoFab = descontoFab;
-	}
-
-	public Date getDataCadFab() {
-		return dataCadFab;
-	}
-
-	public void setDataCadFab(Date dataCadFab) {
-		this.dataCadFab = dataCadFab;
-	}
-
-	public boolean isLogFab() {
-		return logFab;
-	}
-
-	public void setLogFab(boolean logFab) {
-		this.logFab = logFab;
-	}
-
-	public String getSiteFab() {
-		return siteFab;
-	}
-
-	public void setSiteFab(String siteFab) {
-		this.siteFab = siteFab;
-	}
-
-	public Date getDtAlteraFab() {
-		return dtAlteraFab;
+	public String getNomeTransp() {
+		return nomeTransp;
 	}
 
 
-	public void setDtAlteraFab(Date dtAlteraFab) {
-		this.dtAlteraFab = dtAlteraFab;
+	public void setNomeTransp(String nomeTransp) {
+		this.nomeTransp = nomeTransp;
 	}
+
+
+	public String getCnpjTransp() {
+		return cnpjTransp;
+	}
+
+
+	public void setCnpjTransp(String cnpjTransp) {
+		this.cnpjTransp = cnpjTransp;
+	}
+
+
+	public String getInscEstadualTransp() {
+		return inscEstadualTransp;
+	}
+
+
+	public void setInscEstadualTransp(String inscEstadualTransp) {
+		this.inscEstadualTransp = inscEstadualTransp;
+	}
+
+
+	public String getEmailTransp() {
+		return emailTransp;
+	}
+
+
+	public void setEmailTransp(String emailTransp) {
+		this.emailTransp = emailTransp;
+	}
+
+
+	public String getUfTransp() {
+		return ufTransp;
+	}
+
+
+	public void setUfTransp(String ufTransp) {
+		this.ufTransp = ufTransp;
+	}
+
+
+	public String getPlacaTransp() {
+		return placaTransp;
+	}
+
+
+	public void setPlacaTransp(String placaTransp) {
+		this.placaTransp = placaTransp;
+	}
+
+
+	public boolean isLogTransp() {
+		return logTransp;
+	}
+
+
+	public void setLogTransp(boolean logTransp) {
+		this.logTransp = logTransp;
+	}
+
+
+	public Date getDtAlteraTransp() {
+		return dtAlteraTransp;
+	}
+
+
+	public void setDtAlteraTransp(Date dtAlteraTransp) {
+		this.dtAlteraTransp = dtAlteraTransp;
+	}
+
+
+	public String getCodIbgeTransp() {
+		return codIbgeTransp;
+	}
+
+
+	public void setCodIbgeTransp(String codIbgeTransp) {
+		this.codIbgeTransp = codIbgeTransp;
+	}
+
+
+	public String getSuframaTransp() {
+		return suframaTransp;
+	}
+
+
+	public void setSuframaTransp(String suframaTransp) {
+		this.suframaTransp = suframaTransp;
+	}
+
 
 	public String getRua() {
 		return rua;
 	}
 
+
 	public void setRua(String rua) {
 		this.rua = rua;
 	}
 
+
 	public Integer getNumero() {
 		return numero;
 	}
+
 
 	public void setNumero(Integer numero) {
 		this.numero = numero;
@@ -244,13 +252,13 @@ public class FabricanteNewDTO implements Serializable {
 	}
 
 
-	public Integer getTipo_End() {
-		return tipo_End;
+	public Integer getTipoEnd() {
+		return tipoEnd;
 	}
 
 
-	public void setTipo_End(Integer tipo_End) {
-		this.tipo_End = tipo_End;
+	public void setTipoEnd(Integer tipoEnd) {
+		this.tipoEnd = tipoEnd;
 	}
 
 
@@ -294,33 +302,23 @@ public class FabricanteNewDTO implements Serializable {
 	}
 
 
-	public Date getDataAlteraTel() {
-		return dataAlteraTel;
+	public Date getDataAltera() {
+		return dataAltera;
 	}
 
 
-	public void setDataAlteraTel(Date dataAlteraTel) {
-		this.dataAlteraTel = dataAlteraTel;
+	public void setDataAltera(Date dataAltera) {
+		this.dataAltera = dataAltera;
 	}
 
 
-	public String getDescricao() {
-		return descricao;
-	}
-
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	
 	public Long getFornecedorId() {
 		return fornecedorId;
 	}
-	
+
 
 	public void setFornecedorId(Long fornecedorId) {
 		this.fornecedorId = fornecedorId;
 	}
-		
+
 }

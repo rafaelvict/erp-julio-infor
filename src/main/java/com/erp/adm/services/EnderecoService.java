@@ -61,8 +61,7 @@ public class EnderecoService {
 	}
 
 	public Endereco fromDTO(EnderecoDTO objDTO) {
-		return new Endereco(objDTO.getRua(), objDTO.getNumero(), objDTO.getBairro(), objDTO.getComplemento(), objDTO.getCep(), null, null, null, null, null, null, null, null);
-	}
+		return new Endereco(objDTO.getRua(), objDTO.getNumero(), objDTO.getBairro(), objDTO.getComplemento(), objDTO.getCep(), null, null, null, null, null, null, null, null, null);	}
 
 	private void updateData(Endereco newObj, Endereco obj) {
 		newObj.setBairro(obj.getBairro());

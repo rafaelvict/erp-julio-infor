@@ -121,14 +121,18 @@ public class Produto extends GenericDomain implements Serializable{
 	private Integer aliqInterestadualIva;
 	private Integer ivastFora;
 	private Float precoMinimo;
-	private Integer codTf2;
-	private Integer codTf3;
+	private String codTf2;
+	private String codTf3;
 	private String codCbc;
 	private String codCf;
 	private String codCf2;
 	private String codCf3;
-	private Integer codLinha;
 	private Integer tipoItem;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "empresa_id")
+	private Empresa empresa;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -222,11 +226,11 @@ public class Produto extends GenericDomain implements Serializable{
 			Integer precoCustoDolar, Integer cstPisEntrada, String natReceitaPisCofins, Integer milhoesEncerrante,
 			Integer aliqRedPis, Integer aliqRedCofins, TipoClasseTerapeutica tipoClasseTerapeutica, boolean usoProlongado,
 			Integer aliquota, String chavePaf, Integer seqPaf, Integer aliqInternaIva, Integer aliqInterestadualIva,
-			Integer ivastFora, Float precoMinimo, Integer codTf2, Integer codTf3, String codCbc, String codCf,
-			String codCf2, String codCf3, Integer codLinha, TipoItem tipoItem, Psicotropico psicotropico, Cest cest,
+			Integer ivastFora, Float precoMinimo, String codTf2, String codTf3, String codCbc, String codCf,
+			String codCf2, String codCf3, TipoItem tipoItem, Psicotropico psicotropico, Cest cest,
 			Secao secao, Unidade unidade, GrupoPreco grupoPreco, Grupo grupo, GrupoLinhas grupoLinhas,
 			GeneroMercadoria generoMercadoria, SubGrupo subGrupo, Fabricante fabricante,
-			TotalizadorFiscal totalizadorFiscal, NaturezaReceita naturezaReceita, Cst cstPisCofinsEntrada, Cst cstPisCofinsSaida) {
+			TotalizadorFiscal totalizadorFiscal, NaturezaReceita naturezaReceita, Cst cstPisCofinsEntrada, Cst cstPisCofinsSaida, Empresa empresa) {
 		super();
 		this.descricao = descricao;
 		this.codBarra = codBarra;
@@ -336,7 +340,6 @@ public class Produto extends GenericDomain implements Serializable{
 		this.codCf = codCf;
 		this.codCf2 = codCf2;
 		this.codCf3 = codCf3;
-		this.codLinha = codLinha;
 		this.tipoItem = (tipoItem==null) ? null : tipoItem.getCodigo();;
 		this.psicotropico = psicotropico;
 		this.cest = cest;
@@ -352,6 +355,7 @@ public class Produto extends GenericDomain implements Serializable{
 		this.naturezaReceita = naturezaReceita;
 		this.cstPisCofinsEntrada = cstPisCofinsEntrada;
 		this.cstPisCofinsSaida = cstPisCofinsSaida;
+		this.empresa = empresa;
 	}
 
 
@@ -1172,19 +1176,19 @@ public class Produto extends GenericDomain implements Serializable{
 		this.precoMinimo = precoMinimo;
 	}
 
-	public Integer getCodTf2() {
+	public String getCodTf2() {
 		return codTf2;
 	}
 
-	public void setCodTf2(Integer codTf2) {
+	public void setCodTf2(String codTf2) {
 		this.codTf2 = codTf2;
 	}
 
-	public Integer getCodTf3() {
+	public String getCodTf3() {
 		return codTf3;
 	}
 
-	public void setCodTf3(Integer codTf3) {
+	public void setCodTf3(String codTf3) {
 		this.codTf3 = codTf3;
 	}
 
@@ -1218,14 +1222,6 @@ public class Produto extends GenericDomain implements Serializable{
 
 	public void setCodCf3(String codCf3) {
 		this.codCf3 = codCf3;
-	}
-
-	public Integer getCodLinha() {
-		return codLinha;
-	}
-
-	public void setCodLinha(Integer codLinha) {
-		this.codLinha = codLinha;
 	}
 
 	public Psicotropico getPsicotropico() {
@@ -1346,6 +1342,14 @@ public class Produto extends GenericDomain implements Serializable{
 
 	public void setCstPisCofinsSaida(Cst cstPisCofinsSaida) {
 		this.cstPisCofinsSaida = cstPisCofinsSaida;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
 	}
 	
 	

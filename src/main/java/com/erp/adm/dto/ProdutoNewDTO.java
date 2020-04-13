@@ -327,57 +327,63 @@ public class ProdutoNewDTO implements Serializable {
 	@NotNull
 	private Integer tipoItem;
 	
+	//Empresa
+	private Long empresaId;
+	
 	
 	//Psicotrópico
-	private Long psicotropico;
+	private Long psicotropicoId;
 	
 	
 	//Cest
-	private Long cest;
+	private Long cestId;
 	
 	
 	//Seção
-	private Long secao;
+	private Long secaoId;
 	
 	
 	//Unidade
-	private Long unidade;
+	private Long unidadeId;
 	
 	
 	//Grupo Preço
-	private Long grupoPreco;
+	private Long grupoPrecoId;
 	
 	
 	//Grupo
-	private Long grupo;
+	private Long grupoId;
 	
 	
 	//Grupo Linhas
-	private Long grupoLinhas;
+	private Long grupoLinhasId;
 	
 	
 	//Gênero Mercadoria
-	private Long generoMercadoria;
+	private Long generoMercadoriaId;
+	
+	//SubGrupo
+	private Long subGrupoId;
 	
 	
 	//Fabricante
-	private Long fabricante;
+	private Long fabricanteId;
 	
 	
 	//Totalizador Fiscal
-	private Long totalizadorFiscal;
+	private Long totalizadorFiscalId;
 	
 	
 	//Natureza Receita
-	private Long naturezaReceita;
+	private Long naturezaReceitaId;
 	
 	
 	//CST PIS/COFINS Entrada
-	private Long cstPisCofinsEntrada;
+	private Long cstPisCofinsEntradaId;
 	
 	
 	//CST PIS/COFINS Saída
-	private Long cstPisCofinsSaida;
+	private Long cstPisCofinsSaidaId;
 	
 	
 	public ProdutoNewDTO() {
@@ -1475,135 +1481,155 @@ public class ProdutoNewDTO implements Serializable {
 	}
 
 
-	public Long getPsicotropico() {
-		return psicotropico;
+	public Long getEmpresaId() {
+		return empresaId;
 	}
 
 
-	public void setPsicotropico(Long psicotropico) {
-		this.psicotropico = psicotropico;
+	public void setEmpresaId(Long empresaId) {
+		this.empresaId = empresaId;
 	}
 
 
-	public Long getCest() {
-		return cest;
+	public Long getPsicotropicoId() {
+		return psicotropicoId;
 	}
 
 
-	public void setCest(Long cest) {
-		this.cest = cest;
+	public void setPsicotropicoId(Long psicotropicoId) {
+		this.psicotropicoId = psicotropicoId;
 	}
 
 
-	public Long getSecao() {
-		return secao;
+	public Long getCestId() {
+		return cestId;
 	}
 
 
-	public void setSecao(Long secao) {
-		this.secao = secao;
+	public void setCestId(Long cestId) {
+		this.cestId = cestId;
 	}
 
 
-	public Long getUnidade() {
-		return unidade;
+	public Long getSecaoId() {
+		return secaoId;
 	}
 
 
-	public void setUnidade(Long unidade) {
-		this.unidade = unidade;
+	public void setSecaoId(Long secaoId) {
+		this.secaoId = secaoId;
 	}
 
 
-	public Long getGrupoPreco() {
-		return grupoPreco;
+	public Long getUnidadeId() {
+		return unidadeId;
 	}
 
 
-	public void setGrupoPreco(Long grupoPreco) {
-		this.grupoPreco = grupoPreco;
+	public void setUnidadeId(Long unidadeId) {
+		this.unidadeId = unidadeId;
 	}
 
 
-	public Long getGrupo() {
-		return grupo;
+	public Long getGrupoPrecoId() {
+		return grupoPrecoId;
 	}
 
 
-	public void setGrupo(Long grupo) {
-		this.grupo = grupo;
+	public void setGrupoPrecoId(Long grupoPrecoId) {
+		this.grupoPrecoId = grupoPrecoId;
 	}
 
 
-	public Long getGrupoLinhas() {
-		return grupoLinhas;
+	public Long getGrupoId() {
+		return grupoId;
 	}
 
 
-	public void setGrupoLinhas(Long grupoLinhas) {
-		this.grupoLinhas = grupoLinhas;
+	public void setGrupoId(Long grupoId) {
+		this.grupoId = grupoId;
 	}
 
 
-	public Long getGeneroMercadoria() {
-		return generoMercadoria;
+	public Long getGrupoLinhasId() {
+		return grupoLinhasId;
 	}
 
 
-	public void setGeneroMercadoria(Long generoMercadoria) {
-		this.generoMercadoria = generoMercadoria;
+	public void setGrupoLinhasId(Long grupoLinhasId) {
+		this.grupoLinhasId = grupoLinhasId;
 	}
 
 
-	public Long getFabricante() {
-		return fabricante;
+	public Long getGeneroMercadoriaId() {
+		return generoMercadoriaId;
 	}
 
 
-	public void setFabricante(Long fabricante) {
-		this.fabricante = fabricante;
+	public void setGeneroMercadoriaId(Long generoMercadoriaId) {
+		this.generoMercadoriaId = generoMercadoriaId;
 	}
 
 
-	public Long getTotalizadorFiscal() {
-		return totalizadorFiscal;
+	public Long getFabricanteId() {
+		return fabricanteId;
 	}
 
 
-	public void setTotalizadorFiscal(Long totalizadorFiscal) {
-		this.totalizadorFiscal = totalizadorFiscal;
+	public void setFabricanteId(Long fabricanteId) {
+		this.fabricanteId = fabricanteId;
 	}
 
 
-	public Long getNaturezaReceita() {
-		return naturezaReceita;
+	public Long getTotalizadorFiscalId() {
+		return totalizadorFiscalId;
 	}
 
 
-	public void setNaturezaReceita(Long naturezaReceita) {
-		this.naturezaReceita = naturezaReceita;
+	public void setTotalizadorFiscalId(Long totalizadorFiscalId) {
+		this.totalizadorFiscalId = totalizadorFiscalId;
 	}
 
 
-	public Long getCstPisCofinsEntrada() {
-		return cstPisCofinsEntrada;
+	public Long getNaturezaReceitaId() {
+		return naturezaReceitaId;
 	}
 
 
-	public void setCstPisCofinsEntrada(Long cstPisCofinsEntrada) {
-		this.cstPisCofinsEntrada = cstPisCofinsEntrada;
+	public void setNaturezaReceitaId(Long naturezaReceitaId) {
+		this.naturezaReceitaId = naturezaReceitaId;
 	}
 
 
-	public Long getCstPisCofinsSaida() {
-		return cstPisCofinsSaida;
+	public Long getCstPisCofinsEntradaId() {
+		return cstPisCofinsEntradaId;
 	}
 
 
-	public void setCstPisCofinsSaida(Long cstPisCofinsSaida) {
-		this.cstPisCofinsSaida = cstPisCofinsSaida;
+	public void setCstPisCofinsEntradaId(Long cstPisCofinsEntradaId) {
+		this.cstPisCofinsEntradaId = cstPisCofinsEntradaId;
 	}
-	
+
+
+	public Long getCstPisCofinsSaidaId() {
+		return cstPisCofinsSaidaId;
+	}
+
+
+	public void setCstPisCofinsSaidaId(Long cstPisCofinsSaidaId) {
+		this.cstPisCofinsSaidaId = cstPisCofinsSaidaId;
+	}
+
+
+	public Long getSubGrupoId() {
+		return subGrupoId;
+	}
+
+
+	public void setSubGrupoId(Long subGrupoId) {
+		this.subGrupoId = subGrupoId;
+	}
+
 	
 	
 }
